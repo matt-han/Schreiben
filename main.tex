@@ -1,0 +1,86 @@
+%%
+%% Beuth Hochschule für Technik -- Bachelorarbeit
+%%
+%% Hauptdokument
+%%
+%--------------------------------------------------------------%
+
+\documentclass[11pt, a4paper,parskip=half]{report}
+\usepackage[abgabe]{bhtThesis}
+\typeout{Bachelorarbeit}
+
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\usepackage{blindtext}
+\usepackage{listings}
+\usepackage{color}
+
+\lstset{
+	literate =	{ö}{{\"o}}1
+				{ä}{{\"a}}1
+				{ü}{{\"u}}1
+				{Ö}{{\"O}}1
+				{Ä}{{\"A}}1
+				{Ü}{{\"U}}1
+				{ß}{{\ss}}1
+}
+\usepackage{trsym}
+\usepackage{bytefield}
+\definecolor{light-gray}{gray}{0.90} %Code Hintergundfarbe
+
+%Pfad zu den Bildern
+\graphicspath{
+	{pictures/},
+	{einleitung/pictures/},
+	{kapitel_1/pictures/}
+}
+
+\definecolor{darkBHT}{rgb}{0,0.5882,0.5529}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+
+\definecolor{lightgray}{rgb}{.9,.9,.9}
+\definecolor{darkgray}{rgb}{.4,.4,.4}
+\definecolor{purple}{rgb}{0.65,0.12,0.82}
+
+\begin{document}
+
+\pagestyle{fancy}
+\input{titlepage.tex}
+
+\tableofcontents %Inhaltsverzeichnis
+
+\pagenumbering{arabic}
+%--------------------------------------------------------------%
+% Die Kapitel
+%--------------------------------------------------------------%
+
+\input{1_Einleitung/einleitung.tex}
+\input{2_Aufgabenstellung/aufgabenstellung.tex}
+\input{3_Fachlichesumfeld/fachlichesumfeld.tex}
+\input{4_Loesungsansaetze/loesungsansaetze.tex}
+\input{5_Anforderungsdefinition/anforderungsdefinition.tex}
+\input{6_Systementwurf/systementwurf.tex}
+\input{7_Realisierung/realisierung.tex}
+\input{8_Bedienungsanleitung/bedienungsanleitung.tex}
+\input{9_Zusammenfassung_und_Ausblick/zusammenfassung_u_ausblick.tex}
+\listoffigures %Abbildungsverzeichnis
+\lstlistoflistings
+%--------------------------------------------------------------%
+% Anhang
+%--------------------------------------------------------------%
+
+\begin{appendix}
+	\input{anhang.tex}
+\end{appendix}
+%--------------------------------------------------------------%
+% Literaturverzeichnis
+%--------------------------------------------------------------%
+
+\clearpage\newpage
+\addcontentsline{toc}{chapter}{Literatur- und Quellenverzeichnis}
+\bibliographystyle{IEEEtran}
+\bibliography{bhtThesis}
+
+\end{document}  
