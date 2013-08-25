@@ -1,14 +1,40 @@
 \BOOKMARK [0][-]{chapter.1}{Einleitung}{}% 1
 \BOOKMARK [0][-]{chapter.2}{Aufgabenstellung}{}% 2
-\BOOKMARK [0][-]{chapter.3}{Fachlichesumfeld}{}% 3
-\BOOKMARK [1][-]{section.3.1}{Dast ist eine Section}{chapter.3}% 4
-\BOOKMARK [2][-]{subsection.3.1.1}{Das ist eine SubSection}{section.3.1}% 5
-\BOOKMARK [1][-]{section.3.2}{Dast ist eine Section}{chapter.3}% 6
-\BOOKMARK [2][-]{subsection.3.2.1}{Das ist eine SubSection}{section.3.2}% 7
-\BOOKMARK [0][-]{chapter.4}{L\366sungsans\344tze}{}% 8
-\BOOKMARK [0][-]{chapter.5}{Anforderungsdefinition}{}% 9
-\BOOKMARK [0][-]{chapter.6}{Systementwurf}{}% 10
-\BOOKMARK [0][-]{chapter.7}{Realsiseriung}{}% 11
-\BOOKMARK [0][-]{chapter.8}{Bedienungsanleitung}{}% 12
-\BOOKMARK [0][-]{chapter.9}{Zusammenfassung und Ausblick}{}% 13
-\BOOKMARK [0][-]{appendix.A}{Anhang}{}% 14
+\BOOKMARK [1][-]{section.2.1}{Module}{chapter.2}% 3
+\BOOKMARK [1][-]{section.2.2}{Laufzeit}{chapter.2}% 4
+\BOOKMARK [1][-]{section.2.3}{Hardware}{chapter.2}% 5
+\BOOKMARK [1][-]{section.2.4}{Betriebssystem}{chapter.2}% 6
+\BOOKMARK [1][-]{section.2.5}{Logbuch}{chapter.2}% 7
+\BOOKMARK [1][-]{section.2.6}{Programminstanzen}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.7}{Master / Slave}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.7.1}{Master-Funktion}{section.2.7}% 10
+\BOOKMARK [2][-]{subsection.2.7.2}{Slave-Funktion}{section.2.7}% 11
+\BOOKMARK [2][-]{subsection.2.7.3}{Master / Slave Kombination mit Kurzschlussstecker}{section.2.7}% 12
+\BOOKMARK [2][-]{subsection.2.7.4}{Master / Slave Ablauf mit \214Wobbeln\215-Funktion}{section.2.7}% 13
+\BOOKMARK [2][-]{subsection.2.7.5}{Synchronisierungsprotokoll}{section.2.7}% 14
+\BOOKMARK [1][-]{section.2.8}{Teststruktur}{chapter.2}% 15
+\BOOKMARK [1][-]{section.2.9}{Benutzerschnittstelle}{chapter.2}% 16
+\BOOKMARK [2][-]{subsection.2.9.1}{GUI}{section.2.9}% 17
+\BOOKMARK [2][-]{subsection.2.9.2}{Kommandozeile}{section.2.9}% 18
+\BOOKMARK [1][-]{section.2.10}{Skriptf\344higkeit}{chapter.2}% 19
+\BOOKMARK [1][-]{section.2.11}{Programmierung der Testparameter}{chapter.2}% 20
+\BOOKMARK [2][-]{subsection.2.11.1}{Schnittstellenoptionen zu Test}{section.2.11}% 21
+\BOOKMARK [2][-]{subsection.2.11.2}{Sendedaten aus Datei}{section.2.11}% 22
+\BOOKMARK [1][-]{section.2.12}{Fehlererkennung und Behandlung}{chapter.2}% 23
+\BOOKMARK [0][-]{chapter.3}{Fachlichesumfeld}{}% 24
+\BOOKMARK [1][-]{section.3.1}{RS 232}{chapter.3}% 25
+\BOOKMARK [2][-]{subsection.3.1.1}{Definition und Geschichte}{section.3.1}% 26
+\BOOKMARK [2][-]{subsection.3.1.2}{Verkabelung und Stecker}{section.3.1}% 27
+\BOOKMARK [2][-]{subsection.3.1.3}{RS 232 in Wincor Nixdorf}{section.3.1}% 28
+\BOOKMARK [1][-]{section.3.2}{Microsoft Windows API}{chapter.3}% 29
+\BOOKMARK [2][-]{subsection.3.2.1}{Definition}{section.3.2}% 30
+\BOOKMARK [2][-]{subsection.3.2.2}{Windows.h}{section.3.2}% 31
+\BOOKMARK [2][-]{subsection.3.2.3}{GUI}{section.3.2}% 32
+\BOOKMARK [2][-]{subsection.3.2.4}{Die RS 232 Schnittstelle und die Windows API}{section.3.2}% 33
+\BOOKMARK [0][-]{chapter.4}{L\366sungsans\344tze}{}% 34
+\BOOKMARK [0][-]{chapter.5}{Anforderungsdefinition}{}% 35
+\BOOKMARK [0][-]{chapter.6}{Systementwurf}{}% 36
+\BOOKMARK [0][-]{chapter.7}{Realiseriung}{}% 37
+\BOOKMARK [0][-]{chapter.8}{Bedienungsanleitung}{}% 38
+\BOOKMARK [0][-]{chapter.9}{Zusammenfassung und Ausblick}{}% 39
+\BOOKMARK [0][-]{appendix.A}{Anhang}{}% 40

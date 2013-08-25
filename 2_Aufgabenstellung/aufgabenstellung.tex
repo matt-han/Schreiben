@@ -1,5 +1,210 @@
+
 \chapter{Aufgabenstellung}
-hgdjkgfjkshgfkhjsagjhlfhaklshfklafjkajksfhjkadshjklfgadjklfga
-sadfasjhdfghjkasgdhjkfgahjksdgfhjasgjlhfgajsfjlhasd
-SDGFSAJKFGJKHASDGFHJKASGHJKFGAHJKSDFGHJASGHDF
-.asdhjgshjkafghjkasfcachvlkwklr tekluwthkerhköaenkfgae
+\paragraph{}
+Das Tool soll die RS 232 Schnittstelle testen und die Schwächen der vorhandenden Lösung ergänzen. Wincor Nixdorf besitzt schon ein Tool was die Druckertestumgebung testet, dies ist aber Ruby basierend. Die vorhandenen Lösung, wie zum Beispiel "AGGsoft Serial Port Tester" haben eingeschränkte Einstellungen und sind nicht ausführlich genug für die Voraussetzungen der Qualitätsicherung.
+
+\subsubsection{AGGsoft Serial Port Monitor}
+Unterschied zu / Mängel vom AGGsoft Serial Port Monitor?
+a) Eingeschränkte Skriptfähigkeit: Zähler, Uhrzeit/Datum als Sendedaten, kein Zufallsgenerator …
+b) Win PE?
+\subsubsection{WN Druckertestumgebung}
+(Ruby basierend)
+Setzt nicht direkt auf der gleichen Schnittstelle (Win-API) auf, wie Kundenapplikationen, also ungeeignet.
+
+
+
+\section{Module}
+\paragraph{}
+Es hat folgende funktionelle Einheiten:
+\begin{itemize}
+\item Windows-GUI(Graphical User Interface) mit allen Einstellmöglichkeiten und Start-Button.
+\item Kommandozeilen User Interface mit passenden Einstellmöglichkeiten, wie auch per GUI und Rückgabewerte (Exitcodes).
+\item Funktionskern, der aus beiden UI angesprochen wird und die eigentlichen Tests durchführt.
+\end{itemize}
+
+
+\section{Laufzeit}
+\paragraph{}
+Das Programm kann von einem schreibgeschütztem Medium (z.B. Windows-PE-CD) laufen, d.h. alle Schreibfunktionen (Log-Datei) sind per Option abschaltbar.
+Die Testparameter können in einer Konfigurationsdatei gespeichert und wieder geladen werden.
+Alle Ereignisse / Meldungen können in einer Log-Datei eingetragen werden.
+Das Programm startet und testet die Ports automatisch (Skriptmodus).
+
+
+\section{Hardware}
+\paragraph{}
+Folgende Hardware-Kombinationen werden unterstützt (die Reihenfolge hier gibt die Priorität der Implementierung wieder):
+\begin{enumerate}
+\item Test einer Schnittstelle mit Kurzschlussstecker auf einem System
+\item Test zweier Schnittstelle mit Null-MODEM-Kabel (RxD/TxD gekreuzt; RTS/CTS gekreuzt, etc.) auf einem System
+\item Test zweier Schnittstelle mit Null-MODEM-Kabel auf unterschiedlichen Systemen! Siehe dazu auch „Synchronisierungsprotokoll“…
+\end{enumerate}
+
+
+
+\section{Betriebssystem}
+\paragraph{}
+Das Tool ist entwickelt für und zu testen mit folgenden Zielbetriebssystemen:
+\begin{itemize}
+\item Windows XP SP3 x86, x64; Windows 7 x86, x64; WinPE 2.x (WinXP) / 3.x (Win7)
+\item Windows 8 .....nur ein Test, der aussagt ob OK und/oder was dafür noch zu tun wäre?......
+\end{itemize},
+Linux ist hier nicht gefordert.
+
+\section{Logbuch}
+\paragraph{}
+Alle Ereignisse / Testschritte können zu Dokumentations- und Analysezwecken in einer Log-Datei gespeichert werden. Auch Fehler, die der Parser in der Test-Datei(.ini) findet, werden in der Log-Datei eingetragen. Das Format ist hier CSV, d.h. es kann direkt in Excel geöffnet werden. Damit sind dann auch Performance-Messungen / -vergleiche zwischen Port auf unterschiedlichen Mainboards einfacher möglich.
+\
+Der Name der Log-Datei ist für jede Instanz und jedes Testsystem eindeutig zu wählen, z.B.:
+\begin{center}
+<Programmname>\_<Computername>\_<Master/Slave>\_<Port>.csv
+\end{center}
+Jeder Eintrag bekommt einen Uhrzeit/Datums-Stempel. Eine Zeile sieht dann wie folgt aus:
+\begin{center}
+<Datum>; <Uhrzeit>;<Ereignis>;<Wert>;<Kommentar>
+\end{center}
+Die ersten beiden  Einträge der Log-Datei:
+\begin{center}
+<Datum>; <Uhrzeit>;START;RS232-Port-Nummer; INI-Dateiname als Kommentar
+\end{center}
+
+
+\section{Programminstanzen}
+\paragraph{}
+Das Programm kann in mehrfachen Programm-Instanzen gestartet werden, in der Regel läuft bei umfangreichen Tests für jeden zu testenden RS232-Port eine Programm-Instanz. Das vermeidet aufwändige Thread-Programmierung eines einzigen Programms für alle Ports. Das ist keine feste Vorgabe, sollte sich Thread-Programmierung als einfacher erweisen, dann sollte es auch benutzt werden.
+
+
+\section{Master / Slave}
+\paragraph{}
+Jede Programminstanz wird als Master, Slave oder als beides gestartet.
+
+
+\subsection{Master-Funktion}
+\paragraph{}
+Im Master-Modus schickt die Schnittstelle die vorgegebenen Texte / Dateien mit den eingestellten Parametern an den Slave. Der Master wertet die dem Test zugeordnete INI-Datei aus, der Slave folgt nur dem Master. Der Master wartet auf das Echo oder eine Fehlermeldung und bewertet den Testschritt sobald der Test komplett und fehlerfrei empfangen als erfolgreich, sonst als fehlerhaft. In beiden Fällen werden Fehler, Warnungen und Erfolgsmeldungen geloggt.
+
+
+\subsection{Slave-Funktion}
+\paragraph{}
+Im Slave-Modus (Programminstanz auf gleichem System oder zweiten BEETLE/PC) empfängt die Daten komplett,  wertet eventuell Fehler aus und schickt entweder die Daten als Echo oder eine Fehlermeldung wieder zurück. 
+
+\subsection{Master / Slave Kombination mit Kurzschlussstecker}
+\paragraph{}
+Im kombinierten Master / Slave-Modus (Kurzschlussstecker) übernimmt eine Instanz des Programms beides, das heißt, sie schickt sich selber Daten und antwortet ebenso. Programm intern laufen aber die beiden Module (Master / Slave) weitestgehend getrennt.
+
+\subsection{Master / Slave Ablauf mit „Wobbeln“-Funktion}
+\paragraph{}
+Die Master-Instanz übernimmt die Steuerung des Ablaufs, der Slave antwortet dem Master. In diesem Testmodus werden durch den Benutzer eingegebenen Baudraten(Unter und Obergrenze) gewobbelt. Der Wobbeln-Ablauf kann über die GUI oder in der INI-Datei beschrieben werden. Der automatische Test erfolgt dann nur für die dort eingetragenen Parameter, Z.B.:
+
+\begin{center}
+BAUD=9600-115200
+\end{center}
+\paragraph{}
+Hier werden die Baudrate von 9600 bis 115200 für den Test berücksichtigt, aber 2400, 300, und so weiter nicht. Wenn mehrere Parameter flexibel gesetzt / programmiert sind, dann werden alle Kombinationen getestet. Das kann dann durchaus eine nicht unerhebliche Testzeit beanspruchen.
+\paragraph{}
+Die Programminstanz öffnet die zugehörige Schnittstelle automatisch mit der ersten von allen der programmierten Optionen (Baudrate, Parität, etc.) und startet dann einen Testdurchlauf mit diesen Einstellungen. Wenn alle Daten fehlerfrei gesendet und danach auch das Echo fehlerfrei empfangen wurden, dann wird der Port geschlossen, mit der nächsten Kombination geöffnet und wieder Daten gesendet / empfangen. Wenn Fehler (Parität, Offline, etc.) vom Master erkannt oder vom Slave gesendet wurden, dann wird der letzte Schritt wiederholt. Wenn der aktuelle Test schon die x-te Fehler-Wiederholung war, dann stoppt das Programm und zeigt den Fehler an. Dieser Fehler-Zustand darf durch das Programm nicht verändert werden. Der Tester / Entwickler muss der Fehler analysieren.
+
+\subsection{Synchronisierungsprotokoll}
+\paragraph{}
+Für den Wobbelmode ist ein (minimales) Protokoll zur Synchronisation nötig. Wenn eine Programminstanz als Master gestartet wird, erhält sie die nötigen Schnittstellenparameter per GUI oder aus der Konfigurationsdatei. Sie sendet diese in From eines Konfigurationspakets dem Slave. Solche Konfigurationspakete werden immer mit den Standardschnittstellenparametern (96,o,8,1) gesendet. Der Slave synchronisiert sich dann, d.h. programmiert -per WIN-API- seinen zu testenden Port mit den empfangenen Parametern und wartet auf Nutzdaten.
+\paragraph{}
+Wenn der erste Test erfolgreich war (Master hat gesendet und der Slave hat ein Echo geschickt), dann schickt der Master an den Slave die Parameter des nächsten Testschritts. Das ist so nötig, weil im Fehlerfall (Echo fehlerhaft empfangen) der Slave nicht mehr synchron wäre, er weiß nur ob seine Daten fehlerfrei gesendet wurden, aber nicht ob der Empfang richtig angekommen ist. Der Slave kann so einfach nur mit Standard-Parametern gestartet werden und folgt dann dem Master.
+
+
+\section{Teststruktur}
+\paragraph{}
+Gefordert ist eine einfache Trennung von Testablauf / Testoptionen  und  Testobjekt(RS232-Port). Die Teststeuerung wird daher sowohl im Programm selber, als auch über die Kommandozeile implementiert. Der Testablauf für jeden Port selber ist in der zugehörigen Konfigurationsdatei vollständig, aber unabhängig vom zu testenden Port (RS232-/V.24-Schnittstelle), beschrieben. Es können mehrere Konfigurationsdateien auf der Kommandozeile übergeben werden. Die Schnittstellenummer wird über die Kommandozeile festgelegt. So kann der gleiche Testablauf (INI-Datei) für jeden Port einzeln / parallel durchgeführt werden.
+%Kommandozeilenbeispiel:
+%„SerialPortTester.exe KOMPLETT.INI /COM2“ 
+%„SerialPortTester.exe KOMPLETT.INI /COM3“ 
+
+
+\section{Benutzerschnittstelle}
+
+\subsection{GUI}
+\paragraph{}
+In der GUI sind alle Programm- und Schnittstellenparameter einstellbar und können jederzeit aus der GUI in eine Konfigurationsdatei gespeichert werden. Der Windows-Fenster bietet also implizit auch die Funktion eines Konfigurationseditors mit eingebauter Syntaxprüfung.
+
+
+\subsection{Kommandozeile}
+\paragraph{}
+Die Kommandozeile nimmt folgende Optionen entgegen:
+\begin{itemize}
+\item /Master oder /Slave oder /Full
+\item
+\item
+\item
+\item
+\end{itemize} 
+%Programmmodus = Master / Slave / beides - Standard = Beides, d.h. Kurzschlußsteckertest
+%•	/COMxy
+%xy = die RS232-/V.24-Port-Nummer (der Port wird von dieser Instanz des Programms geöffnet und damit geblockt)
+%•	/Batch 
+%Mit Benutzereingaben, aber ohne GUI
+%•	/Unattended und/oder /Silent
+%ohne Benutzereingaben und/oder  ohne Ausgaben auf der Konsole
+%•	/Logfile:<Name>
+%•	INI-Dateiname  (ohne „/“ oder „-“)
+
+
+\section{Skriptfähigkeit}
+\paragraph{}
+Per Kommandozeile gestartet, ist das Programm BATCH-/Script-fähig, d.h. es startet ohne weitere Benutzereingaben, loggt alle Ereignisse und auch Hinweise -zur Analyse nach dem Test- in die zugehörige Datei und beendet sich ebenso selbstständig. Fehler, Warnungen und Hinweise werden auf der Konsole ausgegeben. Als Option kann es auch im Hintergrund ohne jede Anzeige rennen.
+
+
+\section{Programmierung der Testparameter}
+\paragraph{}
+Die Testparameter können direkt per GUI oder per INI-Datei eingestellt werden. Die aktuelle Testkonfiguration und der Ablauf kann in einer INI-Datei gespeichert und wieder geladen werden. Eine mit GUI erstellte INI-Datei kann über Kommandozeile geladen werden. Diese INI-Datei hat die Windows-übliche Struktur mit „[“ und „]“ und ist per Notepad (oder irgendeinem anderen Editor) zu bearbeiten.
+\\
+Sie enthält alle Informationen zur Steuerung der Programminstanz, das heißt alle einstellbaren Schnittstellenparameter inklusive Wobbelnoption (von-bis):
+\begin{tabbing}
+\hspace*{10mm}Baudrate = 1200-9600; \=Stopbbits = 1; Datenbits = 8; RTS\_CTS=yes; etc.
+\\
+\hspace*{10mm}Baudrate = min-max; \>Stopbbits = min-max; etc.
+\end{tabbing}
+
+Für MIN/MAX siehe Schnittstellenoptionen. Timeout-Werte (für Echo-Antworten auf Datenpakete) sollten keine festen Zeiten programmiert sein, das Programm  berechnet die Wartezeiten automatisch aus der aktuellen Baudrate. Verzögerungszeiten zwischen zwei Datenblöcken/Testschritten inklusive Zufallswert ist wünschenswert.
+
+
+\subsection{Schnittstellenoptionen zu Test}
+\paragraph{}
+Folgende Werte sollen für den Benutzer einstellbar sein:
+
+\begin{itemize}
+\item Baudrate
+\item Parität
+\item Datenbits
+\item Stopbits
+\item Flusssteuerung
+\end{itemize}
+\paragraph{}
+Das Programm kann hier mit Variablen MIN und MAX umgehen. Wenn beispielsweise die Zeile „BAUDRATE = MAX“ oder „BAUDRATE = MIN“  programmiert wurde, dann sucht das Programm die maximale bzw. minimale Baudrate, die angegebene RS232-Port unterstützt und nutzt sie für den Test. Diese Werte werden aus „dem System“ –beispielsweise Registry oder  MSPORTS.DLL direkt ausgelesen. Manuell können diese MIN/MAX-Werte über den Gerätemanager ermittelt werden. Wenn keine Parameter übergeben wurden, dann startet das Programm mit diesen Standardparametern: 9600,odd,8,1,RTS/CTS (von der Wincor Nixdorf Anzeige BA66).
+
+\paragraph{}
+Die Wobbelnoption wird in Form einer VON-BIS-Zeile implementiert:
+
+\begin{tabbing}
+\hspace*{10mm} BAUDRATE=300;2400;9600;115200 \= diese vier Werte werden getestet
+\\
+\hspace*{10mm} BAUDRATE=MIN-MAX \>alle möglichen Werte
+\\
+\hspace*{10mm} BAUDRATE=300-9600;115200 \>alle Werte von 300 bis 9600 und 115200 im Test
+\end{tabbing}
+
+
+\subsection{Sendedaten aus Datei}
+\paragraph{}
+Als Testdaten werden feste Texte (in der Regel ASCII Zeichen) oder auch Pattern aus einer Datei gesendet. Die Dateipfade / Sendetexte sind als Testparameter in der GUI oder Test-Datei) einstellbar. Wenn keine Sendedaten übergeben wurde, dann sendet das Programm zufällige, aber auf einem Protokollanalysator lesbare, ASCII-Zeichen: 0x20 ... 0x7F .
+
+
+\section{Fehlererkennung und Behandlung}
+\paragraph{}
+Folgende mögliche Fehlerfälle muss ein solches Tool erkennen:
+\begin{itemize}
+\item Kabel-/Stecker-Fehler („Wackelkontakt“ durch schlechten mechanischen Kontakt Stecker/Buchse) 
+\item Elektrische Fehler, die sich bei Übertragung über langes Null-MODEM-Kabel im Form von Paritäts-, Rahmenfehlern oder ähnliches zeigen
+\item Dauerhaft gezogene Kabel / Kurzschlussstecker
+\item Windows-interne Ressourcenprobleme (Shared Interrupts)
+\end{itemize} 
+\paragraph{}
+Bei Erkennung eines Übertragungsfehlers wird dieser in die Logdatei eingetragen und / oder auf der Konsole angezeigt und danach der letzte Block wiederholt. Nach der x-ten erfolglosen Wiederholung (Wert aus Test-Datei) erfolgt Testabbruch

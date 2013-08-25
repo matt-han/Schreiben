@@ -1,8 +1,97 @@
 \chapter{Fachlichesumfeld}
-\section{Dast ist eine Section}
-\subsection{Das ist eine SubSection}
-\subsubsection{Das ist eine SubSubSection}
+
+\section{RS 232}
+http://de.wikipedia.org/wiki/RS-232
+Joe Campbell: V 24 / RS-232 Kommunikation. (6313 736). 4. Auflage. Sybex-Verlag GmbH, 1984, ISBN 978-3-8874-5075-5.
+
+\subsection{Definition und Geschichte}
+
+
+\subsection{Verkabelung und Stecker}
+
+
+\subsection{RS 232 in Wincor Nixdorf}
+stromversorgung
+ba66
+kassenlade
+
+
 \newpage
-\section{Dast ist eine Section}
-\subsection{Das ist eine SubSection}
-\subsubsection{Das ist eine SubSubSection}
+
+
+\section{Microsoft Windows API}
+
+
+\subsection{Definition}
+
+Die Quellen des folgenden Kapitel sind aus "Programming Windows, Charles Petzold, 1995" und "Visual C++ 2010, Dirk Louis, 2010".
+
+\paragraph{}
+Die Microsoft Windows "Application Programming Interface"(Schnittstelle zur Anwendungsprogrammierung) ist ein Programmteil, dass vom Windows Betriebssystem den Benutzern und vor allem Entwicklern angeboten wird, um Programme an das Betriebssystem anbinden zu können. Ein Betriebssystem (Microsoft Windows, Mac OSX, Linux, unter anderem) ist für Entwickler und Programmierer durch die API definiert. Somit kann eine Applikation über die API alle Funktionsaufrufe machen, die ein Betriebssystem anbietet. Nicht nur Funktionen sind in einer API definiert, sondern bestimmte Datenstrukturen und Datentypen durch das Kommando \textit{"typedef"} wie \textit{"LRESULT"} oder "\textit{CALLBACK}".
+\paragraph{}
+Mit fast jedes neue Microsoft Betriebssystem wird die Windows API erweitert und abgeändert. Die erste API, bekannt als \textit{"Win16"}, für die 16-Bit Versionen von Microsoft Windows. Für Windows 1.0 hatte die API etwa 450 Funktionsaufrufe. Bei der Zeit von Windows 98 wurde die API auf 32-Bit und mehrere tausende Funktionsaufrufe. Ab Windows XP "x64 Edition" und Windows Server 2003 wurde die API auch auf 64-Bit erweitert.
+\paragraph{}
+Der hauptsächliche Unterschied zwischen die 16, 32 und 64 Bit Versionen von der API entstand durch die verschiedene Speicher und Prozessor Architekturen. Unter der 16-Bit Architektur war die Registergröße 16 Bit unter die bekannte Prozessoren von Intel 8086 und 8088. In der 32-Bit Architektur, 32 Bit bzw. in der 64-Bit, 62 Bit groß. Die Windows API ist in der Programmiersprache "C" geschrieben. Deswegen war unter die 16-Bit Architektur der Datentyp \textit{"int"} "nur" 16 Bit lang(Zahlen von -32.768 bis 32.767) . In der Speicherverwaltung bestanden Speicheradressen aus einen 16-Bit Segment und einen 16-Bit offset Zeiger. Für Programmierer war diese Verwaltung sehr Umständlich, da der Programmierer genaue Unterscheiden musste, zwischen \textit{long} oder \textit{far} und \textit{short} oder \textit{near} Zeiger. 
+\paragraph{}
+Ab die 32-Bit Architektur entstand die "Flat Memory Model", wo der Prozessor direkt die gesamte Speicheradressen ansprechen konnte, ohne Speichersegmentierung oder Pagingschemas. Somit wurde auch der \textit{"int"} Datentyp auf 32 Bitgröße(Zahlen von -2.147.483.649 bis 2.147.483.647) definiert. Programme geschrieben unter eine 32-Bit Architektur benutzen einfache Zeigerwerte um direkt die Speicheradresse ansprechen zu können. Bei der Umstellung von 16-Bit auf 32-Bit blieben viele Funktionsaufrufe gleich, aber manche brauchten eine Umstellung auf 32-Bit. Wie zum Beispiel das graphische Koordinatensystem für GUI Darstellungen.
+\paragraph{}
+ Aus Kompatibilitätsgründe sind die API's Rückwärts kompatibel. Die Kompatibilität entsteht durch eine Übersetzungsschicht. Es gibt zwei Wege der Übersetzung. In den ersten Weg, werden 16-Bit Funktionsaufrufe durch eine Übersetzungsschicht in 32-Bit Funktionsaufrufe umgewandelt und dann vom Betriebssystem bearbeitet. Der andere Weg führt genau in der anderen Richtung.Die 32-Bit Funktionsaufrufe durch die Übersetzungsschicht und wandelt diese in 16-Bit Funktionsaufrufe, und werden dann vom Betriebssystem bearbeitet.
+\paragraph{}
+Die Benutzung der API ist nicht die einzige Möglichkeit Anwendung für die Windowsbetriebssysteme zu programmieren. Aber durch die Benutzung der API ist eine bessere Leistung, mehr Macht und Flexibilität in das Ausnutzen der Betriebssystemfunktionen garantiert. Durch die Verwendung der API versteht man Windows als Betriebssystem besser. Man kann Anwendungen auch in Visual Basic oder Borland Delphi schreiben, wo die objektorientierte Grundlagen von Pascal den Programmierer viel arbeitet erleichtern kann. Aber das Stapeln von Programmierschichten über die API versteckt nur die Komplexität der API, und früher oder später wird man im Programm mit dieser Komplexität konfrontiert.
+
+\subsubsection{API gegenüber .NET Framework}
+\paragraph{}
+Microsoft hat dieses Framework speziell für die Windows-Plattformen entwickelt. Es ist eine Virtuelle Maschine als Laufzeitumgebung für Microsoft Windows Anwendungen. Dieses Framework gleich in vieles die Java Virtual Machine. Das .NET Framework besteht aus eine Laufzeitumgebung und die .NET Framework-Bibliothek. Aus Sicht des Anwenders hat sich nichts geändert, aber für die Programmierer vieles. Das .NET Framework ist auf C++ und C\# basierend, und im gegensatz zur API, objektorientiert. Die Framework-Bibliothek besteht aus verschiedenen Klassenbibliotheken wie die Windowa Forms, Windows Presentation Foundations (GUI), Webdienste, unter anderem. Ein großer Vorteil ist die Portierung der Programme, dafür muss das .NET Framework installiert sein. Das ist für dieses Projekt essentiell, denn es soll auf Schreibgeschütze Medien ausführbar sein (Win PE) und aus diesem Grund für meine Lösung nicht betrachtet.
+
+
+
+
+
+\subsection{Windows.h}
+
+HEADERS
+\\
+DEFINES
+\\ETC
+
+
+
+
+
+\subsection{GUI}
+\paragraph{}
+Durch die Hardware und die Mitte der 70 Jahren wurde in Xerox Palo Alto Research Center graphische Benutzeroberflächen recherchiert. Aus diesen Ergebnisse profitierten Macintosh und Windows, und bauten darauf Ihre graphische Benutzeroberflächen. Für dieses Projekt ist gefordert, ein Tools mit gleichgewichtige Kommandozeile und GUI. In diesen Zeiten der Computerwelt kann man sich als Benutzer kaum eine Welt ohne Benutzeroberflächen vorstellen. Die Windows API hat seit der Ankündigung(1983) und Veröffentlichung(1985) von Windows als Betriebssystem Funktionsaufrufe für die Programmierung von GUI's. Die Benutzung der API für die Programmierung von GUI ist vielleicht "altmodisch", aber immerhin sehr genau und präzise. Im Gegensatz zu "GUI Builders" wird kein unnötiger, und oft für Programmierer, unverständlicher Code geschrieben. Der Überblick und Verständnis der GUI Elemente wird durch die direkte Benutzung der API vereinfacht.
+
+\subsection{Die RS 232 Schnittstelle und die Windows API}
+\paragraph{}
+Über die Windows API hat man direkt Zugriff auf die RS 232 Schnittstelle. Zum verwalten der Schnittstelle und die Eigenschaften zu setzen gibt es verschiedene Datenstrukturen die man aufrufen und ändern muss, je nach Bedarf.
+
+\subsubsection{Öffnen und Schließen eines Ports}
+\paragraph{}
+Um Zugriff auf die Datenstrukturen zu haben, muss man zuerst eine RS 232 Schnittstelle (COM Port) öffnen. Durch die Funktion CreateFile\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/aa363858(v=vs.85).aspx; 25.08.2013} bekommt man ein Handle auf den angegeben Port. Ein Handle ist eine Referenzwert zu einer vom Betriebssystem verwalteten Systemressource, im diesem Fall eine im System vorhandene RS 232 Schnittstelle. Mit CreateFile kann man auch Zugriff auf Dateien, Datenstreams und andere Kommunikationsressourcen bekommen. Das Handle muss gespeichert werden, denn damit wird der jeweiliger Port identifiziert und angesprochen für weitere Operationen. Durch die CreateFile Funktion wird die Datei, oder im diesem Fall die Input / Output Schnittstelle für diese Anwendung reserviert. Das heißt, für das Betriebssystem und andere Anwendungen steht diese Schnittstelle nicht mehr zur Verfügung.
+
+\paragraph{}
+Um den richtigen Zugriff auf einen Port zu haben, muss auch die richtige Flags bei dem Aufruf der CreateFile Funktion angegeben werden. Als Flags sind die folgende Parameter anzugeben:
+\begin{itemize}
+\item Schreib und Leserechte
+\item Non-Sharing Modus
+\item Öffnen vor nur existierende Schnittstellen
+\item Asynchron Modus
+\end{itemize}
+
+
+\paragraph{}
+Um ein Programm sauber zu beenden müssen offene Handles geschlossen werden. Durch die Funktion CloseHandle\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms724211(v=vs.85).aspx; 25.08.2013} mit Angabe eines gültiges Handles wird dieses geschlossen, und steht für das Betriebssystem und andere Anwendungen wieder zur Verfügung.
+
+\subsubsection{Konfiguration eines Ports}
+\paragraph{}
+
+DCB
+COMMTIMEOUTS
+COMMPROP
+
+\subsubsection{Lesen und Schreiben}
+\paragraph{}
+
+\subsubsection{Events and Interrupts}
+\paragraph{}
