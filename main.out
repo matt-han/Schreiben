@@ -22,19 +22,27 @@
 \BOOKMARK [2][-]{subsection.2.11.2}{Sendedaten aus Datei}{section.2.11}% 22
 \BOOKMARK [1][-]{section.2.12}{Fehlererkennung und Behandlung}{chapter.2}% 23
 \BOOKMARK [0][-]{chapter.3}{Fachlichesumfeld}{}% 24
-\BOOKMARK [1][-]{section.3.1}{RS 232}{chapter.3}% 25
-\BOOKMARK [2][-]{subsection.3.1.1}{Definition und Geschichte}{section.3.1}% 26
-\BOOKMARK [2][-]{subsection.3.1.2}{Verkabelung und Stecker}{section.3.1}% 27
-\BOOKMARK [2][-]{subsection.3.1.3}{RS 232 in Wincor Nixdorf}{section.3.1}% 28
-\BOOKMARK [1][-]{section.3.2}{Microsoft Windows API}{chapter.3}% 29
-\BOOKMARK [2][-]{subsection.3.2.1}{Definition}{section.3.2}% 30
-\BOOKMARK [2][-]{subsection.3.2.2}{Windows.h}{section.3.2}% 31
-\BOOKMARK [2][-]{subsection.3.2.3}{GUI}{section.3.2}% 32
-\BOOKMARK [2][-]{subsection.3.2.4}{Die RS 232 Schnittstelle und die Windows API}{section.3.2}% 33
-\BOOKMARK [0][-]{chapter.4}{L\366sungsans\344tze}{}% 34
-\BOOKMARK [0][-]{chapter.5}{Anforderungsdefinition}{}% 35
-\BOOKMARK [0][-]{chapter.6}{Systementwurf}{}% 36
-\BOOKMARK [0][-]{chapter.7}{Realiseriung}{}% 37
-\BOOKMARK [0][-]{chapter.8}{Bedienungsanleitung}{}% 38
-\BOOKMARK [0][-]{chapter.9}{Zusammenfassung und Ausblick}{}% 39
-\BOOKMARK [0][-]{appendix.A}{Anhang}{}% 40
+\BOOKMARK [1][-]{section.3.1}{RS 232 \(Radio Sector 232\)}{chapter.3}% 25
+\BOOKMARK [2][-]{subsection.3.1.1}{Definition}{section.3.1}% 26
+\BOOKMARK [2][-]{subsection.3.1.2}{\334bertragung}{section.3.1}% 27
+\BOOKMARK [2][-]{subsection.3.1.3}{UART}{section.3.1}% 28
+\BOOKMARK [2][-]{subsection.3.1.4}{Parit\344tsbit}{section.3.1}% 29
+\BOOKMARK [2][-]{subsection.3.1.5}{Leitungen und Stecker}{section.3.1}% 30
+\BOOKMARK [2][-]{subsection.3.1.6}{RS 232 in Wincor Nixdorf}{section.3.1}% 31
+\BOOKMARK [1][-]{section.3.2}{Microsoft Windows API}{chapter.3}% 32
+\BOOKMARK [2][-]{subsection.3.2.1}{Definition}{section.3.2}% 33
+\BOOKMARK [2][-]{subsection.3.2.2}{Windows.h}{section.3.2}% 34
+\BOOKMARK [2][-]{subsection.3.2.3}{WinMain}{section.3.2}% 35
+\BOOKMARK [2][-]{subsection.3.2.4}{Graphic User Interface \(GUI\)}{section.3.2}% 36
+\BOOKMARK [2][-]{subsection.3.2.5}{Aufbau einer GUI}{section.3.2}% 37
+\BOOKMARK [2][-]{subsection.3.2.6}{Die RS 232 Schnittstelle und die Windows API}{section.3.2}% 38
+\BOOKMARK [0][-]{chapter.4}{L\366sungsans\344tze}{}% 39
+\BOOKMARK [1][-]{subsection.4.0.7}{Fehlererkennung}{chapter.4}% 40
+\BOOKMARK [2][-]{subsection.4.0.8}{Master Slave Modus zwischen zwei Systeme}{subsection.4.0.7}% 41
+\BOOKMARK [2][-]{subsection.4.0.9}{Challenges of C++ and the gui}{subsection.4.0.7}% 42
+\BOOKMARK [0][-]{chapter.5}{Anforderungsdefinition}{}% 43
+\BOOKMARK [0][-]{chapter.6}{Systementwurf}{}% 44
+\BOOKMARK [0][-]{chapter.7}{Realiseriung}{}% 45
+\BOOKMARK [0][-]{chapter.8}{Bedienungsanleitung}{}% 46
+\BOOKMARK [0][-]{chapter.9}{Zusammenfassung und Ausblick}{}% 47
+\BOOKMARK [0][-]{appendix.A}{Anhang}{}% 48

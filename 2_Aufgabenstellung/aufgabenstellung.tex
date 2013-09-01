@@ -1,17 +1,7 @@
 
 \chapter{Aufgabenstellung}
 \paragraph{}
-Das Tool soll die RS 232 Schnittstelle testen und die Schwächen der vorhandenden Lösung ergänzen. Wincor Nixdorf besitzt schon ein Tool was die Druckertestumgebung testet, dies ist aber Ruby basierend. Die vorhandenen Lösung, wie zum Beispiel "AGGsoft Serial Port Tester" haben eingeschränkte Einstellungen und sind nicht ausführlich genug für die Voraussetzungen der Qualitätsicherung.
-
-\subsubsection{AGGsoft Serial Port Monitor}
-Unterschied zu / Mängel vom AGGsoft Serial Port Monitor?
-a) Eingeschränkte Skriptfähigkeit: Zähler, Uhrzeit/Datum als Sendedaten, kein Zufallsgenerator …
-b) Win PE?
-\subsubsection{WN Druckertestumgebung}
-(Ruby basierend)
-Setzt nicht direkt auf der gleichen Schnittstelle (Win-API) auf, wie Kundenapplikationen, also ungeeignet.
-
-
+Das Tool soll die RS 232 Schnittstelle testen und die Schwächen der vorhandenen Lösung ergänzen. Wincor Nixdorf besitzt schon ein Tool was die Druckertestumgebung testet, dies ist aber Ruby basierend. Das Tool soll mit Funktionsaufrufe der WinAPI programmiert werden, genauso wie die unter die Systeme laufende Anwendung es tun. Die vorhandenen Lösung, wie zum Beispiel "AGGsoft Serial Port Tester" haben eingeschränkte Einstellungen und sind nicht ausführlich genug für die Voraussetzungen der Qualitätssicherung.
 
 \section{Module}
 \paragraph{}
@@ -47,26 +37,26 @@ Folgende Hardware-Kombinationen werden unterstützt (die Reihenfolge hier gibt d
 Das Tool ist entwickelt für und zu testen mit folgenden Zielbetriebssystemen:
 \begin{itemize}
 \item Windows XP SP3 x86, x64; Windows 7 x86, x64; WinPE 2.x (WinXP) / 3.x (Win7)
-\item Windows 8 .....nur ein Test, der aussagt ob OK und/oder was dafür noch zu tun wäre?......
-\end{itemize},
+\item Windows 8 nur ein Test, der aussagt ob es kompatibel ist oder noch etwas zu tun wäre
+\end{itemize}
 Linux ist hier nicht gefordert.
 
 \section{Logbuch}
 \paragraph{}
-Alle Ereignisse / Testschritte können zu Dokumentations- und Analysezwecken in einer Log-Datei gespeichert werden. Auch Fehler, die der Parser in der Test-Datei(.ini) findet, werden in der Log-Datei eingetragen. Das Format ist hier CSV, d.h. es kann direkt in Excel geöffnet werden. Damit sind dann auch Performance-Messungen / -vergleiche zwischen Port auf unterschiedlichen Mainboards einfacher möglich.
-\
-Der Name der Log-Datei ist für jede Instanz und jedes Testsystem eindeutig zu wählen, z.B.:
-\begin{center}
-<Programmname>\_<Computername>\_<Master/Slave>\_<Port>.csv
-\end{center}
+Alle Ereignisse / Testschritte können zu Dokumentations- und Analysezwecken in einer Log-Datei gespeichert werden. Auch Fehler, die der Parser in der Test-Datei(.ini) findet, werden in der Log-Datei eingetragen. Das Format ist hier CSV, d.h. es kann direkt in Excel geöffnet werden. Damit sind dann auch Performance-Messungen / -vergleiche zwischen Port auf unterschiedlichen Mainboards einfacher möglich. Der Name der Log-Datei ist für jede Instanz und jedes Testsystem eindeutig zu wählen, zum Beispiel:
+\\
+\\ \hspace*{10mm}<Programmname>\_<Computername>\_<Master/Slave>\_<Port>.csv
+
+\paragraph{}
 Jeder Eintrag bekommt einen Uhrzeit/Datums-Stempel. Eine Zeile sieht dann wie folgt aus:
-\begin{center}
-<Datum>; <Uhrzeit>;<Ereignis>;<Wert>;<Kommentar>
-\end{center}
+\\
+\\ \hspace*{10mm} <Datum>; <Uhrzeit>;<Ereignis>;<Wert>;<Kommentar>
+
+\paragraph{}
 Die ersten beiden  Einträge der Log-Datei:
-\begin{center}
-<Datum>; <Uhrzeit>;START;RS232-Port-Nummer; INI-Dateiname als Kommentar
-\end{center}
+\\
+\\ \hspace*{10mm} <Datum>; <Uhrzeit>;START;RS232-Port-Nummer; INI-Dateiname als Kommentar
+
 
 
 \section{Programminstanzen}
@@ -97,7 +87,7 @@ Im kombinierten Master / Slave-Modus (Kurzschlussstecker) übernimmt eine Instan
 Die Master-Instanz übernimmt die Steuerung des Ablaufs, der Slave antwortet dem Master. In diesem Testmodus werden durch den Benutzer eingegebenen Baudraten(Unter und Obergrenze) gewobbelt. Der Wobbeln-Ablauf kann über die GUI oder in der INI-Datei beschrieben werden. Der automatische Test erfolgt dann nur für die dort eingetragenen Parameter, Z.B.:
 
 \begin{center}
-BAUD=9600-115200
+BAUD = 9600 - 115200
 \end{center}
 \paragraph{}
 Hier werden die Baudrate von 9600 bis 115200 für den Test berücksichtigt, aber 2400, 300, und so weiter nicht. Wenn mehrere Parameter flexibel gesetzt / programmiert sind, dann werden alle Kombinationen getestet. Das kann dann durchaus eine nicht unerhebliche Testzeit beanspruchen.
@@ -114,38 +104,27 @@ Wenn der erste Test erfolgreich war (Master hat gesendet und der Slave hat ein E
 \section{Teststruktur}
 \paragraph{}
 Gefordert ist eine einfache Trennung von Testablauf / Testoptionen  und  Testobjekt(RS232-Port). Die Teststeuerung wird daher sowohl im Programm selber, als auch über die Kommandozeile implementiert. Der Testablauf für jeden Port selber ist in der zugehörigen Konfigurationsdatei vollständig, aber unabhängig vom zu testenden Port (RS232-/V.24-Schnittstelle), beschrieben. Es können mehrere Konfigurationsdateien auf der Kommandozeile übergeben werden. Die Schnittstellenummer wird über die Kommandozeile festgelegt. So kann der gleiche Testablauf (INI-Datei) für jeden Port einzeln / parallel durchgeführt werden.
-%Kommandozeilenbeispiel:
-%„SerialPortTester.exe KOMPLETT.INI /COM2“ 
-%„SerialPortTester.exe KOMPLETT.INI /COM3“ 
 
 
 \section{Benutzerschnittstelle}
 
 \subsection{GUI}
 \paragraph{}
-In der GUI sind alle Programm- und Schnittstellenparameter einstellbar und können jederzeit aus der GUI in eine Konfigurationsdatei gespeichert werden. Der Windows-Fenster bietet also implizit auch die Funktion eines Konfigurationseditors mit eingebauter Syntaxprüfung.
+In der GUI sind alle Programm- und Schnittstellenparameter einstellbar und können jederzeit aus der GUI in eine Konfigurationsdatei gespeichert werden. Der Windows-Fenster bietet also implizit auch die Funktion eines Konfigurationseditors mit eingebauter Syntaxüberprüfung.
 
 
 \subsection{Kommandozeile}
 \paragraph{}
-Die Kommandozeile nimmt folgende Optionen entgegen:
+Wenn die Kommandozeile keine Parameter bekommt, wird automatisch die GUI dargestellt. Die Kommandozeile nimmt folgende Optionen entgegen:
 \begin{itemize}
-\item /Master oder /Slave oder /Full
-\item
-\item
-\item
-\item
+\item -f INI\_Datei
+\item -f INI\_Datei /Port
 \end{itemize} 
-%Programmmodus = Master / Slave / beides - Standard = Beides, d.h. Kurzschlußsteckertest
-%•	/COMxy
-%xy = die RS232-/V.24-Port-Nummer (der Port wird von dieser Instanz des Programms geöffnet und damit geblockt)
-%•	/Batch 
-%Mit Benutzereingaben, aber ohne GUI
-%•	/Unattended und/oder /Silent
-%ohne Benutzereingaben und/oder  ohne Ausgaben auf der Konsole
-%•	/Logfile:<Name>
-%•	INI-Dateiname  (ohne „/“ oder „-“)
-
+In der INI Datei ist der Testvorgang beschrieben. Wenn keine "`/Port"' angegeben wurde, dann wird der Port in der INI Datei getestet. So sieht ein Programmaufruf aus:
+\begin{itemize}
+\item SerialPortTester.exe KOMPLETT.INI
+\item SerialPortTester.exe KOMPLETT.INI /COM3 
+\end{itemize} 
 
 \section{Skriptfähigkeit}
 \paragraph{}

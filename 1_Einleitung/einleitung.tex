@@ -1,15 +1,15 @@
 \chapter{Einleitung}
-Gefordert ist ein Programm, das auf Wincor Nixdorf Mainboards und auf Erweiterungskarten(COM-Karten) implementierte RS232/COM-Port-Hardware, die zugehörigen Hardware-Treiber und das BIOS, indirekt testet. Das zu programmierende Programm soll in der Programmiersprache „C / C++“ entwickeltet werden und auf folgenden Betriebssystemen implementiert werden:
+Gefordert ist ein Programm, das auf Wincor Nixdorf Mainboards und auf Erweiterungskarten(COM-Karten) implementierte RS232/COM-Port-Hardware, die zugehörigen Hardware-Treiber und das BIOS, indirekt testet. Das Testtool wird in der Programmiersprache „C / C++“ entwickeltet und wird auf folgenden Betriebssystemen implementiert:
 
 \begin{itemize}
 \item Windows XP SP3 x86, x64
 \item Windows 7 x86, x64
-\item  WinPE \ldots
+\item  WinPE
 \end{itemize}
 
-Unter den mögliche Fehlerfälle muss das Tool Kabel- und Stecker-Fehler(Wackelkontakt durch schlechten mechanischen Kontakt der Stecker und der Buchsen) erkennen können.
-Elektrische Fehler, die sich bei der Übertragung über ein langes Nullmodemkabel in Form von Paritätsfehlern zeigen oder Windows-interne Ressourcenprobleme(Shared Interrupt) müssen auch erkannt werden.
+Unter den mögliche Fehlerfälle wird das Tool Kabel- und Stecker-Fehler(Wackelkontakt durch schlechten mechanischen Kontakt der Stecker und der Buchsen) erkennen.
+Elektrische Fehler, die sich bei der Übertragung über ein langes Nullmodemkabel in Form von Paritätsfehlern zeigen oder Windows-interne Ressourcenprobleme(Shared Interrupt) werden auch erkannt.
 
-Das Programm soll die Schwächen anderer Serial Ports Tools ergänzen, wie zum Beispiel die eingeschränkte Skriptfähigkeit. Diese Tools unterstützen keine Zähler, keine Uhrzeit/Datum als Sendedaten und keinen Zufallsgenerator. Zudem können sie nicht von einen schreibgeschütztem Medium gestartet werden. Das Tool soll direkt über die Windows API die COM Ports testen, weil die Wincor Nixdorf Kunden und Applikationen die COM Ports über diese API steuern. Ein weiterer Vorteil der Nutzung der Windows API ist, dass die Scripting- und Automatisierungsoptionen besser implementierbar sind. Durch die Nutzung der Windows API die Installation oder Implementierung des Tools auf einem Linux-System nicht möglich.
+Das Programm soll die Schwächen anderer Serial Ports Tools ergänzen, wie zum Beispiel die eingeschränkte Skriptfähigkeit und Testautomatisierung. Diese Tools unterstützen keine Zähler, keine Uhrzeit/Datum als Sendedaten und keinen Zufallsgenerator. Zudem können sie nicht von einen schreibgeschütztem Medium gestartet werden. Das Tool soll direkt über die Windows API die COM Ports testen, weil die Wincor Nixdorf Kunden und Applikationen die COM Ports über diese API steuern. Ein weiterer Vorteil der Nutzung der Windows API ist, dass die Scripting- und Automatisierungsoptionen besser implementierbar sind. Durch die Voraussetzung der Nutzung der Windows API, ist die Installation oder Implementierung des Tools auf einem Linux-System nicht möglich.
 
-Das Programm soll aus einer GUI bestehen, in der alle Programm- und Schnittstellenparameter (Baudrate, Stoppbits, Paritätsbit, Datenbits, Hardware RTS/CTS, Hardware DTS/DSR, Software XON/XOFF) eingestellt werden kann. Wenn das Programm über die Kommandozeile oder ein Skript gestartet wird, muss eine Konfigurationsdatei oder die Konfigurationsparameter übergeben werden.
+Das Programm besteht aus einer GUI, in der alle Programm- und Schnittstellenparameter (Baudrate, Stoppbits, Paritätsbit, Datenbits, Hardware und Software) eingestellt werden kann. Wenn das Programm über die Kommandozeile oder ein Skript gestartet wird, muss eine Konfigurationsdatei oder die Konfigurationsparameter übergeben werden.

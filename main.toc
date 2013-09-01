@@ -2,22 +2,22 @@
 \contentsline {chapter}{\numberline {1}Einleitung}{2}{chapter.1}
 \contentsline {chapter}{\numberline {2}Aufgabenstellung}{3}{chapter.2}
 \contentsline {paragraph}{}{3}{section*.2}
-\contentsline {subsubsection}{AGGsoft Serial Port Monitor}{3}{section*.3}
-\contentsline {subsubsection}{WN Druckertestumgebung}{3}{section*.4}
 \contentsline {section}{\numberline {2.1}Module}{3}{section.2.1}
-\contentsline {paragraph}{}{3}{section*.5}
+\contentsline {paragraph}{}{3}{section*.3}
 \contentsline {section}{\numberline {2.2}Laufzeit}{3}{section.2.2}
-\contentsline {paragraph}{}{3}{section*.6}
-\contentsline {section}{\numberline {2.3}Hardware}{4}{section.2.3}
-\contentsline {paragraph}{}{4}{section*.7}
+\contentsline {paragraph}{}{3}{section*.4}
+\contentsline {section}{\numberline {2.3}Hardware}{3}{section.2.3}
+\contentsline {paragraph}{}{3}{section*.5}
 \contentsline {section}{\numberline {2.4}Betriebssystem}{4}{section.2.4}
-\contentsline {paragraph}{}{4}{section*.8}
+\contentsline {paragraph}{}{4}{section*.6}
 \contentsline {section}{\numberline {2.5}Logbuch}{4}{section.2.5}
+\contentsline {paragraph}{}{4}{section*.7}
+\contentsline {paragraph}{}{4}{section*.8}
 \contentsline {paragraph}{}{4}{section*.9}
 \contentsline {section}{\numberline {2.6}Programminstanzen}{4}{section.2.6}
 \contentsline {paragraph}{}{4}{section*.10}
-\contentsline {section}{\numberline {2.7}Master / Slave}{5}{section.2.7}
-\contentsline {paragraph}{}{5}{section*.11}
+\contentsline {section}{\numberline {2.7}Master / Slave}{4}{section.2.7}
+\contentsline {paragraph}{}{4}{section*.11}
 \contentsline {subsection}{\numberline {2.7.1}Master-Funktion}{5}{subsection.2.7.1}
 \contentsline {paragraph}{}{5}{section*.12}
 \contentsline {subsection}{\numberline {2.7.2}Slave-Funktion}{5}{subsection.2.7.2}
@@ -28,8 +28,8 @@
 \contentsline {paragraph}{}{5}{section*.15}
 \contentsline {paragraph}{}{5}{section*.16}
 \contentsline {paragraph}{}{5}{section*.17}
-\contentsline {subsection}{\numberline {2.7.5}Synchronisierungsprotokoll}{6}{subsection.2.7.5}
-\contentsline {paragraph}{}{6}{section*.18}
+\contentsline {subsection}{\numberline {2.7.5}Synchronisierungsprotokoll}{5}{subsection.2.7.5}
+\contentsline {paragraph}{}{5}{section*.18}
 \contentsline {paragraph}{}{6}{section*.19}
 \contentsline {section}{\numberline {2.8}Teststruktur}{6}{section.2.8}
 \contentsline {paragraph}{}{6}{section*.20}
@@ -52,39 +52,97 @@
 \contentsline {paragraph}{}{8}{section*.29}
 \contentsline {paragraph}{}{8}{section*.30}
 \contentsline {chapter}{\numberline {3}Fachlichesumfeld}{9}{chapter.3}
-\contentsline {section}{\numberline {3.1}RS 232}{9}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Definition und Geschichte}{9}{subsection.3.1.1}
-\contentsline {subsection}{\numberline {3.1.2}Verkabelung und Stecker}{9}{subsection.3.1.2}
-\contentsline {subsection}{\numberline {3.1.3}RS 232 in Wincor Nixdorf}{9}{subsection.3.1.3}
-\contentsline {section}{\numberline {3.2}Microsoft Windows API}{10}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Definition}{10}{subsection.3.2.1}
-\contentsline {paragraph}{}{10}{section*.31}
-\contentsline {paragraph}{}{10}{section*.32}
-\contentsline {paragraph}{}{10}{section*.33}
-\contentsline {paragraph}{}{10}{section*.34}
+\contentsline {section}{\numberline {3.1}RS 232 (Radio Sector 232)}{9}{section.3.1}
+\contentsline {paragraph}{}{9}{section*.31}
+\contentsline {subsection}{\numberline {3.1.1}Definition}{9}{subsection.3.1.1}
+\contentsline {paragraph}{}{9}{section*.32}
+\contentsline {paragraph}{}{9}{section*.33}
+\contentsline {subsection}{\numberline {3.1.2}\IeC {\"U}bertragung}{9}{subsection.3.1.2}
+\contentsline {paragraph}{}{9}{section*.34}
 \contentsline {paragraph}{}{10}{section*.35}
-\contentsline {paragraph}{}{11}{section*.36}
-\contentsline {subsubsection}{API gegen\IeC {\"u}ber .NET Framework}{11}{section*.37}
-\contentsline {paragraph}{}{11}{section*.38}
-\contentsline {subsection}{\numberline {3.2.2}Windows.h}{11}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}GUI}{11}{subsection.3.2.3}
-\contentsline {paragraph}{}{11}{section*.39}
-\contentsline {subsection}{\numberline {3.2.4}Die RS 232 Schnittstelle und die Windows API}{11}{subsection.3.2.4}
-\contentsline {paragraph}{}{11}{section*.40}
-\contentsline {subsubsection}{\IeC {\"O}ffnen und Schlie\IeC {\ss }en eines Ports}{12}{section*.41}
-\contentsline {paragraph}{}{12}{section*.42}
-\contentsline {paragraph}{}{12}{section*.43}
-\contentsline {paragraph}{}{12}{section*.44}
-\contentsline {subsubsection}{Konfiguration eines Ports}{12}{section*.45}
-\contentsline {paragraph}{}{12}{section*.46}
-\contentsline {subsubsection}{Lesen und Schreiben}{12}{section*.47}
-\contentsline {paragraph}{}{12}{section*.48}
-\contentsline {subsubsection}{Events and Interrupts}{12}{section*.49}
-\contentsline {paragraph}{}{12}{section*.50}
-\contentsline {chapter}{\numberline {4}L\IeC {\"o}sungsans\IeC {\"a}tze}{13}{chapter.4}
-\contentsline {chapter}{\numberline {5}Anforderungsdefinition}{14}{chapter.5}
-\contentsline {chapter}{\numberline {6}Systementwurf}{15}{chapter.6}
-\contentsline {chapter}{\numberline {7}Realiseriung}{16}{chapter.7}
-\contentsline {chapter}{\numberline {8}Bedienungsanleitung}{17}{chapter.8}
-\contentsline {chapter}{\numberline {9}Zusammenfassung und Ausblick}{18}{chapter.9}
-\contentsline {chapter}{\numberline {A}Anhang}{21}{appendix.A}
+\contentsline {paragraph}{}{10}{section*.36}
+\contentsline {paragraph}{}{10}{section*.37}
+\contentsline {paragraph}{}{10}{section*.38}
+\contentsline {paragraph}{}{10}{section*.39}
+\contentsline {paragraph}{}{10}{section*.40}
+\contentsline {paragraph}{}{10}{section*.41}
+\contentsline {subsection}{\numberline {3.1.3}UART}{10}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {3.1.4}Parit\IeC {\"a}tsbit}{11}{subsection.3.1.4}
+\contentsline {subsection}{\numberline {3.1.5}Leitungen und Stecker}{11}{subsection.3.1.5}
+\contentsline {paragraph}{}{11}{section*.42}
+\contentsline {paragraph}{}{11}{section*.43}
+\contentsline {paragraph}{}{11}{section*.44}
+\contentsline {paragraph}{}{11}{section*.45}
+\contentsline {paragraph}{}{11}{section*.46}
+\contentsline {subsection}{\numberline {3.1.6}RS 232 in Wincor Nixdorf}{12}{subsection.3.1.6}
+\contentsline {section}{\numberline {3.2}Microsoft Windows API}{13}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Definition}{13}{subsection.3.2.1}
+\contentsline {paragraph}{}{13}{section*.47}
+\contentsline {paragraph}{}{13}{section*.48}
+\contentsline {paragraph}{}{13}{section*.49}
+\contentsline {paragraph}{}{13}{section*.50}
+\contentsline {paragraph}{}{13}{section*.51}
+\contentsline {paragraph}{}{14}{section*.52}
+\contentsline {subsubsection}{API gegen\IeC {\"u}ber .NET Framework}{14}{section*.53}
+\contentsline {paragraph}{}{14}{section*.54}
+\contentsline {subsection}{\numberline {3.2.2}Windows.h}{14}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}WinMain}{14}{subsection.3.2.3}
+\contentsline {paragraph}{}{14}{section*.55}
+\contentsline {paragraph}{}{15}{section*.56}
+\contentsline {paragraph}{}{15}{section*.57}
+\contentsline {subsection}{\numberline {3.2.4}Graphic User Interface (GUI)}{15}{subsection.3.2.4}
+\contentsline {paragraph}{}{15}{section*.58}
+\contentsline {subsection}{\numberline {3.2.5}Aufbau einer GUI}{15}{subsection.3.2.5}
+\contentsline {paragraph}{}{15}{section*.59}
+\contentsline {subsubsection}{Initialisierung und Erzeugung der GUI}{15}{section*.60}
+\contentsline {paragraph}{}{15}{section*.61}
+\contentsline {paragraph}{}{16}{section*.62}
+\contentsline {paragraph}{}{16}{section*.63}
+\contentsline {paragraph}{}{16}{section*.64}
+\contentsline {paragraph}{}{16}{section*.65}
+\contentsline {paragraph}{}{17}{section*.66}
+\contentsline {paragraph}{}{17}{section*.67}
+\contentsline {paragraph}{}{17}{section*.68}
+\contentsline {paragraph}{}{17}{section*.69}
+\contentsline {paragraph}{}{18}{section*.70}
+\contentsline {subsubsection}{Die Message Loop}{18}{section*.71}
+\contentsline {paragraph}{}{18}{section*.72}
+\contentsline {paragraph}{}{18}{section*.73}
+\contentsline {paragraph}{}{18}{section*.74}
+\contentsline {paragraph}{}{19}{section*.75}
+\contentsline {paragraph}{}{19}{section*.76}
+\contentsline {paragraph}{}{19}{section*.77}
+\contentsline {paragraph}{}{19}{section*.78}
+\contentsline {subsubsection}{Fensterprozedur: WndProc Funktion}{19}{section*.79}
+\contentsline {paragraph}{}{19}{section*.80}
+\contentsline {paragraph}{}{20}{section*.81}
+\contentsline {paragraph}{}{20}{section*.82}
+\contentsline {paragraph}{}{20}{section*.83}
+\contentsline {paragraph}{}{20}{section*.84}
+\contentsline {subsection}{\numberline {3.2.6}Die RS 232 Schnittstelle und die Windows API}{20}{subsection.3.2.6}
+\contentsline {paragraph}{}{20}{section*.85}
+\contentsline {subsubsection}{\IeC {\"O}ffnen und Schlie\IeC {\ss }en eines Ports}{20}{section*.86}
+\contentsline {paragraph}{}{20}{section*.87}
+\contentsline {paragraph}{}{21}{section*.88}
+\contentsline {paragraph}{}{21}{section*.89}
+\contentsline {subsubsection}{Konfiguration eines Ports}{21}{section*.90}
+\contentsline {paragraph}{}{21}{section*.91}
+\contentsline {paragraph}{}{21}{section*.92}
+\contentsline {paragraph}{}{21}{section*.93}
+\contentsline {paragraph}{}{21}{section*.94}
+\contentsline {paragraph}{}{22}{section*.95}
+\contentsline {paragraph}{}{22}{section*.96}
+\contentsline {subsubsection}{Lesen und Schreiben}{22}{section*.97}
+\contentsline {paragraph}{}{22}{section*.98}
+\contentsline {subsubsection}{Events and Interrupts}{22}{section*.99}
+\contentsline {paragraph}{}{22}{section*.100}
+\contentsline {chapter}{\numberline {4}L\IeC {\"o}sungsans\IeC {\"a}tze}{23}{chapter.4}
+\contentsline {subsection}{\numberline {4.0.7}Fehlererkennung}{23}{subsection.4.0.7}
+\contentsline {subsection}{\numberline {4.0.8}Master Slave Modus zwischen zwei Systeme}{23}{subsection.4.0.8}
+\contentsline {subsection}{\numberline {4.0.9}Challenges of C++ and the gui}{23}{subsection.4.0.9}
+\contentsline {chapter}{\numberline {5}Anforderungsdefinition}{24}{chapter.5}
+\contentsline {chapter}{\numberline {6}Systementwurf}{25}{chapter.6}
+\contentsline {chapter}{\numberline {7}Realiseriung}{26}{chapter.7}
+\contentsline {chapter}{\numberline {8}Bedienungsanleitung}{27}{chapter.8}
+\contentsline {chapter}{\numberline {9}Zusammenfassung und Ausblick}{28}{chapter.9}
+\contentsline {chapter}{\numberline {A}Anhang}{31}{appendix.A}
