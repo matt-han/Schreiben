@@ -1,11 +1,11 @@
 
-\chapter{Aufgabenstellung}
+\chapter{Aufgabenstellung}\label{chp:aufgabenstellung}
 \paragraph{}
-Das Tool soll die RS 232 Schnittstelle testen und die Schwächen der vorhandenen Lösung ergänzen. Wincor Nixdorf besitzt schon ein Tool was die Druckertestumgebung testet, dies ist aber Ruby basierend. Das Tool soll mit Funktionsaufrufe der WinAPI programmiert werden, genauso wie die unter die Systeme laufende Anwendung es tun. Die vorhandenen Lösung, wie zum Beispiel "AGGsoft Serial Port Tester" haben eingeschränkte Einstellungen und sind nicht ausführlich genug für die Voraussetzungen der Qualitätssicherung.
+Das Tool soll die RS-232 Schnittstelle testen und die Schwächen der vorhandenen Lösungen ergänzen. Die Firma Wincor Nixdorf besitzt derzeit schon ein Tool welches die Druckertestumgebung testet, dies ist aber auf Ruby basierend. Das Programm "WN Serial COM Port Tester" soll mit Funktionsaufrufen der WinAPI programmiert werden. Die aktuell vorhandenen Lösungen, wie zum Beispiel das Programm "AGGsoft Serial Port Tester" haben eingeschränkte Einstellungen und sind nicht ausführlich genug für die Voraussetzungen der Qualitätssicherung.
 
 \section{Module}
 \paragraph{}
-Es hat folgende funktionelle Einheiten:
+Das Programm bietet dem Nutzer folgende Schnittstellen an um es zu bedienen:
 \begin{itemize}
 \item Windows-GUI(Graphical User Interface) mit allen Einstellmöglichkeiten und Start-Button.
 \item Kommandozeilen User Interface mit passenden Einstellmöglichkeiten, wie auch per GUI und Rückgabewerte (Exitcodes).
@@ -15,10 +15,9 @@ Es hat folgende funktionelle Einheiten:
 
 \section{Laufzeit}
 \paragraph{}
-Das Programm kann von einem schreibgeschütztem Medium (z.B. Windows-PE-CD) laufen, d.h. alle Schreibfunktionen (Log-Datei) sind per Option abschaltbar.
-Die Testparameter können in einer Konfigurationsdatei gespeichert und wieder geladen werden.
-Alle Ereignisse / Meldungen können in einer Log-Datei eingetragen werden.
-Das Programm startet und testet die Ports automatisch (Skriptmodus).
+Das Com-Port-Test Programm kann von einem schreibgeschütztem Medium (z.B. Windows-PE-CD) laufen, d.h. alle Schreibfunktionen (Log-Datei) sind per Option abschaltbar. Die Testparameter können in einer Konfigurationsdatei gespeichert und wieder geladen werden. Alle Ereignisse und Meldungen können in einer Log-Datei eingetragen werden. 
+
+Wenn das Programm mit einem Skript ausgeführt wird startet das Com-Port-Test Programm und testet die Ports automatisch. \textbf{(hier würde ich  noch schreiben welche Ports getestet werden -ob sie vorkonfiguriert werden müssen etc., zurzeit ist es noch nicht ersichtlich)}
 
 
 \section{Hardware}
@@ -34,21 +33,21 @@ Folgende Hardware-Kombinationen werden unterstützt (die Reihenfolge hier gibt d
 
 \section{Betriebssystem}
 \paragraph{}
-Das Tool ist entwickelt für und zu testen mit folgenden Zielbetriebssystemen:
+Das Programm "WN Serial COM Port Tester" ist für folgende Zielbetriebssysteme entwickelt worden:
 \begin{itemize}
 \item Windows XP SP3 x86, x64; Windows 7 x86, x64; WinPE 2.x (WinXP) / 3.x (Win7)
 \item Windows 8 nur ein Test, der aussagt ob es kompatibel ist oder noch etwas zu tun wäre
 \end{itemize}
-Linux ist hier nicht gefordert.
+Linux - Distributionen werden vom Programm nicht unterstützt.
 
 \section{Logbuch}
 \paragraph{}
-Alle Ereignisse / Testschritte können zu Dokumentations- und Analysezwecken in einer Log-Datei gespeichert werden. Auch Fehler, die der Parser in der Test-Datei(.ini) findet, werden in der Log-Datei eingetragen. Das Format ist hier CSV, d.h. es kann direkt in Excel geöffnet werden. Damit sind dann auch Performance-Messungen / -vergleiche zwischen Port auf unterschiedlichen Mainboards einfacher möglich. Der Name der Log-Datei ist für jede Instanz und jedes Testsystem eindeutig zu wählen, zum Beispiel:
+Alle Ereignisse und Testschritte können zu Dokumentations- und Analysezwecken in einer Log-Datei gespeichert werden. Auch Fehler, die der Parser in der Test-Datei(.ini) findet, werden in der Log-Datei eingetragen.\textbf{versteh ich nicht ???? ->} Das Format ist hier CSV, d.h. es kann direkt in Excel geöffnet werden. Damit sind dann auch Performance-Messungen und Vergleiche zwischen Ports auf unterschiedlichen Mainboards einfacher möglich. Der Name der Log-Datei ist für jede Instanz und jedes Testsystem eindeutig zu wählen, wie im folgenden Beispiel zu sehen ist:
 \\
 \\ \hspace*{10mm}<Programmname>\_<Computername>\_<Master/Slave>\_<Port>.csv
 
 \paragraph{}
-Jeder Eintrag bekommt einen Uhrzeit/Datums-Stempel. Eine Zeile sieht dann wie folgt aus:
+Jeder Eintrag bekommt einen Uhrzeit und Datums-Stempel. Eine Zeile sieht dann wie folgt aus:
 \\
 \\ \hspace*{10mm} <Datum>; <Uhrzeit>;<Ereignis>;<Wert>;<Kommentar>
 
@@ -61,56 +60,56 @@ Die ersten beiden  Einträge der Log-Datei:
 
 \section{Programminstanzen}
 \paragraph{}
-Das Programm kann in mehrfachen Programm-Instanzen gestartet werden, in der Regel läuft bei umfangreichen Tests für jeden zu testenden RS232-Port eine Programm-Instanz. Das vermeidet aufwändige Thread-Programmierung eines einzigen Programms für alle Ports. Das ist keine feste Vorgabe, sollte sich Thread-Programmierung als einfacher erweisen, dann sollte es auch benutzt werden.
+Das Programm kann in mehrfachen Programm-Instanzen gestartet werden, in der Regel läuft bei umfangreichen Tests für jeden zu testenden RS-232-Port eine Programm-Instanz. Das vermeidet aufwändige Thread-Programmierung eines einzigen Programms für alle Ports.\textbf{würde ich nochmal umschreiben zu umgangssprachlich ->} Das ist keine feste Vorgabe, sollte sich Thread-Programmierung als einfacher erweisen, dann sollte es auch benutzt werden.
 
 
 \section{Master / Slave}
 \paragraph{}
-Jede Programminstanz wird als Master, Slave oder als beides gestartet.
+Jede Programminstanz wird als Master, Slave oder mit beiden Konfigurationen gestartet.
 
 
 \subsection{Master-Funktion}
 \paragraph{}
-Im Master-Modus schickt die Schnittstelle die vorgegebenen Texte / Dateien mit den eingestellten Parametern an den Slave. Der Master wertet die dem Test zugeordnete INI-Datei aus, der Slave folgt nur dem Master. Der Master wartet auf das Echo oder eine Fehlermeldung und bewertet den Testschritt sobald der Test komplett und fehlerfrei empfangen als erfolgreich, sonst als fehlerhaft. In beiden Fällen werden Fehler, Warnungen und Erfolgsmeldungen geloggt.
+Im Master-Modus schickt die Schnittstelle die vorgegebenen Texte / Dateien mit den eingestellten Parametern an den Slave. Der Master wertet die dem Test zugeordnete INI-Datei aus, der Slave folgt nur dem Master. Der Master wartet auf das Echo oder auf eine Fehlermeldung und bewertet den Testschritt sobald der Test komplett und fehlerfrei empfangen worden ist. Zugleich bewertet er ob der Test erfolgreich oder fehlerhaft war. In beiden Fällen werden Fehler, Warnungen und Erfolgsmeldungen geloggt.
 
 
 \subsection{Slave-Funktion}
 \paragraph{}
-Im Slave-Modus (Programminstanz auf gleichem System oder zweiten BEETLE/PC) empfängt die Daten komplett,  wertet eventuell Fehler aus und schickt entweder die Daten als Echo oder eine Fehlermeldung wieder zurück. 
+Im Slave-Modus (Programminstanz auf gleichem System oder zweiten BEETLE/PC)werden die Daten komplett empfangen, wertet eventuelle Fehler aus und schickt entweder die Daten als Echo oder eine Fehlermeldung wieder zurück. 
 
 \subsection{Master / Slave Kombination mit Kurzschlussstecker}
 \paragraph{}
-Im kombinierten Master / Slave-Modus (Kurzschlussstecker) übernimmt eine Instanz des Programms beides, das heißt, sie schickt sich selber Daten und antwortet ebenso. Programm intern laufen aber die beiden Module (Master / Slave) weitestgehend getrennt.
+Im kombinierten Master / Slave-Modus (Kurzschlussstecker) übernimmt eine Instanz des Programms beides, das heißt, sie schickt sich selber Daten und antwortet ebenso. Programm intern laufen aber die beiden Module (Master / Slave) weitestgehend getrennt ab.
 
 \subsection{Master / Slave Ablauf mit „Wobbeln“-Funktion}
 \paragraph{}
-Die Master-Instanz übernimmt die Steuerung des Ablaufs, der Slave antwortet dem Master. In diesem Testmodus werden durch den Benutzer eingegebenen Baudraten(Unter und Obergrenze) gewobbelt. Der Wobbeln-Ablauf kann über die GUI oder in der INI-Datei beschrieben werden. Der automatische Test erfolgt dann nur für die dort eingetragenen Parameter, Z.B.:
+Die Master-Instanz übernimmt die Steuerung des Ablaufes, der Slave antwortet dem Master. In diesem Testmodus werden durch den Benutzer eingegebene Baudraten(Unter und Obergrenze) gewobbelt. Der Wobbeln-Ablauf kann über die GUI oder in der INI-Datei beschrieben werden. Der automatische Test erfolgt dann nur für die dort eingetragenen Parameter, z.B.:
 
 \begin{center}
 BAUD = 9600 - 115200
 \end{center}
 \paragraph{}
-Hier werden die Baudrate von 9600 bis 115200 für den Test berücksichtigt, aber 2400, 300, und so weiter nicht. Wenn mehrere Parameter flexibel gesetzt / programmiert sind, dann werden alle Kombinationen getestet. Das kann dann durchaus eine nicht unerhebliche Testzeit beanspruchen.
+Hier werden die Baudrate von 9600 bis 115200 für den Test berücksichtigt, aber 2400, 300, etc. weiter nicht. Wenn mehrere Parameter flexibel gesetzt / programmiert sind, werden alle Kombinationen getestet. Das kann dann durchaus eine nicht unerhebliche Testzeit beanspruchen.
 \paragraph{}
-Die Programminstanz öffnet die zugehörige Schnittstelle automatisch mit der ersten von allen der programmierten Optionen (Baudrate, Parität, etc.) und startet dann einen Testdurchlauf mit diesen Einstellungen. Wenn alle Daten fehlerfrei gesendet und danach auch das Echo fehlerfrei empfangen wurden, dann wird der Port geschlossen, mit der nächsten Kombination geöffnet und wieder Daten gesendet / empfangen. Wenn Fehler (Parität, Offline, etc.) vom Master erkannt oder vom Slave gesendet wurden, dann wird der letzte Schritt wiederholt. Wenn der aktuelle Test schon die x-te Fehler-Wiederholung war, dann stoppt das Programm und zeigt den Fehler an. Dieser Fehler-Zustand darf durch das Programm nicht verändert werden. Der Tester / Entwickler muss der Fehler analysieren.
+Die Programminstanz öffnet die zugehörige Schnittstelle automatisch mit der ersten von allen der programmierten Optionen (Baudrate, Parität, etc.) und startet dann einen Testdurchlauf mit diesen Einstellungen. Wenn alle Daten fehlerfrei gesendet und danach auch das Echo fehlerfrei empfangen wurden,  wird der Port geschlossen, mit der nächsten Kombination geöffnet und wieder Daten gesendet und empfangen. Wenn Fehler (Parität, Offline, etc.) vom Master erkannt oder vom Slave gesendet wurden, dann wird der letzte Schritt wiederholt. \textbf{nach wie vielen Fehlern?->}Wenn der aktuelle Test schon die x-te Fehler-Wiederholung war, dann stoppt das Programm und zeigt den Fehler an. Dieser Fehler-Zustand darf durch das Programm nicht verändert werden. Der Tester / Entwickler muss die Fehler analysieren.
 
 \subsection{Synchronisierungsprotokoll}
 \paragraph{}
-Für den Wobbelmode ist ein (minimales) Protokoll zur Synchronisation nötig. Wenn eine Programminstanz als Master gestartet wird, erhält sie die nötigen Schnittstellenparameter per GUI oder aus der Konfigurationsdatei. Sie sendet diese in From eines Konfigurationspakets dem Slave. Solche Konfigurationspakete werden immer mit den Standardschnittstellenparametern (96,o,8,1) gesendet. Der Slave synchronisiert sich dann, d.h. programmiert -per WIN-API- seinen zu testenden Port mit den empfangenen Parametern und wartet auf Nutzdaten.
+Für den Wobbelmodus ist ein minimales Protokoll zur Synchronisation nötig. Wenn eine Programminstanz als Master gestartet wird, erhält sie die nötigen Schnittstellenparameter per GUI oder aus der Konfigurationsdatei. Sie sendet diese in From eines Konfigurationspakets dem Slave. Solche Konfigurationspakete werden immer mit den Standardschnittstellenparametern (96,o,8,1) gesendet. Der Slave synchronisiert sich dann, d.h. programmiert -per WIN-API- seinen zu testenden Port mit den empfangenen Parametern und wartet auf Nutzdaten.
 \paragraph{}
-Wenn der erste Test erfolgreich war (Master hat gesendet und der Slave hat ein Echo geschickt), dann schickt der Master an den Slave die Parameter des nächsten Testschritts. Das ist so nötig, weil im Fehlerfall (Echo fehlerhaft empfangen) der Slave nicht mehr synchron wäre, er weiß nur ob seine Daten fehlerfrei gesendet wurden, aber nicht ob der Empfang richtig angekommen ist. Der Slave kann so einfach nur mit Standard-Parametern gestartet werden und folgt dann dem Master.
+Wenn der erste Test erfolgreich war (Master hat gesendet und der Slave hat ein Echo geschickt), dann schickt der Master an den Slave die Parameter des nächsten Testschritts. Das ist nötig, weil im Fehlerfall (Echo fehlerhaft empfangen) der Slave nicht mehr synchron wäre, er weiß nur ob seine Daten fehlerfrei gesendet wurden, aber nicht ob der Empfang richtig angekommen ist. Der Slave kann so einfach nur mit Standard-Parametern gestartet werden und folgt dann dem Master.
 
 
 \section{Teststruktur}
 \paragraph{}
-Gefordert ist eine einfache Trennung von Testablauf / Testoptionen  und  Testobjekt(RS232-Port). Die Teststeuerung wird daher sowohl im Programm selber, als auch über die Kommandozeile implementiert. Der Testablauf für jeden Port selber ist in der zugehörigen Konfigurationsdatei vollständig, aber unabhängig vom zu testenden Port (RS232-/V.24-Schnittstelle), beschrieben. Es können mehrere Konfigurationsdateien auf der Kommandozeile übergeben werden. Die Schnittstellenummer wird über die Kommandozeile festgelegt. So kann der gleiche Testablauf (INI-Datei) für jeden Port einzeln / parallel durchgeführt werden.
+Gefordert ist eine einfache Trennung von Testablauf / Testoptionen  und  Testobjekt(RS-232-Port). Die Teststeuerung wird daher sowohl im Programm selber, als auch über die Kommandozeile implementiert. Der Testablauf für jeden Port selber ist in der zugehörigen Konfigurationsdatei vollständig, aber unabhängig vom zu testenden Port (RS-232-Port / V.24-Schnittstelle), beschrieben. Es können mehrere Konfigurationsdateien auf der Kommandozeile übergeben werden. Die Schnittstellenummer wird über die Kommandozeile festgelegt. So kann der gleiche Testablauf (INI-Datei) für jeden Port einzeln oder parallel durchgeführt werden.
 
 
 \section{Benutzerschnittstelle}
 
 \subsection{GUI}
 \paragraph{}
-In der GUI sind alle Programm- und Schnittstellenparameter einstellbar und können jederzeit aus der GUI in eine Konfigurationsdatei gespeichert werden. Der Windows-Fenster bietet also implizit auch die Funktion eines Konfigurationseditors mit eingebauter Syntaxüberprüfung.
+In der GUI sind alle Programm- und Schnittstellenparameter einstellbar und können jederzeit aus der GUI in eine Konfigurationsdatei gespeichert werden. Das Windows-Fenster bietet also implizit auch die Funktion eines Konfigurationseditors mit eingebauter Syntaxüberprüfung.
 
 
 \subsection{Kommandozeile}
@@ -120,7 +119,7 @@ Wenn die Kommandozeile keine Parameter bekommt, wird automatisch die GUI dargest
 \item -f INI\_Datei
 \item -f INI\_Datei /Port
 \end{itemize} 
-In der INI Datei ist der Testvorgang beschrieben. Wenn keine "`/Port"' angegeben wurde, dann wird der Port in der INI Datei getestet. So sieht ein Programmaufruf aus:
+In der INI Datei ist der Testvorgang beschrieben. Wenn kein "/Port"' angegeben wurde, dann wird der Port in der INI Datei getestet. So sieht ein Programmaufruf aus:
 \begin{itemize}
 \item SerialPortTester.exe KOMPLETT.INI
 \item SerialPortTester.exe KOMPLETT.INI /COM3 
@@ -128,14 +127,14 @@ In der INI Datei ist der Testvorgang beschrieben. Wenn keine "`/Port"' angegeben
 
 \section{Skriptfähigkeit}
 \paragraph{}
-Per Kommandozeile gestartet, ist das Programm BATCH-/Script-fähig, d.h. es startet ohne weitere Benutzereingaben, loggt alle Ereignisse und auch Hinweise -zur Analyse nach dem Test- in die zugehörige Datei und beendet sich ebenso selbstständig. Fehler, Warnungen und Hinweise werden auf der Konsole ausgegeben. Als Option kann es auch im Hintergrund ohne jede Anzeige rennen.
+Per Kommandozeile gestartet, ist das Programm BATCH-/Script-fähig, d.h. es startet ohne weitere Benutzereingaben, loggt alle Ereignisse und auch Hinweise -zur Analyse nach dem Test- in die zugehörige Datei und beendet sich ebenso selbstständig. Fehler, Warnungen und Hinweise werden auf der Konsole ausgegeben. Als Option kann es auch im Hintergrund ohne jede Anzeige laufen.
 
 
 \section{Programmierung der Testparameter}
 \paragraph{}
-Die Testparameter können direkt per GUI oder per INI-Datei eingestellt werden. Die aktuelle Testkonfiguration und der Ablauf kann in einer INI-Datei gespeichert und wieder geladen werden. Eine mit GUI erstellte INI-Datei kann über Kommandozeile geladen werden. Diese INI-Datei hat die Windows-übliche Struktur mit „[“ und „]“ und ist per Notepad (oder irgendeinem anderen Editor) zu bearbeiten.
+Die Testparameter können direkt per GUI oder per INI-Datei eingestellt werden. Die aktuelle Testkonfiguration und der Ablauf kann in einer INI-Datei gespeichert und wieder geladen werden. Eine mit GUI erstellte INI-Datei kann über die Kommandozeile geladen werden. Diese INI-Datei hat die Windows-übliche Struktur mit „[“ und „]“ und ist per Notepad (oder anderen Editor) editierbar.
 \\
-Sie enthält alle Informationen zur Steuerung der Programminstanz, das heißt alle einstellbaren Schnittstellenparameter inklusive Wobbelnoption (von-bis):
+Sie enthält alle Informationen zur Steuerung der Programminstanz, dass heißt alle einstellbaren Schnittstellenparameter inklusive Wobbelnoption (von-bis):
 \begin{tabbing}
 \hspace*{10mm}Baudrate = 1200-9600; \=Stopbbits = 1; Datenbits = 8; RTS\_CTS=yes; etc.
 \\
@@ -157,7 +156,7 @@ Folgende Werte sollen für den Benutzer einstellbar sein:
 \item Flusssteuerung
 \end{itemize}
 \paragraph{}
-Das Programm kann hier mit Variablen MIN und MAX umgehen. Wenn beispielsweise die Zeile „BAUDRATE = MAX“ oder „BAUDRATE = MIN“  programmiert wurde, dann sucht das Programm die maximale bzw. minimale Baudrate, die angegebene RS232-Port unterstützt und nutzt sie für den Test. Diese Werte werden aus „dem System“ –beispielsweise Registry oder  MSPORTS.DLL direkt ausgelesen. Manuell können diese MIN/MAX-Werte über den Gerätemanager ermittelt werden. Wenn keine Parameter übergeben wurden, dann startet das Programm mit diesen Standardparametern: 9600,odd,8,1,RTS/CTS (von der Wincor Nixdorf Anzeige BA66).
+Das Programm kann hier mit Variablen MIN und MAX umgehen. Wenn beispielsweise die Zeile „BAUDRATE = MAX“ oder „BAUDRATE = MIN“  programmiert wurde,  sucht das Programm die maximale bzw. minimale Baudrate, die angegebene RS-232-Port unterstützt und nutzt sie für den Test. Diese Werte werden aus „dem System“ –beispielsweise Registry oder  MSPORTS.DLL direkt ausgelesen. Manuell können diese MIN/MAX-Werte über den Gerätemanager ermittelt werden. Wenn keine Parameter übergeben wurden, startet das Programm mit diesen Standardparametern: 9600,odd,8,1,RTS/CTS (von der Wincor Nixdorf Anzeige BA66).
 
 \paragraph{}
 Die Wobbelnoption wird in Form einer VON-BIS-Zeile implementiert:
