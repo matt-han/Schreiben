@@ -1,14 +1,38 @@
 \chapter{Lösungsansätze}\label{chp:loesungsansaetze}
 Nach der Beschreibung des fachlichen Umfeldes können ausgewählte (vielleicht alle?) für die Aufgabenstellung relevanten Probleme vorgestellt, Vor- und Nachteile bestehender Lösungen argumentiert und die voraussichtlich angestrebte (weil vorteilhafte) Lösung herausgestellt werden.
 
-\subsection{Fehlererkennung}
-%woher stammt der fehler
 
-\subsection{Master Slave Modus zwischen zwei Systeme}
-problem -> erzeugung eines protokolls, master ready and slave ready?
-timeouts.....
-recon events
-2.7.5 Synchronisierungsprotokoll
+\section{Fehlererkennung}
+\paragraph{}
+Das Ziel des COM-Por-Test-Tools ist Fehler in der Hardware beziehungsweise in der Kommunikation zu erkennen. Damit dieses Ziel erreicht wird, muss die Ermittlung eines Fehlers äußerst genau geschehen. So muss jeden Funktionsaufruf und Kommunikationsvorgang immer abgefragt werden. Bei jeder Abfrage müssen die Fehler ausgewertet und gemeldet werden. Nur so erfüllt das Testprogramm sein Zweck. Die Herausforderung wird darin bestehen, die Fehler genau zu definieren und sie so zu melden, dass der Tester die Ursache sofort erkennt.
 
-\subsection{Challenges of C++ and the gui}
-template class\\
+\section{Master Slave Modus zwischen zwei Systeme}
+\paragraph{}
+Die Synchronisierung zwischen zwei verschiedene BEETLE Systeme wird eine große Herausforderung darstellen. Dafür wird ein kleines Protokoll oder Handshake definieren. In diesem Vorgang muss der Master wissen, dass der Slave fertig eingestellt ist, und bereit für ein Datenverkehr ist. Dabei müssen beide Schnittstellen richtig eingestellt sein(Baudrate, Paritätbits, Stopbits, Datenbits, unter anderem).
+
+\paragraph{}
+Um das Protokoll oder Handshake zu definieren gibt es verschiedene Möglichkeiten. Darunter müssen als erstes die Timeouts beachtete werden. Der Master darf keine Senden, bevor der Slave nicht bereit ist, Daten zu empfangen. Sonst wurde der Master ein Lese-Timeout melden, weil er Daten schickt, aber keine empfängt. Im Gegensatz dazu, darf der Slave nicht Daten erwarten, so lange der Master nicht in der Lage ist, Daten zu schicken.
+
+\paragraph{}
+Als Grundidee um dieses Problem zu lösen, werde ich Synchronisierungszeiten und Vorgänge einbauen, in dem der Master für eine definierte Zeit auf den Slave wartet, und gegenseitig auch. Wenn diese Zeit abläuft, wird den Benutzer gemeldet, dass es Probleme mit der Synchronisierung beider Systeme gab, und das kein Test stattfinden wird. Ein großer Nachteil ist, dass durch das Abfragen auf Bereitschaft ein Pollingverfahren entsteht. 
+
+\paragraph{}
+Im besten Fall, wo keine Fehler bei der Kommunikation auftreten, wird es nicht so nötig sein, sich ständig zu Synchronisieren. Im Fehlerfall, muss nach jedem Test eine Synchronisierung stattfinden. Empfangt der Slave verfälschte Informationen und meldet ein Fehler, wurde sich sofort auf den nächsten Test vorbereiten. Das wurde den gesamten Testvorgang verfälschen. Es werden weitere ähnliche solche Fälle auftreten.
+
+\paragraph{}
+Um das Pollingverfahren zu vermeiden, kann die Synchronisierung auf Basis von Events \footnote{http://msdn.microsoft.com/en-us/library/aa450667.aspx; 30.08.2013} geschehen. Die Schnittstelle erzeugt Interrupts bei der Ankunft von einem Byte. So kann der Slave reagieren, erst wenn der Master was tatsächlich verschickt hat. Um die Interrupts abzufragen, muss ich Kommunikation Events von Windows abfragen. Wenn das System ein Interrupt empfängt, wird dieses im Programm als ein Event weitergeleitet.
+
+\paragraph{}
+Im ersten Blick, wird das 100\% Umgehen von einem Pollingverfahren schwer sein. Diese wird sich durch Testen während der Entwicklung des "`WN Serial COM Port Test"' beweisen. Je nach Testergebnisse werde ich die entsprechende beste Lösung anwenden.
+
+
+
+\section{C++ und die GUI}
+\paragraph{}
+Die graphischen Oberflächen mit Anwendung von der Windows API besteht aus "`C"' Code, und muss eine statische Fensterprozedur besitzen. Das heißt, man kann viele Benutzeroberflächen kreieren, aber es gibt nur eine Prozedur die die Nachrichten bearbeitet. Unter "`C++"' ergibt sich ein Konflikt, durch die Objektorientierung. Es gibt eine Klasse die die Benutzeroberfläche definiert, und wenn man mehrere Instanzen oder mehrere Benutzeroberflächen hat, würden alle Nachrichten durcheinander kommen.
+
+\paragraph{}
+Um dieses Problem zu umgeben, muss der Programmierer mit Hilfe von einem \textit{"`Template Class"'} die Oberfläche definieren. Eine Klasse wird definiert, in der die allgemeine Eigenschaften eines Fensters gesetzt werden und die Nachrichten jedes Fenster richtig umgeleitet werden. Diese geschieht in dem die benötigte statische Fensterprozedur in dem Template definiert wird. Die aller ersten Nachricht die ein Programm bekommt um eine Oberfläche zu erzeugen ist die "`WM\_NCREATE"'. Nach dieser Nachricht wird Abgefragt, und wenn die Nachricht ankommt, wird die durch Zeiger die Handles richtig gesetzt und weitergeleitet. Da diese Fensterprozedur statisch ist, egal wie viele Oberflächen kreiert werden, wird es nur einmal diese Fensterprozedur geben.
+
+\paragraph{}
+Der Programmierer erbt somit von dieser \textit{Template Class} für seine Fensterklasse und kann seine eigene Fensterprozedur definieren. Der definierten Fensterprozedur werden durch das Template die Nachrichten weitergeleitet. Dadurch werde ich auch in der Lage sein, meine eigene Fenster so zu gestalten wie die Voraussetzungen es definieren. Und falls es nötig ist, mehrere verschiedene Fenster erzeugen.

@@ -1,17 +1,17 @@
 \chapter{Fachlichesumfeld}\label{chp:fachlichesumfeld}
 
-\section{RS 232 (Radio Sector 232)}
+\section{RS-232 (Radio Sector 232)}
 
 Die Quellen dieses Kapitel sind aus "`http://de.wikipedia.org/wiki/RS-232; 25.08.2013"' und "`Joe Campbell: V 24 / RS-232 Kommunikation. 4. Auflage. Sybex-Verlag GmbH"'.
 
 \paragraph{}
-Der RS 232 ist ein Standard der in den 60er Jahren von die US-amerikanische Standardisierungskomitee Electronic Industries Association(EIA) bearbeitet und definiert wurde. Bei diesem Standard haltet es sich um eine serielle Schnittstelle die für die serielle Kommunikation zwischen Rechnern und Modems in einer Punkt-zu-Punkt Verbindung(über Telefonleitungen) diente.
+Der RS-232 ist ein Standard der in den 60er Jahren von die US-amerikanische Standardisierungskomitee Electronic Industries Association(EIA) bearbeitet und definiert wurde. Bei diesem Standard haltet es sich um eine serielle Schnittstelle die für die serielle Kommunikation zwischen Rechnern und Modems in einer Punkt-zu-Punkt Verbindung(über Telefonleitungen) diente.
 
 
 %#######################################################################################
 \subsection{Definition}
 \paragraph{}
-Unter der RS 232 Standard ist die Verbindung zwischen eine Datenendeinrichtung(DEE, zum Beispiel das Terminal) und eine Datenübertragungseinrichtung(DÜE, zum Beispiel einem Modem) und dessen Parameter definiert. Unter Parameter sind der Spannungspegel, Übertragungsprotokoll(Handshake), Stecker und Timing zu verstehen.
+Unter der RS-232 Standard ist die Verbindung zwischen eine Datenendeinrichtung(DEE, zum Beispiel das Terminal) und eine Datenübertragungseinrichtung(DÜE, zum Beispiel einem Modem) und dessen Parameter definiert. Unter Parameter sind der Spannungspegel, Übertragungsprotokoll(Handshake), Stecker und Timing zu verstehen.
 
 \paragraph{}
 Die Übertragung ist Bit-seriell, das heißt, Bits werden hintereinander verschickt in einer Datenleitung. Eine bestimmte Menge an Bits entspricht ein Wort. Ein Wort entsteht aus ein Startbit, die tatsächliche Datenbits(Nutzdaten), ein oder zwei Stopbits und die Parität. Die Parität ist in den Standard nicht definiert, aber wird benutzt um Fehler zu erkennen und beheben. Die Parität wird hier betrachtet, da sie für diese Arbeit relevant ist und wird später genauer erklärt.
@@ -24,7 +24,7 @@ Der Startbit meldet den Empfänger das die Übertragung anfängt. Start- und Sto
 Um genauer die Übertragung von einem Zeichen zu verstehen, folgender Beispiel. Wird eine Charackter 'z' übertragen, mit einem Startbit, acht Datenbits und zwei Stopbits, ist die gesamt Länge der Übertragung elf Bits lang. 'z' entspricht laut ASCII Kodierung den Wert 122 dezimal und "`7A"' hexadezimal(0x7A). Die Bitdarstellung für 0x7 lautet "`0111"' und für 0xA "`1010"', zusammen für 0x7A = "`01111010"'. Die Übertragung im diesem Standard folgt mit dem LSB(Less significant Bit) zuerst, also werden die Bits vertauschst zu "`0101 1110"'. Davor wird eine Null zugefügt als Startbit und am Ende zwei Einsen als Stopbits. Das Ergibt, dass für die Übertragung eines 'z' die Bitreihenfolge "`0 0101 1110 11"' verschickt wird.
 
 \paragraph{}
-Die Datenübertragung unter RS 232 ist asynchron, das bedeutet es existiert kein gemeinsamer Takt. Die Bitraten zwischen Sender und Empfänger dürfen um wenig Prozent von einander abweichen, sonst wird der Empfänger das Wort zu schnell / langsam abtasten und falsch interpretieren. Dagegen muss die Baudrate bei Sender und Empfänger genau gleich sein. Beide Begriffe sind nicht zu verwechseln. Eine Bitrate definiert die übertragene Bits pro Sekunde und die Baudrate die übertragene Symbole pro Sekunde, wo jedes Symbol als definierte messbare Signaländerung im physischen Übertragungsmedium definiert ist. Da die Übertragung im diesem Standard binär ist, ist ein Symbol als ein Bit definiert. Dieses hat als Folge, dass im diesem Spezialfall die Bitrate und die Baudrate gleich sind.
+Die Datenübertragung unter RS-232 ist asynchron, das bedeutet es existiert kein gemeinsamer Takt. Die Bitraten zwischen Sender und Empfänger dürfen um wenig Prozent von einander abweichen, sonst wird der Empfänger das Wort zu schnell / langsam abtasten und falsch interpretieren. Dagegen muss die Baudrate bei Sender und Empfänger genau gleich sein. Beide Begriffe sind nicht zu verwechseln. Eine Bitrate definiert die übertragene Bits pro Sekunde und die Baudrate die übertragene Symbole pro Sekunde, wo jedes Symbol als definierte messbare Signaländerung im physischen Übertragungsmedium definiert ist. Da die Übertragung im diesem Standard binär ist, ist ein Symbol als ein Bit definiert. Dieses hat als Folge, dass im diesem Spezialfall die Bitrate und die Baudrate gleich sind.
 
 \paragraph{}
 Die Baudrate wird vom Benutzer frei wählbar eingestellt. Dafür muss der Benutzer die Kabellänge betrachten. Weil es sich um eine Spannungsübertragung handelt, muss der Leistungswiederstand und die Kapazität des Kabels beachtet werden. Je länger das Kabel, desto starker nimmt die Spannung ab. Nach Erfahrungswerte von Texas Instruments ist bei einer Baudrate von 9600, eine maximale Kabellänge von 152 Meter möglich. Bei 115200 muss das Kabel kürzer als 2 Meter sein.
@@ -44,11 +44,11 @@ Damit triviale Fehler vermieden werden, müssen Sender und Empfänger die gleich
 
 %#######################################################################################
 \subsection{UART}
-Universal Asynchronous Receiver Transmitter(UART) ist eine elektronische Schaltung zur Realisierung von digitalen seriellen Schnittstellen(für diese Arbeit der sogenannte COM Port). Der UART ist zum senden und empfangen von Daten über eine Datenleitung vorgesehen. Im industriellen Bereich ist der UART unter die RS 232 Standard sehr verbreitet. Auch in Wincor Nixdorf wird diese Schnittstelle zum steuern der COM Ports benutzt.
+Universal Asynchronous Receiver Transmitter(UART) ist eine elektronische Schaltung zur Realisierung von digitalen seriellen Schnittstellen(für diese Arbeit der sogenannte COM Port). Der UART ist zum senden und empfangen von Daten über eine Datenleitung vorgesehen. Im industriellen Bereich ist der UART unter die RS-232 Standard sehr verbreitet. Auch in Wincor Nixdorf wird diese Schnittstelle zum steuern der COM Ports benutzt.
 
 %#######################################################################################
 \subsection{Paritätsbit}
-Wie schon erwähnt, ist die Parität nicht im RS 232 Standard definiert, aber sie ist für diese Arbeit relevant. Das Paritätsbit dient zur Erkennung fehlerhafte Übertragungen. Die Parität kann gerade(even) oder ungerade(odd) sein und wird durch die Anzahl an Einsen in einer Bitfolge bestimmt. Ist eine gerade Parität festgelegt, wird bei einer gerade Anzahl an Einsen eine Null angehängt, bei ungerade Anzahl eine Eins. Genau das Gegenteil geschieht bei  ungerade definierte Parität. Nach unseren Beispiel mit 0x7A wird bei gerade Parität eine Eins ("`0 0101 1110 \textbf{1} 11"') angehängt.
+Wie schon erwähnt, ist die Parität nicht im RS-232 Standard definiert, aber sie ist für diese Arbeit relevant. Das Paritätsbit dient zur Erkennung fehlerhafte Übertragungen. Die Parität kann gerade(even) oder ungerade(odd) sein und wird durch die Anzahl an Einsen in einer Bitfolge bestimmt. Ist eine gerade Parität festgelegt, wird bei einer gerade Anzahl an Einsen eine Null angehängt, bei ungerade Anzahl eine Eins. Genau das Gegenteil geschieht bei  ungerade definierte Parität. Nach unseren Beispiel mit 0x7A wird bei gerade Parität eine Eins ("`0 0101 1110 \textbf{1} 11"') angehängt.
 
 %#######################################################################################
 \subsection{Leitungen und Stecker}
@@ -83,20 +83,29 @@ Um Sender und Empfänger zu verbinden, gibt es verschiedene Kabelvarianten, abh�
 
 
 %#######################################################################################
-\subsection{RS 232 in Wincor Nixdorf}
-Die BEETLE Systeme haben alle?????? ein integrierten UART im Chipsatz. Diese COM Ports werden "`Onboard Ports"' benannt. Je nach System sind zwei bis sechs COM Ports eingebaut. Wenn ein Kunde weitere Schnittstellen benötigt, kann über den PCI Bus die Anzahl an Ports erweitert werden. Diese Erweiterung findet statt durch eine Sunix PCI Karte mit vier oder acht COM Ports.
-\\
-Intel SOL 
-\\
-ITE
-\\
-stromversorgung
-ba66
-kassenlade
+\subsection{RS-232 in Wincor Nixdorf}
+Die aktuelle BEETLE Systeme haben ein integrierten UART im Chipsatz. Diese COM Ports werden "`Onboard Ports"' genannt und sind "`Legacy Devices"`'. Je nach System sind zwei bis sechs COM Ports eingebaut. Wenn ein Kunde weitere Schnittstellen benötigt, kann über den PCI Bus die Anzahl an Ports erweitert werden. Diese Erweiterung findet statt durch eine Sunix PCI Karte mit vier oder acht COM Ports. Der Kunde kann auch zwei Sunix PCI Karten einbauen. Eine andere Erweiterungsmöglichkeit sind "`ITE"' COM Ports. ITE Ports sind programmierbare Lese und Schreibe Schnittstellen. Diese Ports sind direkt am PCI Bus angeschlossen.
+
+\paragraph{}
+Die vorgestellten Schnittstellen sind für das Test Tools relevant. Es gibt noch ein anderes COM Port, der nicht in alle BEETLE Systeme vorhanden ist. Einige BEETLE Systeme haben ein iAMT(Intel Active Managment Technologie)\footnote{http://software.intel.com/en-us/articles/using-intel-amt-serial-over-lan-to-the-fullest; 30.08.2013} Chip. Dieser Port ist ein virtueller Port. Durch ein Treiber (SOL, Serial Over LAN) wird der Datenverkehr von der seriellen Schnittstelle auf das LAN umgeleitet. Da es ein virtueller Port ist, wird es nicht Möglich sein, dieses Port zu testen. Die genaue Verwendung von iAMT und SOL ist für diese Arbeit nicht relevant, für mehrere Informationen wenden Sie sich an die angegebene Quelle.
+
+\paragraph{}
+Die BEETLE Systeme benutzen die COM Ports für verschiedene Zwecke. Für die Kassensysteme, werden an COM Ports die Kassenlade und Kundenanzeigen anschlossen. So kann das BEETLE System die beide Peripherie mit Strom und Daten versorgen.
+
+\paragraph{}
+ANDERE VERWENDUNGEN BENENNEN!!!!!
+
+
+
+
 
 %****************************************************************************************
 \newpage
 %****************************************************************************************
+
+
+
+
 
 \section{Microsoft Windows API}
 
@@ -357,15 +366,15 @@ SendMessage(hwnd\_Knopf, WM\_SETTEXT, 0, (lParam)"NeuerText");
 \end{center}
 
 %----------------------------------------------------------------------------------------------
-\subsection{Die RS 232 Schnittstelle und die Windows API}
+\subsection{Die RS-232 Schnittstelle und die Windows API}
 \paragraph{}
-Über die Windows API hat man direkt Zugriff auf die RS 232 Schnittstelle. Zum verwalten der Schnittstelle und die Eigenschaften zu setzen gibt es verschiedene Datenstrukturen die man aufrufen und ändern muss, je nach Bedarf.
+Über die Windows API hat man direkt Zugriff auf die RS-232 Schnittstelle. Zum verwalten der Schnittstelle und die Eigenschaften zu setzen gibt es verschiedene Datenstrukturen die man aufrufen und ändern muss, je nach Bedarf.
 
 
 %----------------------------------------------------------------------------------------------
 \subsubsection{Öffnen und Schließen eines Ports}
 \paragraph{}
-Um Zugriff auf die Datenstrukturen zu haben, muss man zuerst eine RS 232 Schnittstelle (COM Port) öffnen. Durch die Funktion CreateFile\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/aa363858(v=vs.85).aspx; 25.08.2013} bekommt man ein Handle auf den angegeben Port. Ein Handle ist eine Referenzwert zu einer vom Betriebssystem verwalteten Systemressource, im diesem Fall eine im System vorhandene RS 232 Schnittstelle. Mit \textit{CreateFile} kann man auch Zugriff auf Dateien, Datenstreams und andere Kommunikationsressourcen bekommen. Das Handle muss gespeichert werden, denn damit wird der jeweiliger Port identifiziert und angesprochen für weitere Operationen. Durch die \textit{CreateFile} Funktion wird die Datei, oder im diesem Fall die Input / Output Schnittstelle für diese Anwendung reserviert. Das heißt, für das Betriebssystem und andere Anwendungen steht diese Schnittstelle nicht mehr zur Verfügung.
+Um Zugriff auf die Datenstrukturen zu haben, muss man zuerst eine RS-232 Schnittstelle (COM Port) öffnen. Durch die Funktion CreateFile\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/aa363858(v=vs.85).aspx; 25.08.2013} bekommt man ein Handle auf den angegeben Port. Ein Handle ist eine Referenzwert zu einer vom Betriebssystem verwalteten Systemressource, im diesem Fall eine im System vorhandene RS-232 Schnittstelle. Mit \textit{CreateFile} kann man auch Zugriff auf Dateien, Datenstreams und andere Kommunikationsressourcen bekommen. Das Handle muss gespeichert werden, denn damit wird der jeweiliger Port identifiziert und angesprochen für weitere Operationen. Durch die \textit{CreateFile} Funktion wird die Datei, oder im diesem Fall die Input / Output Schnittstelle für diese Anwendung reserviert. Das heißt, für das Betriebssystem und andere Anwendungen steht diese Schnittstelle nicht mehr zur Verfügung.
 
 \paragraph{}
 Um den richtigen Zugriff auf einen Port zu haben, muss auch die richtige Flags bei dem Aufruf der \textit{CreateFile} Funktion angegeben werden. Als Flags sind die folgende Parameter anzugeben:
