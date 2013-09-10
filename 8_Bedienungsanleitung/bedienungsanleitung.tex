@@ -4,7 +4,7 @@
 %(Anmerkung: Je nach Art des entwickelten Systems ist es manchmal sinnvoll die Bedienungsanleitung in ein größeres Kapitel Anwenderdokumentation einzubetten.)
 
 \paragraph{}
-Das Test Programm kann über die Kommnadozeile oder direkt über die Benutzeroberfläche bedient werden. In beiden Fällen muss der Benutzer folgende Parameter angeben, je nach Testmodus, um erfolgreich ein Test zu starten:
+Das Test Programm kann über die Kommandozeile oder direkt über die Benutzeroberfläche bedient werden. In beiden Fällen muss der Benutzer folgende Parameter angeben, je nach Testmodus, um erfolgreich ein Test zu starten:
 \\
 \begin{tabular}{llll}
 \\ &\textbf{Parameter} & &\textbf{GUI Element}
@@ -33,7 +33,7 @@ Das Test Programm kann über die Kommnadozeile oder direkt über die Benutzerobe
 
 \section{Bedienung über die GUI}
 \paragraph{}
-Mit der GUI kann der Benutzer ein Test starten, mit bestimmten Parametern oder durch das Laden einer Testdatei. der Benutzer kann auch eine Testdatei erstellen, in dem er die Parameter in der GUI einstellt und diese speichert.
+Mit der GUI kann der Benutzer ein Test starten, mit bestimmten Parametern oder durch das Laden einer Testdatei. Der Benutzer kann auch eine Testdatei erstellen, in dem er die Parameter in der GUI einstellt und diese speichert.
 
 \section{Bedienung über die Kommandozeile}
 \paragraph{}
@@ -119,8 +119,31 @@ Der Wiederholzähler gibt an, wie oft ein Testschritt wiederholt werden soll. Un
 \section{Buttons}
 \paragraph{Start} Beginnt ein Test mit den eingegeben Parametern.
 \paragraph{Close} Beendet das Test Tool.
-\paragraph{Save} Speichert die ausgewählten Einstellungen in einer Testdatei im Temp Ordner.
+\paragraph{Save} Speichert die ausgewählten Einstellungen in einer Testdatei.
 \paragraph{Load test file} Ladet eine vom Benutzer ausgewählte Testdatei.
 \paragraph{Help} Zeigt die Hilfe zum Programm
 \paragraph{Stop} Stoppt der Testvorgang
+
+
+
+\section{Testdatei}
+\paragraph{}
+In einer Testdatei werden die Testkonfiguration gespeichert. Eine Testdatei kann manuell oder mit Hilfe der GUI erzeugt werden. Die Testdatei ist wie eine Datei aus der Registrierungsdatenbank (Windows Registry)aufgebaut. In "`\[\]"' wird der Port angegeben und darunter die jeweilige Testparametern. Für ein Beispiel bitte siehe Anhang. 
+
+\section{Einfaches Beispiel}
+\paragraph{}
+Will zum Beispiel ein Benutzer der Port COM1 testen. Dieser soll an COM2 die Wörter "`Hallo Welt"' schicken. Als Baudrate ist 9600 vorgegeben, mit einer geraden Parität, Xon/Xoff Protokoll, sieben Datenbits und 2 Stopbits. Der Test soll fünfmal wiederholt werden und eine Log-Datei soll geschrieben werden.
+
+\paragraph{}
+Als erstes muss der Benutzer unter \textit{Main Port} "`COM1"' auswählen. Danach werden die mögliche Baudraten in \textit{Baud rate} aufgelistet. Dort muss der Benutzer 9600 wählen. Da nur eine bestimmte Konfiguration gegeben ist, ohne Variablen, wird auf "`Fixed"' unter \textit{Test Mode} geklickt und als Übertragungsmodus "`Double"' ausgewählt. Unter \textit{Parity} wird "`Even"', \textit{Protocol} wird "`XON/XOFF"', \textit{Stopbits} wird "`2"' und \textit{Databits} wird "`7"' ausgewählt.\\
+
+BILD\\
+
+\paragraph{}
+Unter \textit{Send text} soll der Benutzer "`Hallo Welt"' schreiben. Will der Benutzer Escape-Sequenzen schicken, müssen diese als Hexadezimal Werte angegeben werden(zum Beispiel \textbackslash0a oder \textbackslash0d). Danach wird auf \textit{Load text to send} geklickt. Ein Pop-Up Fenster meldet, dass der Text geladen worden ist. Damit der Test fünfmal wiederholt wird, muss in \textit{Repeater} eine fünf anstatt der eins geschrieben werden. Danach ist die GUI konfiguriert und kann auf \textit{Start} geklickt werden.\\
+
+BILD\\
+
+\paragraph{}
+Durch ein Pop-Up Fenster wird dem Benutzer gemeldet, wenn der Test fertig ist. Um eine Evaluation des Tests machen zu können muss die Log-Datei ausgewertet werden.
 

@@ -84,18 +84,17 @@ Um Sender und Empfänger zu verbinden, gibt es verschiedene Kabelvarianten, abh�
 
 %#######################################################################################
 \subsection{RS-232 in Wincor Nixdorf}
-Die aktuelle BEETLE Systeme haben ein integrierten UART im Chipsatz. Diese COM Ports werden "`Onboard Ports"' genannt und sind "`Legacy Devices"`'. Je nach System sind zwei bis sechs COM Ports eingebaut. Wenn ein Kunde weitere Schnittstellen benötigt, kann über den PCI Bus die Anzahl an Ports erweitert werden. Diese Erweiterung findet statt durch eine Sunix PCI Karte mit vier oder acht COM Ports. Der Kunde kann auch zwei Sunix PCI Karten einbauen. Eine andere Erweiterungsmöglichkeit sind "`ITE"' COM Ports. ITE Ports sind programmierbare Lese und Schreibe Schnittstellen. Diese Ports sind direkt am PCI Bus angeschlossen.
-
 \paragraph{}
-Die vorgestellten Schnittstellen sind für das Test Tools relevant. Es gibt noch ein anderes COM Port, der nicht in alle BEETLE Systeme vorhanden ist. Einige BEETLE Systeme haben ein iAMT(Intel Active Managment Technologie)\footnote{http://software.intel.com/en-us/articles/using-intel-amt-serial-over-lan-to-the-fullest; 30.08.2013} Chip. Dieser Port ist ein virtueller Port. Durch ein Treiber (SOL, Serial Over LAN) wird der Datenverkehr von der seriellen Schnittstelle auf das LAN umgeleitet. Da es ein virtueller Port ist, wird es nicht Möglich sein, dieses Port zu testen. Die genaue Verwendung von iAMT und SOL ist für diese Arbeit nicht relevant, für mehrere Informationen wenden Sie sich an die angegebene Quelle.
-
+Die aktuelle BEETLE Systeme haben ein integrierten UART im Chipsatz. Diese COM Ports werden "`Onboard Ports"' genannt und sind "`Legacy Devices"'. Je nach System sind zwei bis sechs COM Ports eingebaut. Wenn ein Kunde weitere Schnittstellen benötigt, kann über den PCI Bus die Anzahl an Ports erweitert werden. Diese Erweiterung findet statt durch eine Sunix PCI Karte mit vier oder acht COM Ports. Der Kunde kann auch zwei Sunix PCI Karten einbauen.
+ 
 \paragraph{}
-Die BEETLE Systeme benutzen die COM Ports für verschiedene Zwecke. Für die Kassensysteme, werden an COM Ports die Kassenlade und Kundenanzeigen anschlossen. So kann das BEETLE System die beide Peripherie mit Strom und Daten versorgen.
-
+Eine andere Erweiterungsmöglichkeit sind "`ITE"' COM Ports. Diese Ports sind direkt am PCI Bus angeschlossen und im Mainboard eingebaut. Die ITE COM Ports worden eingebaut, weil die Super I/O in ältere Mainboards nur zwei Legacy COM Ports verwalten konnte. Um mehrere „On Board“ Ports dem Benutzer zur Verfügung zu stellen würde der ITE Chip eingebaut. Modernere Mainboards sind in der Lage mehr als zwei COM Ports zu verwalten, und deswegen gibt es jetzt bis zu sechs Legacy Ports plus Erweiterungsmöglichkeiten.
+ 
 \paragraph{}
-ANDERE VERWENDUNGEN BENENNEN!!!!!
-
-
+Die vorgestellten Schnittstellen sind für das Test Tools relevant. Es gibt noch ein anderes COM Port, der nicht in alle BEETLE Systeme vorhanden ist. Einige BEETLE Systeme haben ein iAMT (Intel Active Managment Technologie)\footnote{http://software.intel.com/en-us/articles/using-intel-amt-serial-over-lan-to-the-fullest; 30.08.2013} Chip. Dieser Port ist ein virtueller Port. Durch ein Treiber (SOL, Serial Over LAN) wird der Datenverkehr von der seriellen Schnittstelle auf das LAN umgeleitet. Da es ein virtueller Port ist, wird es nicht möglich sein, dieser Port zu testen. Die genaue Verwendung von iAMT und SOL ist für diese Arbeit nicht relevant, für mehrere Informationen wenden Sie sich an die angegebene Quelle.
+ 
+\paragraph{}
+Die BEETLE Systeme benutzen die COM Ports für verschiedene Zwecke. Für die Kassensysteme, werden an COM Ports die Scanner und Kundenanzeigen anschlossen. So kann das BEETLE System die beiden Peripherien mit Strom versorgen und Daten senden und empfangen. Es werden auch noch Drucker an die COM Ports angeschlossen. In ältere BEETLE Systeme worden die Touchkomponente für Bildschirme an die RS-232 Schnittstelle angeschlossen. Der Bildschirm war an eine Videoschnittstelle angeschlossen und die Touchsignale würden über ein COM Port empfangen. Im Banking Bereich werden viele verschiedene Peripherien pro System über die RS-232 Schnittstelle gesteuert und mit Strom versorgt.
 
 
 
@@ -415,13 +414,30 @@ $ Wartezeit = \frac{Anzahl der Bits}{Baudrate} \times 1.1$
 \end{center}
 
 \paragraph{}
-In der Formel wird mal 1.1 multipliziert um eine 10\% Kulanz zu haben. Der dritte und fünfte Parameter sind eine extra Wartezeit, für jeweils Lesen und Schreiben, die zu der gesamte berechnete Wartezeit pro Lese-/Schreibvorgang addiert wird.
+In der Formel wird mal 1.1 multipliziert um eine 10\% Kulanz zu haben. Der dritte und fünfte Parameter sind eine extra Wartezeit, für jeweils Lesen und Schreiben, die zu der gesamte berechnete Wartezeit pro Lese-/Schreibvorgang addiert wird. Falls der berechnete Wert unter zehn Millisekunden ist, wird dieser auf zehn Millisekunden gesetzt.
+
+
+\paragraph{}
+Wenn ein Port geöffnet wird, muss der Programmierer die Art der Kommunikation angeben. Die Kommunikation zwischen die Schnittstellen kann synchron(nonoverlapped) oder asynchron(overlapped) erfolgen. Für diese Arbeit habe ich mich für asynchrone Kommunikation entschieden. Dieser Art der Kommunikation ist etwa komplexer, bietet aber mehr Flexibilität und Effizienz.
+
+
 
 %----------------------------------------------------------------------------------------------
 \subsubsection{Lesen und Schreiben}
 \paragraph{}
+Nach dem ein Port konfiguriert ist, wie es nötig ist, kann man dieses Port benutzen um Informationen zu schicken oder empfangen. Um in einem Port zu schreiben oder aus einem Port zu lesen gibt es jeweils eine Funktion. Um im einem Port zu schreiben wird die Funktion \textit{WriteFile}\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/aa365747(v=vs.85).aspx; 28.08..2013}. Die Funktion benötigt als erster Parameter das Handle auf das geöffnete Port. Als zweites muss angegeben werden, welche Information geschrieben werden soll und die Größe dieser Information in Bytes. Als optionale Parameter kann man ein Zeiger wo die Menge der geschriebene Bytes geschrieben wird und ein Zeiger zu einer \textit{OVERLAPPED} Struktur. Die Kommunikation zwischen Ports in dieser Arbeit ist Asynchron, deswegen wird hier eine Zeiger auf eine Struktur gegeben.
 
-
-%----------------------------------------------------------------------------------------------
-\subsubsection{Events and Interrupts}
 \paragraph{}
+Das Lesen aus einem Port geschieht sehr ähnlich wie das Schreiben.Die Funktion dafür heißt \textit{ReadFile}\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/aa365467(v=vs.85).aspx; 28.08.2013}. Die Lesefunktion brauch genau die gleichen Parameter wie die Schreibfunktion. Da die Lese und Schreibvorgange sehr ähnlich sind, ist der Aufbau beider Funktionsaufrufe auch ähnlich.
+
+\paragraph{}
+Um aus einem Port zu lesen oder schreiben muss zuerst eine \textit{OVERLAPPED} Struktur deklariert werden. Somit sichern wir, dass die Kommunikation asynchron ist. Danach muss in der Struktur der Parameter \textit{hEvent} initialisiert werden. Dieser Parameter ist ein Handle auf ein Event. Ein Event im diesem Fall ist der Schreibe oder Lesevorgang. Durch dieses Event kann der Status von der Vorgang abgefragt werden. Als erstes wird die jeweilige Lese oder Schreibfunktion aufgerufen. Wenn dieser Vorgang erfolgreich war, muss der Status abgefragt werden, um sicher zu sein, dass der Vorgang vollständig ist.
+ 
+\paragraph{}
+Im Fall, dass sich das Schreiben oder Lesen noch verzögert, muss auf das beenden des Events gewartet werden. Zuerst muss der Programmierer Abfragen, ob ein Fehler entstanden ist. Wenn der Fehler \textit{ERROR\_IO\_PENDING} muss das Programm noch warten, sonst ist ein anderer Fehler entstanden. Um an das Beenden eines Events zu warten und reagieren, wird die Funktion \textit{WaitForSingleObject}\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms687032(v=vs.85).aspx; 28.08.2013} aufgerufen. Diese Funktion wartet bis das angegebene Event(lesen oder schreiben) sein Status ändert oder eine bestimmte Zeit abläuft. Diese Zeit ist der Timeout was vorher berechnet worden ist.
+ 
+\paragraph{}
+Wenn die Zeit abläuft, wir ein Timeout Fehler angegeben. Das heißt, das Programm muss noch warten. Ändert sich der Status des Events, bevor die Zeit abläuft wird mittels der Funktion \textit{GetOverlappedResult}\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms683209(v=vs.85).aspx; 28.08.2013} das Event noch abgefragt. Dieser Funktion müssen das Handle des Ports, sowie die \textit{OVERLAPPED} Struktur und die Anzahl an Bytes die transferiert werden sollten, angeben. Wenn diese Funktion keine Fehler meldet, dann wurde der jeweilige Vorgang erfolgreich abgeschlossen.
+
+\paragraph{}
+Im Fall eines Schreibvorgang, muss der Programmierer sicherstellen, dass alle Bytes geschrieben worden sind. Ist es ein Lesevorgang, muss sicher gestellt werden, dass die komplette Information angekommen ist, bevor gelesen wird. Es kann daher zu Timeout Fehler kommen. Um solche Fehler nicht als Abbruchbedingung zu melden, wird nach Vereinbarung mit dem Auftragsteller, fünf mal versucht, fertig zu lesen oder schreiben. Wenn danach der Fehlern noch vorliegt, wird dieser gemeldet.
