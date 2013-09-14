@@ -22,6 +22,7 @@ Das Test Programm kann über die Kommandozeile oder direkt über die Benutzerobe
 \\ &Übertragungstext &: &Send text
 \\ &Logger &: &Logger
 \\ &Wiederholzähler &: &Repeater
+\\ &Beim ersten Fehler anhalten &: &Stop on 1. error
 \\ &Start &: &Start
 \\ &Schließen &: &Close
 \\ &Speichern &: &Save
@@ -115,6 +116,11 @@ Wenn die Checkbox ausgewählt ist, wie eine Textdatei im "`\%Temp\%"' Verzeichni
 \section{Wiederholzähler}
 \paragraph{}
 Der Wiederholzähler gibt an, wie oft ein Testschritt wiederholt werden soll. Unter Testschritt ist zu verstehen, jedes Schreibe- und Lesevorgang mit verschiedene einstellbare Parameter.
+
+\section{Beim ersten Fehler anhalten}
+\paragraph{}
+Diese Option gilt für die Fehlersuche. Wenn diese Option gesetzt ist, haltet das Test Tool beim ersten erkannten Fehler. So kann der Tester nach Fehler suchen. Wenn diese Option nicht gesetzt ist, werden die Fehler am Ende des Testvorgangs gemeldet oder geloggt. So kann eine Fehlerstatistik erzeugt werden.
+
 
 \section{Buttons}
 \paragraph{Start} Beginnt ein Test mit den eingegeben Parametern.
