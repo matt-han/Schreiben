@@ -42,25 +42,49 @@
 \BOOKMARK [1][-]{section.4.2}{Master Slave Modus zwischen zwei Systeme}{chapter.4}% 42
 \BOOKMARK [1][-]{section.4.3}{C++ und die GUI}{chapter.4}% 43
 \BOOKMARK [0][-]{chapter.5}{Systementwurf}{}% 44
-\BOOKMARK [0][-]{chapter.6}{Realisierung}{}% 45
-\BOOKMARK [0][-]{chapter.7}{Bedienungsanleitung}{}% 46
-\BOOKMARK [1][-]{section.7.1}{Bedienung \374ber die GUI}{chapter.7}% 47
-\BOOKMARK [1][-]{section.7.2}{Bedienung \374ber die Kommandozeile}{chapter.7}% 48
-\BOOKMARK [1][-]{section.7.3}{Testmodus}{chapter.7}% 49
-\BOOKMARK [2][-]{subsection.7.3.1}{Automatic}{section.7.3}% 50
-\BOOKMARK [2][-]{subsection.7.3.2}{Wobble}{section.7.3}% 51
-\BOOKMARK [2][-]{subsection.7.3.3}{Fixed}{section.7.3}% 52
-\BOOKMARK [1][-]{section.7.4}{\334bertragungsmodus}{chapter.7}% 53
-\BOOKMARK [2][-]{subsection.7.4.1}{Shorted}{section.7.4}% 54
-\BOOKMARK [2][-]{subsection.7.4.2}{Double}{section.7.4}% 55
-\BOOKMARK [2][-]{subsection.7.4.3}{Master}{section.7.4}% 56
-\BOOKMARK [2][-]{subsection.7.4.4}{Slave}{section.7.4}% 57
-\BOOKMARK [1][-]{section.7.5}{Schnittstelleneigenschaften}{chapter.7}% 58
-\BOOKMARK [1][-]{section.7.6}{Sendedaten}{chapter.7}% 59
-\BOOKMARK [1][-]{section.7.7}{Logger}{chapter.7}% 60
-\BOOKMARK [1][-]{section.7.8}{Wiederholz\344hler}{chapter.7}% 61
-\BOOKMARK [1][-]{section.7.9}{Buttons}{chapter.7}% 62
-\BOOKMARK [1][-]{section.7.10}{Testdatei}{chapter.7}% 63
-\BOOKMARK [1][-]{section.7.11}{Einfaches Beispiel}{chapter.7}% 64
-\BOOKMARK [0][-]{chapter.8}{Zusammenfassung und Ausblick}{}% 65
-\BOOKMARK [0][-]{appendix.A}{Anhang}{}% 66
+\BOOKMARK [1][-]{section.5.1}{Klasse Window}{chapter.5}% 45
+\BOOKMARK [2][-]{subsection.5.1.1}{Design}{section.5.1}% 46
+\BOOKMARK [2][-]{subsection.5.1.2}{Aufbau}{section.5.1}% 47
+\BOOKMARK [1][-]{section.5.2}{Klasse Interpreter}{chapter.5}% 48
+\BOOKMARK [2][-]{subsection.5.2.1}{}{section.5.2}% 49
+\BOOKMARK [1][-]{section.5.3}{Struktur TestStruct}{chapter.5}% 50
+\BOOKMARK [2][-]{subsection.5.3.1}{}{section.5.3}% 51
+\BOOKMARK [1][-]{section.5.4}{Klasse Com}{chapter.5}% 52
+\BOOKMARK [2][-]{subsection.5.4.1}{}{section.5.4}% 53
+\BOOKMARK [1][-]{section.5.5}{Klasse PortCommunications}{chapter.5}% 54
+\BOOKMARK [2][-]{subsection.5.5.1}{}{section.5.5}% 55
+\BOOKMARK [1][-]{section.5.6}{Klasse TestManager}{chapter.5}% 56
+\BOOKMARK [2][-]{subsection.5.6.1}{}{section.5.6}% 57
+\BOOKMARK [1][-]{section.5.7}{Klasse FixedTest}{chapter.5}% 58
+\BOOKMARK [2][-]{subsection.5.7.1}{}{section.5.7}% 59
+\BOOKMARK [1][-]{section.5.8}{Klasse IniFileHandler}{chapter.5}% 60
+\BOOKMARK [2][-]{subsection.5.8.1}{}{section.5.8}% 61
+\BOOKMARK [1][-]{section.5.9}{Klasse Logger}{chapter.5}% 62
+\BOOKMARK [2][-]{subsection.5.9.1}{}{section.5.9}% 63
+\BOOKMARK [1][-]{section.5.10}{Klasse Tools}{chapter.5}% 64
+\BOOKMARK [2][-]{subsection.5.10.1}{}{section.5.10}% 65
+\BOOKMARK [1][-]{section.5.11}{Klasse TransferFileHandler}{chapter.5}% 66
+\BOOKMARK [2][-]{subsection.5.11.1}{}{section.5.11}% 67
+\BOOKMARK [0][-]{chapter.6}{Realisierung}{}% 68
+\BOOKMARK [0][-]{chapter.7}{Bedienungsanleitung}{}% 69
+\BOOKMARK [1][-]{section.7.1}{Bedienung \374ber die GUI}{chapter.7}% 70
+\BOOKMARK [1][-]{section.7.2}{Bedienung \374ber die Kommandozeile}{chapter.7}% 71
+\BOOKMARK [1][-]{section.7.3}{Testmodus}{chapter.7}% 72
+\BOOKMARK [2][-]{subsection.7.3.1}{Automatic}{section.7.3}% 73
+\BOOKMARK [2][-]{subsection.7.3.2}{Wobble}{section.7.3}% 74
+\BOOKMARK [2][-]{subsection.7.3.3}{Fixed}{section.7.3}% 75
+\BOOKMARK [1][-]{section.7.4}{\334bertragungsmodus}{chapter.7}% 76
+\BOOKMARK [2][-]{subsection.7.4.1}{Shorted}{section.7.4}% 77
+\BOOKMARK [2][-]{subsection.7.4.2}{Double}{section.7.4}% 78
+\BOOKMARK [2][-]{subsection.7.4.3}{Master}{section.7.4}% 79
+\BOOKMARK [2][-]{subsection.7.4.4}{Slave}{section.7.4}% 80
+\BOOKMARK [1][-]{section.7.5}{Schnittstelleneigenschaften}{chapter.7}% 81
+\BOOKMARK [1][-]{section.7.6}{Sendedaten}{chapter.7}% 82
+\BOOKMARK [1][-]{section.7.7}{Logger}{chapter.7}% 83
+\BOOKMARK [1][-]{section.7.8}{Wiederholz\344hler}{chapter.7}% 84
+\BOOKMARK [1][-]{section.7.9}{Beim ersten Fehler anhalten}{chapter.7}% 85
+\BOOKMARK [1][-]{section.7.10}{Buttons}{chapter.7}% 86
+\BOOKMARK [1][-]{section.7.11}{Testdatei}{chapter.7}% 87
+\BOOKMARK [1][-]{section.7.12}{Einfaches Beispiel}{chapter.7}% 88
+\BOOKMARK [0][-]{chapter.8}{Zusammenfassung und Ausblick}{}% 89
+\BOOKMARK [0][-]{appendix.A}{Anhang}{}% 90
