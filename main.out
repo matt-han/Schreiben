@@ -29,7 +29,7 @@
 \BOOKMARK [2][-]{subsection.3.1.3}{UART}{section.3.1}% 29
 \BOOKMARK [2][-]{subsection.3.1.4}{Parit\344tsbit}{section.3.1}% 30
 \BOOKMARK [2][-]{subsection.3.1.5}{Leitungen und Stecker}{section.3.1}% 31
-\BOOKMARK [2][-]{subsection.3.1.6}{RS-232 in Wincor Nixdorf}{section.3.1}% 32
+\BOOKMARK [2][-]{subsection.3.1.6}{Verwendung der RS-232 Schnittstelle bei Wincor Nixdorf}{section.3.1}% 32
 \BOOKMARK [1][-]{section.3.2}{Microsoft Windows API}{chapter.3}% 33
 \BOOKMARK [2][-]{subsection.3.2.1}{Definition}{section.3.2}% 34
 \BOOKMARK [2][-]{subsection.3.2.2}{Windows.h}{section.3.2}% 35
@@ -46,45 +46,47 @@
 \BOOKMARK [2][-]{subsection.5.1.1}{Design}{section.5.1}% 46
 \BOOKMARK [2][-]{subsection.5.1.2}{Aufbau}{section.5.1}% 47
 \BOOKMARK [1][-]{section.5.2}{Klasse Interpreter}{chapter.5}% 48
-\BOOKMARK [2][-]{subsection.5.2.1}{}{section.5.2}% 49
+\BOOKMARK [2][-]{subsection.5.2.1}{Aufgaben}{section.5.2}% 49
 \BOOKMARK [1][-]{section.5.3}{Struktur TestStruct}{chapter.5}% 50
-\BOOKMARK [2][-]{subsection.5.3.1}{}{section.5.3}% 51
-\BOOKMARK [1][-]{section.5.4}{Klasse Com}{chapter.5}% 52
-\BOOKMARK [2][-]{subsection.5.4.1}{}{section.5.4}% 53
-\BOOKMARK [1][-]{section.5.5}{Klasse PortCommunications}{chapter.5}% 54
-\BOOKMARK [2][-]{subsection.5.5.1}{}{section.5.5}% 55
-\BOOKMARK [1][-]{section.5.6}{Klasse TestManager}{chapter.5}% 56
-\BOOKMARK [2][-]{subsection.5.6.1}{}{section.5.6}% 57
-\BOOKMARK [1][-]{section.5.7}{Klasse FixedTest}{chapter.5}% 58
-\BOOKMARK [2][-]{subsection.5.7.1}{}{section.5.7}% 59
-\BOOKMARK [1][-]{section.5.8}{Klasse IniFileHandler}{chapter.5}% 60
-\BOOKMARK [2][-]{subsection.5.8.1}{}{section.5.8}% 61
-\BOOKMARK [1][-]{section.5.9}{Klasse Logger}{chapter.5}% 62
-\BOOKMARK [2][-]{subsection.5.9.1}{}{section.5.9}% 63
-\BOOKMARK [1][-]{section.5.10}{Klasse Tools}{chapter.5}% 64
-\BOOKMARK [2][-]{subsection.5.10.1}{}{section.5.10}% 65
-\BOOKMARK [1][-]{section.5.11}{Klasse TransferFileHandler}{chapter.5}% 66
-\BOOKMARK [2][-]{subsection.5.11.1}{}{section.5.11}% 67
-\BOOKMARK [0][-]{chapter.6}{Realisierung}{}% 68
-\BOOKMARK [0][-]{chapter.7}{Bedienungsanleitung}{}% 69
-\BOOKMARK [1][-]{section.7.1}{Bedienung \374ber die GUI}{chapter.7}% 70
-\BOOKMARK [1][-]{section.7.2}{Bedienung \374ber die Kommandozeile}{chapter.7}% 71
-\BOOKMARK [1][-]{section.7.3}{Testmodus}{chapter.7}% 72
-\BOOKMARK [2][-]{subsection.7.3.1}{Automatic}{section.7.3}% 73
-\BOOKMARK [2][-]{subsection.7.3.2}{Wobble}{section.7.3}% 74
-\BOOKMARK [2][-]{subsection.7.3.3}{Fixed}{section.7.3}% 75
-\BOOKMARK [1][-]{section.7.4}{\334bertragungsmodus}{chapter.7}% 76
-\BOOKMARK [2][-]{subsection.7.4.1}{Shorted}{section.7.4}% 77
-\BOOKMARK [2][-]{subsection.7.4.2}{Double}{section.7.4}% 78
-\BOOKMARK [2][-]{subsection.7.4.3}{Master}{section.7.4}% 79
-\BOOKMARK [2][-]{subsection.7.4.4}{Slave}{section.7.4}% 80
-\BOOKMARK [1][-]{section.7.5}{Schnittstelleneigenschaften}{chapter.7}% 81
-\BOOKMARK [1][-]{section.7.6}{Sendedaten}{chapter.7}% 82
-\BOOKMARK [1][-]{section.7.7}{Logger}{chapter.7}% 83
-\BOOKMARK [1][-]{section.7.8}{Wiederholz\344hler}{chapter.7}% 84
-\BOOKMARK [1][-]{section.7.9}{Beim ersten Fehler anhalten}{chapter.7}% 85
-\BOOKMARK [1][-]{section.7.10}{Buttons}{chapter.7}% 86
-\BOOKMARK [1][-]{section.7.11}{Testdatei}{chapter.7}% 87
-\BOOKMARK [1][-]{section.7.12}{Einfaches Beispiel}{chapter.7}% 88
-\BOOKMARK [0][-]{chapter.8}{Zusammenfassung und Ausblick}{}% 89
-\BOOKMARK [0][-]{appendix.A}{Anhang}{}% 90
+\BOOKMARK [2][-]{subsection.5.3.1}{Definition}{section.5.3}% 51
+\BOOKMARK [2][-]{subsection.5.3.2}{Aufbau}{section.5.3}% 52
+\BOOKMARK [1][-]{section.5.4}{Klasse Com}{chapter.5}% 53
+\BOOKMARK [2][-]{subsection.5.4.1}{Aufbau}{section.5.4}% 54
+\BOOKMARK [2][-]{subsection.5.4.2}{Aufgaben}{section.5.4}% 55
+\BOOKMARK [1][-]{section.5.5}{Klasse PortCommunications}{chapter.5}% 56
+\BOOKMARK [2][-]{subsection.5.5.1}{}{section.5.5}% 57
+\BOOKMARK [1][-]{section.5.6}{Klasse TestManager}{chapter.5}% 58
+\BOOKMARK [2][-]{subsection.5.6.1}{}{section.5.6}% 59
+\BOOKMARK [1][-]{section.5.7}{Klasse FixedTest}{chapter.5}% 60
+\BOOKMARK [2][-]{subsection.5.7.1}{}{section.5.7}% 61
+\BOOKMARK [1][-]{section.5.8}{Klasse IniFileHandler}{chapter.5}% 62
+\BOOKMARK [2][-]{subsection.5.8.1}{}{section.5.8}% 63
+\BOOKMARK [1][-]{section.5.9}{Klasse Logger}{chapter.5}% 64
+\BOOKMARK [2][-]{subsection.5.9.1}{}{section.5.9}% 65
+\BOOKMARK [1][-]{section.5.10}{Klasse Tools}{chapter.5}% 66
+\BOOKMARK [2][-]{subsection.5.10.1}{}{section.5.10}% 67
+\BOOKMARK [1][-]{section.5.11}{Klasse TransferFileHandler}{chapter.5}% 68
+\BOOKMARK [2][-]{subsection.5.11.1}{}{section.5.11}% 69
+\BOOKMARK [0][-]{chapter.6}{Realisierung}{}% 70
+\BOOKMARK [0][-]{chapter.7}{Bedienungsanleitung}{}% 71
+\BOOKMARK [1][-]{section.7.1}{Bedienung \374ber die GUI}{chapter.7}% 72
+\BOOKMARK [1][-]{section.7.2}{Bedienung \374ber die Kommandozeile}{chapter.7}% 73
+\BOOKMARK [1][-]{section.7.3}{Testmodus}{chapter.7}% 74
+\BOOKMARK [2][-]{subsection.7.3.1}{Automatic}{section.7.3}% 75
+\BOOKMARK [2][-]{subsection.7.3.2}{Wobble}{section.7.3}% 76
+\BOOKMARK [2][-]{subsection.7.3.3}{Fixed}{section.7.3}% 77
+\BOOKMARK [1][-]{section.7.4}{\334bertragungsmodus}{chapter.7}% 78
+\BOOKMARK [2][-]{subsection.7.4.1}{Shorted}{section.7.4}% 79
+\BOOKMARK [2][-]{subsection.7.4.2}{Double}{section.7.4}% 80
+\BOOKMARK [2][-]{subsection.7.4.3}{Master}{section.7.4}% 81
+\BOOKMARK [2][-]{subsection.7.4.4}{Slave}{section.7.4}% 82
+\BOOKMARK [1][-]{section.7.5}{Schnittstelleneigenschaften}{chapter.7}% 83
+\BOOKMARK [1][-]{section.7.6}{Sendedaten}{chapter.7}% 84
+\BOOKMARK [1][-]{section.7.7}{Logger}{chapter.7}% 85
+\BOOKMARK [1][-]{section.7.8}{Wiederholz\344hler}{chapter.7}% 86
+\BOOKMARK [1][-]{section.7.9}{Beim ersten Fehler anhalten}{chapter.7}% 87
+\BOOKMARK [1][-]{section.7.10}{Buttons}{chapter.7}% 88
+\BOOKMARK [1][-]{section.7.11}{Testdatei}{chapter.7}% 89
+\BOOKMARK [1][-]{section.7.12}{Einfaches Beispiel}{chapter.7}% 90
+\BOOKMARK [0][-]{chapter.8}{Zusammenfassung und Ausblick}{}% 91
+\BOOKMARK [0][-]{appendix.A}{Anhang}{}% 92

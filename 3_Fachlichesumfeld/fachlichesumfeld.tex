@@ -5,58 +5,58 @@
 Die Quellen dieses Kapitel sind aus "`http://de.wikipedia.org/wiki/RS-232; 25.08.2013"' und "`Joe Campbell: V 24 / RS-232 Kommunikation. 4. Auflage. Sybex-Verlag GmbH"'.
 
 \paragraph{}
-Der RS-232 ist ein Standard der in den 60er Jahren von die US-amerikanische Standardisierungskomitee Electronic Industries Association(EIA) bearbeitet und definiert wurde. Bei diesem Standard haltet es sich um eine serielle Schnittstelle die für die serielle Kommunikation zwischen Rechnern und Modems in einer Punkt-zu-Punkt Verbindung(über Telefonleitungen) diente.
+Der RS-232 ist ein Standard der in den 60er Jahren von dem US-amerikanischen Standardisierungskomitee Electronic Industries Association(EIA) bearbeitet?? (entwickelt) und definiert wurde. Bei diesem Standard handelt es sich um eine serielle Schnittstelle, die für die serielle Kommunikation zwischen Rechnern und Modems für eine Punkt-zu-Punkt Verbindung (über Telefonleitungen) entwickelt wurde.
 
 
 %#######################################################################################
 \subsection{Definition}
 \paragraph{}
-Unter der RS-232 Standard ist die Verbindung zwischen eine Datenendeinrichtung(DEE, zum Beispiel das Terminal) und eine Datenübertragungseinrichtung(DÜE, zum Beispiel einem Modem) und dessen Parameter definiert. Unter Parameter sind der Spannungspegel, Übertragungsprotokoll(Handshake), Stecker und Timing zu verstehen.
+
+Der RS-232 Standard definiert eine Verbindung zwischen einer Datenendeinrichtung (DEE, zum Beispiel das Terminal) und einer Datenübertragungseinrichtung (DÜE, zum Beispiel einem Modem) und dessen Parameter. Unter den einzelnen Parametern sind folgende Eigenschaften zu verstehen:
+\begin{enumerate}
+\item Spannungspegel
+\item Übertragungsprotokoll (Handshake)
+\item Stecker
+\item Timing
+\end{enumerate}
 
 \paragraph{}
-Die Übertragung ist Bit-seriell, das heißt, Bits werden hintereinander verschickt in einer Datenleitung. Eine bestimmte Menge an Bits entspricht ein Wort. Ein Wort entsteht aus ein Startbit, die tatsächliche Datenbits(Nutzdaten), ein oder zwei Stopbits und die Parität. Die Parität ist in den Standard nicht definiert, aber wird benutzt um Fehler zu erkennen und beheben. Die Parität wird hier betrachtet, da sie für diese Arbeit relevant ist und wird später genauer erklärt.
+Die Übertragung ist Bit-seriell, das heißt, die Bits werden hintereinander in einer Datenleitung verschickt. Eine bestimmte Menge an Bits entspricht einem Zeichen. Ein Zeichen besteht aus einem Startbit, aus vier bis acht Datenbits (Nutzdaten), aus ein oder zwei Stopbits und der Parität. Die Parität ist in dem Standard nicht definiert, aber wird benutzt um Fehler zu erkennen und zu beheben. Im Allgemeinen ist die Parität nebensächlich, da sie aber in diesem Fall der Arbeit relevant ist wird sie im späteren Verlauf des Kapitels näher erklärt.
+
 
 \subsection{Übertragung}
 \paragraph{}
-Der Startbit meldet den Empfänger das die Übertragung anfängt. Start- und Stopbits habe inversen Pegeln. Also ist eine Leitung in Ruhezustand oder hat die Stopbits erhalten, wird durch die Ankunft einer inversen Signalflanke aufmerksam gemacht, dass danach Nutzdaten ankommen werden. Bei der Ankuft eines Startbits tastet der Empfänger die Nutzdaten mit seiner Bitrate(Bits pro Sekunde).  Die Nutzdaten sind die Bitdarstellung von einem ASCII Zeichnen. Die Nutzdaten sind einstellbar, die Übertragung kann jeweils von 4 bis 8 Bits pro Zeichen eingestellt werden. Danach kommt mindestens ein Stopbit. Es können auch 1,5 Bits und zwei Bits eingestellt werden. 1,5 Bits kling sehr ungewöhnlich, aber damit ist gemeint, dass die Mindestdauer der Pause zwischen zwei ankommende Wörter 1,5 Bitzellen entspricht. 
+Das Startbit meldet dem Empfänger das die Übertragung anfängt. Die Start- und Stopbits haben inversen Pegeln. Ist eine Leitung im Ruhezustand oder hat die Stopbits erhalten, wird durch die Ankunft einer inversen Signalflanke der Empfänger aufmerksam gemacht, dass Nutzdaten ankommen werden. Bei der Ankunft eines Startbits tastet der Empfänger die Nutzdaten mit seiner Bitrate (Bits pro Sekunde) ab. Die Nutzdaten sind die Bitdarstellung von einem ASCII Zeichnen. Die Länge der Daten sind einstellbar, dabei kann die Übertragung von vier bis acht Bits pro Zeichen eingestellt werden. Im Anschluss kommt mindestens ein Stopbit, es können auch 1,5 Bits oder zwei Bits eingestellt werden. 1,5 Bits sind sehr ungewöhnlich, aber damit ist gemeint, dass die Mindestdauer der Pause zwischen zwei ankommenden Zeichen 1,5 Bitzeichen entspricht. 
 
 \paragraph{}
-Um genauer die Übertragung von einem Zeichen zu verstehen, folgender Beispiel. Wird eine Charackter 'z' übertragen, mit einem Startbit, acht Datenbits und zwei Stopbits, ist die gesamt Länge der Übertragung elf Bits lang. 'z' entspricht laut ASCII Kodierung den Wert 122 dezimal und "`7A"' hexadezimal(0x7A). Die Bitdarstellung für 0x7 lautet "`0111"' und für 0xA "`1010"', zusammen für 0x7A = "`01111010"'. Die Übertragung im diesem Standard folgt mit dem LSB(Less significant Bit) zuerst, also werden die Bits vertauschst zu "`0101 1110"'. Davor wird eine Null zugefügt als Startbit und am Ende zwei Einsen als Stopbits. Das Ergibt, dass für die Übertragung eines 'z' die Bitreihenfolge "`0 0101 1110 11"' verschickt wird.
+Im Folgenden wird die Übertragung von einem Zeichen näher erläutert:
+Wird ein Zeichen 'z' übertragen, mit einem Startbit, acht Datenbits und zwei Stopbits, ist die Gesamtlänge der Übertragung elf Bits lang. 'z' entspricht laut ASCII Kodierung den Wert 122 dezimal und "`7A"' hexadezimal(0x7A). Die Bitdarstellung für 0x7 lautet "`0111"' und für 0xA "`1010"', zusammengesetzt ergibt sich für 0x7A = "`01111010"'. Die Übertragung in diesem Standard folgt dem LSB(Less significant Bit) zuerst, also werden die Bits vertauscht, demnach ergibt sich "`0101 1110"'. Davor wird eine Null hinzugefügt als Startbit und am Ende zwei Einsen als Stopbits. Demnach ergibt sich für die Übertragung des Zeichen 'z' folgenden Bitreihenfolge "`0 0101 1110 11"', die versendet wird.
 
 \paragraph{}
-Die Datenübertragung unter RS-232 ist asynchron, das bedeutet es existiert kein gemeinsamer Takt. Die Bitraten zwischen Sender und Empfänger dürfen um wenig Prozent von einander abweichen, sonst wird der Empfänger das Wort zu schnell / langsam abtasten und falsch interpretieren. Dagegen muss die Baudrate bei Sender und Empfänger genau gleich sein. Beide Begriffe sind nicht zu verwechseln. Eine Bitrate definiert die übertragene Bits pro Sekunde und die Baudrate die übertragene Symbole pro Sekunde, wo jedes Symbol als definierte messbare Signaländerung im physischen Übertragungsmedium definiert ist. Da die Übertragung im diesem Standard binär ist, ist ein Symbol als ein Bit definiert. Dieses hat als Folge, dass im diesem Spezialfall die Bitrate und die Baudrate gleich sind.
+Die Datenübertragung unter RS-232 ist asynchron, das bedeutet es existiert kein gemeinsamer Takt. Die Bitraten zwischen Sender und Empfänger dürfen um wenige Prozent von einander abweichen, sonst wird der Empfänger das Wort zu schnell / langsam abtasten und falsch interpretieren. Dagegen muss die Baudrate bei Sender und Empfänger genau gleich sein. Beide Begriffe sind nicht zu verwechseln. Eine Bitrate definiert die übertragenen Bits pro Sekunde und die Baudrate die übertragenen Symbole pro Sekunde, wo jedes Symbol als definierte messbare Signaländerung im physischen Übertragungsmedium definiert ist. Da die Übertragung im diesem Standard binär ist, ist ein Symbol als ein Bit definiert. Dies hat zu Folge, dass im diesem Spezialfall der Übertragung die Bitrate und die Baudrate gleich sind. Bei anderen Übertragungsarten unterscheiden sie sich jedoch.
 
 \paragraph{}
-Die Baudrate wird vom Benutzer frei wählbar eingestellt. Dafür muss der Benutzer die Kabellänge betrachten. Weil es sich um eine Spannungsübertragung handelt, muss der Leistungswiederstand und die Kapazität des Kabels beachtet werden. Je länger das Kabel, desto starker nimmt die Spannung ab. Nach Erfahrungswerte von Texas Instruments ist bei einer Baudrate von 9600, eine maximale Kabellänge von 152 Meter möglich. Bei 115200 muss das Kabel kürzer als 2 Meter sein.
+Die Baudrate ist vom Benutzer frei wählbar. Jedoch hat der Anwender die Kabellänge, den Leitungswiderstand und die Kapazität des Kabels zu beachtet. Je länger das Kabel, desto starker nimmt die Spannung ab. Nach Erfahrungswerten von Texas Instruments ist bei einer Baudrate von 9600, eine maximale Kabellänge von 152 Meter möglich. Bei 115200 muss das Kabel kürzer als 2 Meter sein.\\
 
-\paragraph{}
-Der Empfänger muss die Datenübertragung anhalten können, wenn er keine Daten mehr verarbeiten kann. Dieser Handshake wird softwaretechnisch oder über die Hardware mit Steuerleitungen.
-
-\paragraph{}
-Bei der Softwarelösung werden am Sender spezielle Steuerzeichen gesendet. Dieses Protokoll ist als "`Xon/Xoff"' bekannt. Es ist nur möglich dieses Protokoll zu benutzen wenn die Steuerzeichen(Xon = 0x11 und Xoff = 0x13) nicht in der Nutzdaten vorkommen.
-
-\paragraph{}
-Bei der Hardwarelösung signalisieren Sender und Empfänger sich gegenseitig ihren Status. Solche Protokoll besteht zum Beispiel aus fünf Steuerleitungen(TxD, RxD, GND, RTS und CTS).
-
-\paragraph{}
-Damit triviale Fehler vermieden werden, müssen Sender und Empfänger die gleichen Einstellungen haben. Das heißt dass die Baudrate, Stopbits, Parität, Handshake und Kabellänge müssen stimmen.
+%\paragraph{}
+Der Empfänger muss die Datenübertragung anhalten können, wenn er keine Daten mehr verarbeiten kann. Dieser Handshake wird softwaretechnisch oder über die Hardware mit Steuerleitungen realisiert. Bei der Softwarelösung werden am Sender spezielle Steuerzeichen gesendet. Dieses Protokoll ist als "`Xon/Xoff"' bekannt. Es ist nur möglich dieses Protokoll zu benutzen wenn die Steuerzeichen(Xon = 0x11 und Xoff = 0x13) nicht in den Nutzdaten vorkommen. Bei der Hardwarelösung signalisieren Sender und Empfänger sich gegenseitig ihren Status. Solche Protokoll besteht zum Beispiel aus fünf Steuerleitungen(TxD, RxD, GND, RTS und CTS). Damit triviale Fehler vermieden werden, müssen Sender und Empfänger die gleichen Einstellungen haben. Das heißt dass die Baudrate, Stopbits, Parität, Handshake und Kabellänge übereinstimmen müssen.
 
 
 %#######################################################################################
 \subsection{UART}
-Universal Asynchronous Receiver Transmitter(UART) ist eine elektronische Schaltung zur Realisierung von digitalen seriellen Schnittstellen(für diese Arbeit der sogenannte COM Port). Der UART ist zum senden und empfangen von Daten über eine Datenleitung vorgesehen. Im industriellen Bereich ist der UART unter die RS-232 Standard sehr verbreitet. Auch in Wincor Nixdorf wird diese Schnittstelle zum steuern der COM Ports benutzt.
+\paragraph{}
+Universal Asynchronous Receiver Transmitter(UART) ist eine elektronische Schaltung zur Realisierung von digitalen seriellen Schnittstellen(für diese Arbeit der sogenannte COM Port). Der UART ist zum Senden und Empfangen von Daten über eine Datenleitung vorgesehen. Im industriellen Bereich ist der UART unter dem RS-232 Standard sehr verbreitet. Auch bei Wincor Nixdorf wird diese Schnittstelle zum steuern der COM Ports benutzt.
 
 %#######################################################################################
 \subsection{Paritätsbit}
-Wie schon erwähnt, ist die Parität nicht im RS-232 Standard definiert, aber sie ist für diese Arbeit relevant. Das Paritätsbit dient zur Erkennung fehlerhafte Übertragungen. Die Parität kann gerade(even) oder ungerade(odd) sein und wird durch die Anzahl an Einsen in einer Bitfolge bestimmt. Ist eine gerade Parität festgelegt, wird bei einer gerade Anzahl an Einsen eine Null angehängt, bei ungerade Anzahl eine Eins. Genau das Gegenteil geschieht bei  ungerade definierte Parität. Nach unseren Beispiel mit 0x7A wird bei gerade Parität eine Eins ("`0 0101 1110 \textbf{1} 11"') angehängt.
+\paragraph{}
+Wie schon erwähnt, ist die Parität nicht im RS-232 Standard definiert, aber sie ist für diese Arbeit relevant. Das Paritätsbit dient zur Erkennung fehlerhafte Übertragungen. Die Parität kann gerade(even) oder ungerade(odd) sein und wird durch die Anzahl an Einsen in einer Bitfolge bestimmt. Ist eine gerade Parität festgelegt, wird bei einer gerade Anzahl an Einsen eine Null angehängt, bei ungerade Anzahl eine Eins. Genau das Gegenteil geschieht bei  ungerader Parität. Nach unserem Beispiel mit 0x7A wird bei gerader Parität eine Eins ("`0 0101 1110 \textbf{1} 11"') angehängt.
 
 %#######################################################################################
 \subsection{Leitungen und Stecker}
 \paragraph{}
-Am Anfang wurde der 25-polige D-Sub-Stecker verwendet. Viele dieser 25 Leitungen sind reine Drucker und Terminal-Steuerleitungen aus der elektromechanischen Zeiten, somit waren sie für die modernere Peripherie überflüssig. So hat sich der 9-polige D-Sub-Stecker(COM Port) etabliert. Dieser Stecker war nicht ursprünglich für diesen Standard gedacht, sondern wurde von IBM, als Notlösung in einen anderen Standard, um Platz zu sparen entwickelt. Der Stecker ist daher unter EIA/TIA-574 zu finden. Für die EIA-232-Datenübertragung werden selten andere Stecker benutzt und in Wincor Nixdorf ist das auch keine Ausnahme.
-
-
-\paragraph{}
+Am Anfang wurde der 25-polige D-Sub-Stecker verwendet. Viele dieser 25 Leitungen sind reine Drucker und Terminal-Steuerleitungen aus der elektromechanischen Zeit, somit sind sie für die modernere Peripherie überflüssig. So hat sich der 9-polige D-Sub-Stecker(COM Port) etabliert. Dieser Stecker war nicht ursprünglich für diesen Standard gedacht, sondern wurde von IBM als Notlösung in einem anderen Standard entwickelt, um Platz zu sparen. Der Stecker ist daher unter EIA/TIA-574 zu finden. Für die EIA-232-Datenübertragung werden selten andere Stecker benutzt.
+\\
 Der 9-polige D-Sub-Stecker besteht aus folgenden Leitungen:\\
 \begin{tabular}{llll}
 \\
@@ -68,33 +68,27 @@ DSR &: Data Set Ready, Einsatzbereitschaft \\
 GND &: Ground, Signalmasse \\
 DCD, CD, RLSD &: Data Carrier Detect, Erkennung einlaufende Daten \\
 DTR &: Data Terminal Ready, Datenendeinrichtung ist bereit \\
-RI &: Ring Indicator, Datenverbindungsaufbau \\
-
+RI &: Ring Indicator, Datenverbindungsaufbau \\\\
 \end{tabular}
 
-\paragraph{}
-EIA-232 ist eine Spannungsschnittstelle, also werden die logische Null und Eins durch positive / negative Spannungen vertreten. Die Datenleitungen (TxD und RxD) benutzt eine negative Logik. Spannung zwischen -3V und -15V repräsentieren eine logische Eins. Signale zwischen -3V und +3V gelten als nicht definierte Signale. Die logische Null wird als eine Spannung zwischen +3V und +15V interpretiert. 
- 
-\paragraph{}
-Bei den Steuerleitungen, bezogen auf dem Empfänger, wird ein Signal zwischen +3V und +15V als aktiv betrachtet, und inaktiv zwischen -3V und -15V. Beim Sender üblicherweise ±12V.
 
-\paragraph{}
-Um Sender und Empfänger zu verbinden, gibt es verschiedene Kabelvarianten, abhängig von wer Sender und wer Empfänger ist. Verbindet man ein Rechner (in der Regel mit einem Stecker) zu einem Modem (mit einer Buchse) ist ein 1:1 Kabel nötig. Sind zwei Rechner mit einander Verbunden, so ist die Rede von einem Nullmodem Kabel, wo die Leitungen gekreuzt sind. Durch ein Loopback-Stecker bzw. Kurzschlussstecker wird die Sendeleitung direkt and die Empfangsleitung der gleichen Schnittstelle umgeleitet. So ein Stecker wird für die Entwicklung und Test von Kommunikationsanwendungen und Hardware(UART) benutzt.
+EIA-232 ist eine Spannungsschnittstelle, also werden die logische Null und Eins durch positive oder negative Spannungen vertreten. Die Datenleitungen (TxD und RxD) benutzt eine negative Logik. Spannungen zwischen -3V und -15V repräsentieren eine logische Eins. Signale zwischen -3V und +3V gelten als nicht definierte Signale. Die logische Null wird als eine Spannung zwischen +3V und +15V interpretiert.
+\\\\
+Beim Empfänger, wird ein Signal zwischen +3V und +15V auf den Steuerleitungen als aktiv betrachtet, und inaktiv zwischen -3V und -15V. Beim Sender üblicherweise ±12V.
+\\\\
+Um Sender und Empfänger zu verbinden, gibt es verschiedene Kabelvarianten, abhängig vom Sender und vom Empfänger. Verbindet man ein Rechner (in der Regel mit einem Stecker) zu einem Modem (mit einer Buchse) ist ein 1:1 Kabel nötig. Sind zwei Rechner mit einander Verbunden, so ist die Rede von einem Nullmodemkabel, bei dem die Leitungen gekreuzt sind. Durch ein Loopback-Stecker bzw. Kurzschlussstecker wird die Sendeleitung direkt and die Empfangsleitung der gleichen Schnittstelle umgeleitet. So ein Stecker wird für die Entwicklung und deren Tests von Kommunikationsanwendungen und Hardware (UART) benutzt.
 
 
 %#######################################################################################
-\subsection{RS-232 in Wincor Nixdorf}
+\subsection{Verwendung der RS-232 Schnittstelle bei Wincor Nixdorf}
 \paragraph{}
-Die aktuelle BEETLE Systeme haben ein integrierten UART im Chipsatz. Diese COM Ports werden "`Onboard Ports"' genannt und sind "`Legacy Devices"'. Je nach System sind zwei bis sechs COM Ports eingebaut. Wenn ein Kunde weitere Schnittstellen benötigt, kann über den PCI Bus die Anzahl an Ports erweitert werden. Diese Erweiterung findet statt durch eine Sunix PCI Karte mit vier oder acht COM Ports. Der Kunde kann auch zwei Sunix PCI Karten einbauen.
- 
-\paragraph{}
-Eine andere Erweiterungsmöglichkeit sind "`ITE"' COM Ports. Diese Ports sind direkt am PCI Bus angeschlossen und im Mainboard eingebaut. Die ITE COM Ports worden eingebaut, weil die Super I/O in ältere Mainboards nur zwei Legacy COM Ports verwalten konnte. Um mehrere „On Board“ Ports dem Benutzer zur Verfügung zu stellen würde der ITE Chip eingebaut. Modernere Mainboards sind in der Lage mehr als zwei COM Ports zu verwalten, und deswegen gibt es jetzt bis zu sechs Legacy Ports plus Erweiterungsmöglichkeiten.
- 
-\paragraph{}
-Die vorgestellten Schnittstellen sind für das Test Tools relevant. Es gibt noch ein anderes COM Port, der nicht in alle BEETLE Systeme vorhanden ist. Einige BEETLE Systeme haben ein iAMT (Intel Active Managment Technologie)\footnote{http://software.intel.com/en-us/articles/using-intel-amt-serial-over-lan-to-the-fullest; 30.08.2013} Chip. Dieser Port ist ein virtueller Port. Durch ein Treiber (SOL, Serial Over LAN) wird der Datenverkehr von der seriellen Schnittstelle auf das LAN umgeleitet. Da es ein virtueller Port ist, wird es nicht möglich sein, dieser Port zu testen. Die genaue Verwendung von iAMT und SOL ist für diese Arbeit nicht relevant, für mehrere Informationen wenden Sie sich an die angegebene Quelle.
- 
-\paragraph{}
-Die BEETLE Systeme benutzen die COM Ports für verschiedene Zwecke. Für die Kassensysteme, werden an COM Ports die Scanner und Kundenanzeigen anschlossen. So kann das BEETLE System die beiden Peripherien mit Strom versorgen und Daten senden und empfangen. Es werden auch noch Drucker an die COM Ports angeschlossen. In ältere BEETLE Systeme worden die Touchkomponente für Bildschirme an die RS-232 Schnittstelle angeschlossen. Der Bildschirm war an eine Videoschnittstelle angeschlossen und die Touchsignale würden über ein COM Port empfangen. Im Banking Bereich werden viele verschiedene Peripherien pro System über die RS-232 Schnittstelle gesteuert und mit Strom versorgt.
+Die aktuellen BEETLE Systeme haben ein integrierten UART im Chipsatz. Diese COM Ports werden "`Onboard Ports"' genannt und sind "`Legacy Devices"'. Je nach System sind zwei bis sechs COM Ports eingebaut. Wenn ein Kunde weitere Schnittstellen benötigt, kann er diese über den PCI Bus die Anzahl an Ports erweitern. Diese Erweiterung findet durch eine Sunix PCI Karte mit vier oder acht COM Ports statt. Der Kunde kann auch zwei Sunix PCI Karten einbauen.
+\\\\
+Eine andere Erweiterungsmöglichkeit sind "`ITE"' COM Ports. Diese Ports sind direkt am PCI Bus angeschlossen und im Mainboard eingebaut. Die ITE COM Ports wurden eingebaut, weil der Super I/O in älteren Mainboards nur zwei Legacy COM Ports verwalten konnten. Um mehrere „On Board“ Ports dem Benutzer zur Verfügung zu stellen wurde der ITE Chip eingebaut. Modernere Mainboards sind in der Lage mehr als zwei COM Ports zu verwalten, und deswegen gibt es jetzt bis zu sechs Legacy Ports plus Erweiterungsmöglichkeiten.
+\\\\
+Die vorgestellten Schnittstellen sind für das Test Tools relevant. Es gibt noch ein anderen COM Port, der nicht in allen BEETLE Systemen vorhanden ist. Einige BEETLE Systeme haben ein iAMT (Intel Active Managment Technologie)\footnote{http://software.intel.com/en-us/articles/using-intel-amt-serial-over-lan-to-the-fullest; 30.08.2013} Chip. Dieser Port ist ein virtueller Port. Durch ein Treiber (SOL, Serial Over LAN) wird der Datenverkehr von der seriellen Schnittstelle auf das LAN umgeleitet. Da es ein virtueller Port ist, wird es nicht möglich sein, diesen Port zu testen. Die genauere Verwendung von iAMT und SOL ist für diese Arbeit nicht relevant, für mehrere Informationen wenden Sie sich an die angegebene Quelle.
+\\\\
+Die BEETLE Systeme benutzen die COM Ports für verschiedene Zwecke. Für die Kassensysteme, werden an den COM Ports die Scanner und Kundenanzeigen angeschlossen. So kann das BEETLE System die beiden Peripheriegeräte mit Strom versorgen und Daten senden und empfangen. Es werden auch noch Drucker an die COM Ports angeschlossen. Bei ältere BEETLE Systeme wurden die Touchkomponenten für Bildschirme an die RS-232 Schnittstelle angeschlossen. Der Bildschirm war an eine Videoschnittstelle angeschlossen und die Touchsignale wurden über ein COM Port empfangen. Im Banking Bereich werden viele verschiedene Peripheriegeräte pro System über die RS-232 Schnittstelle gesteuert und mit Strom versorgt.
 
 
 
@@ -114,31 +108,30 @@ Die Quellen des folgenden Kapitel sind aus "`Programming Windows, Charles Petzol
 \subsection{Definition}
 
 \paragraph{}
-Die Microsoft Windows "`Application Programming Interface"'(Schnittstelle zur Anwendungsprogrammierung) ist ein Programmteil, dass vom Windows Betriebssystem den Benutzern und vor allem Entwicklern angeboten wird, um Programme an das Betriebssystem anbinden zu können. Ein Betriebssystem (Microsoft Windows, Mac OSX, Linux, unter anderem) ist für Entwickler und Programmierer durch die API definiert. Somit kann eine Applikation über die API alle Funktionsaufrufe machen, die ein Betriebssystem anbietet. Nicht nur Funktionen sind in einer API definiert, sondern bestimmte Datenstrukturen und Datentypen durch das Kommando \textit{typedef} wie \textit{LRESULT} oder \textit{CALLBACK}.
-\paragraph{}
-Mit fast jedes neue Microsoft Betriebssystem wird die Windows API erweitert und abgeändert. Die erste API, bekannt als \textit{Win16}, für die 16-Bit Versionen von Microsoft Windows. Für Windows 1.0 hatte die API etwa 450 Funktionsaufrufe. Bei der Zeit von Windows 98 wurde die API auf 32-Bit und mehrere tausende Funktionsaufrufe. Ab Windows XP "`x64 Edition"' und Windows Server 2003 wurde die API auch auf 64-Bit erweitert.
-\paragraph{}
-Der hauptsächliche Unterschied zwischen die 16, 32 und 64 Bit Versionen von der API entstand durch die verschiedene Speicher und Prozessor Architekturen. Unter der 16-Bit Architektur war die Registergröße 16 Bit unter die bekannte Prozessoren von Intel 8086 und 8088. In der 32-Bit Architektur, 32 Bit bzw. in der 64-Bit, 62 Bit groß. Die Windows API ist in der Programmiersprache "`C"' geschrieben. Deswegen war unter die 16-Bit Architektur der Datentyp \textit{int} "`nur"' 16 Bit lang(Zahlen von -32.768 bis 32.767) . In der Speicherverwaltung bestanden Speicheradressen aus einen 16-Bit Segment und einen 16-Bit offset Zeiger. Für Programmierer war diese Verwaltung sehr Umständlich, da der Programmierer genaue Unterscheiden musste, zwischen \textit{long} oder \textit{far} und \textit{short} oder \textit{near} Zeiger. 
-\paragraph{}
-Ab die 32-Bit Architektur entstand die "`Flat Memory Model"', wo der Prozessor direkt die gesamte Speicheradressen ansprechen konnte, ohne Speichersegmentierung oder Pagingschemas. Somit wurde auch der \textit{int} Datentyp auf 32 Bitgröße(Zahlen von -2.147.483.649 bis 2.147.483.647) definiert. Programme geschrieben unter eine 32-Bit Architektur benutzen einfache Zeigerwerte um direkt die Speicheradresse ansprechen zu können. Bei der Umstellung von 16-Bit auf 32-Bit blieben viele Funktionsaufrufe gleich, aber manche brauchten eine Umstellung auf 32-Bit. Wie zum Beispiel das graphische Koordinatensystem für GUI Darstellungen.
-\paragraph{}
- Aus Kompatibilitätsgründe sind die API's Rückwärts kompatibel. Die Kompatibilität entsteht durch eine Übersetzungsschicht. Es gibt zwei Wege der Übersetzung. In den ersten Weg, werden 16-Bit Funktionsaufrufe durch eine Übersetzungsschicht in 32-Bit Funktionsaufrufe umgewandelt und dann vom Betriebssystem bearbeitet. Der andere Weg führt genau in der anderen Richtung.Die 32-Bit Funktionsaufrufe durch die Übersetzungsschicht und wandelt diese in 16-Bit Funktionsaufrufe, und werden dann vom Betriebssystem bearbeitet.
-\paragraph{}
-Die Benutzung der API ist nicht die einzige Möglichkeit Anwendung für die Windowsbetriebssysteme zu programmieren. Aber durch die Benutzung der API ist eine bessere Leistung, mehr Macht und Flexibilität in das Ausnutzen der Betriebssystemfunktionen garantiert. Durch die Verwendung der API versteht man Windows als Betriebssystem besser. Man kann Anwendungen auch in Visual Basic oder Borland Delphi schreiben, wo die objektorientierte Grundlagen von Pascal den Programmierer viel arbeitet erleichtern kann. Aber das Stapeln von Programmierschichten über die API versteckt nur die Komplexität der API, und früher oder später wird man im Programm mit dieser Komplexität konfrontiert.
-
+Die Microsoft Windows API "`Application Programming Interface"'(Schnittstelle zur Anwendungsprogrammierung) ist ein Programmteil, dass vom Windows Betriebssystem den Benutzern und vor allem Entwicklern angeboten wird, um Programme an das Betriebssystem anbinden zu können. Ein Betriebssystem (Microsoft Windows, Mac OS, Linux, etc.) ist für Entwickler und Programmierer durch die API definiert. Somit kann eine Applikation über die API alle Funktionsaufrufe ausführen, die ein Betriebssystem anbietet. Nicht nur Funktionen sind in einer API definiert, sondern bestimmte Datenstrukturen und Datentypen durch das Kommando \textit{typedef} wie \textit{LRESULT} oder \textit{CALLBACK}.
+\\\\
+Mit fast jedem neuen Microsoft Betriebssystem wird die Windows API erweitert und abgeändert. Die erste API, bekannt als \textit{Win16}, für die 16-Bit Versionen von Microsoft Windows. Für Windows 1.0 hatte die API etwa 450 Funktionsaufrufe. Bei der Zeit von Windows 98 wurde die API auf 32-Bit und mehrere tausende Funktionsaufrufe. Ab Windows XP "`x64 Edition"' und Windows Server 2003 wurde die API auch auf 64-Bit erweitert.
+\\\\
+Der hauptsächlichen Unterschiede zwischen den 16, 32 und 64 Bit Versionen von der API entstanden durch die verschiedenen Speicher und Prozessorarchitekturen. Unter der 16-Bit Architektur war die Registergröße 16 Bit groß, diese wurde bei den Prozessoren von Intel 8086 und 8088 eingesetzt. In der 32-Bit Architektur, 32 Bit groß bzw. in der 64-Bit, 62 Bit groß. Die Windows API ist in der Programmiersprache "`C"' geschrieben. Deswegen war unter der 16-Bit Architektur der Datentyp \textit{int} "`nur"' 16 Bit lang(Zahlen von -32.768 bis 32.767) . In der Speicherverwaltung bestanden Speicheradressen aus einen 16-Bit Segment und einen 16-Bit Offset, der als Zeiger verwendet werden konnte. Für Programmierer war diese Verwaltung sehr Umständlich, da der Programmierer genaue Unterscheiden musste, zwischen \textit{long} oder \textit{far} und \textit{short} oder \textit{near} Zeiger. 
+\\\\
+Ab der 32-Bit Architektur entstand das "`Flat Memory Model"', wo der Prozessor direkt die gesamte Speicheradressen ansprechen konnte, ohne Speichersegmentierung oder Pagingschemas. Somit wurde auch der \textit{int} Datentyp auf 32 Bitgröße (Zahlen von -2.147.483.649 bis 2.147.483.647) definiert. Programme, die auf einem System mit einer 32-Bit Architektur geschrieben worden sind, benutzen einfache Zeigerwerte um direkt die Speicheradresse ansprechen zu können. Bei der Umstellung von 16-Bit auf 32-Bit blieben viele Funktionsaufrufe gleich, aber manche brauchten eine Umstellung auf 32-Bit, wie zum Beispiel das graphische Koordinatensystem für die GUI Darstellungen.
+\\\\
+Aus Kompatibilitätsgründe sind die API's Rückwärts kompatibel. Die Kompatibilität entsteht durch eine Übersetzungsschicht. Es gibt zwei Wege der Übersetzung. Im ersten Weg, werden 16-Bit Funktionsaufrufe durch eine Übersetzungsschicht in 32-Bit Funktionsaufrufe umgewandelt und dann vom Betriebssystem bearbeitet. Der andere Weg führt genau in die andere Richtung. Die 32-Bit Funktionsaufrufe werden durch die Übersetzungsschicht übersetzt und wandelt diese in 16-Bit Funktionsaufrufe um, und werden dann vom Betriebssystem bearbeitet.
+\\\\
+Die Benutzung der API ist nicht die einzige Möglichkeit, Anwendung für die Windowsbetriebssysteme zu programmieren, aber durch die Benutzung der API ist eine bessere Effizienz gewährleistet. Die Anwendungen können auch in Visual Basic oder Borland Delphi geschrieben werden, wo die objektorientierten Grundlagen von Pascal dem Programmierer viel Arbeit abnehmen. Durch Verschachtelungen mehrerer Programmierschichten, die im Endeffekt auf die  API zugreifen, verlangsamen das Programm und im späteren Verlauf der Leistungsoptimierung des Programmes wird der Programmierer früher oder später mit der Komplexität der API konfrontiert.
 
 %----------------------------------------------------------------------------------------------
 \subsubsection{API gegenüber .NET Framework}
 \paragraph{}
-Microsoft hat dieses Framework speziell für die Windows-Plattformen entwickelt. Es ist eine Virtuelle Maschine als Laufzeitumgebung für Microsoft Windows Anwendungen. Dieses Framework gleich in vieles die Java Virtual Machine. Das .NET Framework besteht aus eine Laufzeitumgebung und die .NET Framework-Bibliothek. Aus Sicht des Anwenders hat sich nichts geändert, aber für die Programmierer vieles. Das .NET Framework ist auf C++ und C\# basierend, und im Gegensatz zur API, objektorientiert. Die Framework-Bibliothek besteht aus verschiedenen Klassenbibliotheken wie die Windowa Forms, Windows Presentation Foundations (GUI), Webdienste, unter anderem. Ein großer Vorteil ist die Portierung der Programme, dafür muss das .NET Framework installiert sein. Das ist für dieses Projekt essentiell, denn es soll auf Schreibgeschütze Medien ausführbar sein (Win PE) und aus diesem Grund für meine Lösung nicht betrachtet.
+Microsoft hat dieses Framework speziell für die Windows-Plattformen entwickelt. Es ist eine Virtuelle Maschine mit einer Laufzeitumgebung für Microsoft Windows Anwendungen. Dieses Framework ähnelt in vielen Teilen der Java Virtual Machine. Das .NET Framework besteht aus eine Laufzeitumgebung und der .NET Framework-Bibliothek. Aus Sicht des Anwenders hat sich nichts geändert, aber für die Programmierer vieles. Das .NET Framework ist auf C++ und C\# basierend und im Gegensatz zur API, objektorientiert. Die Framework-Bibliothek besteht aus verschiedenen Klassenbibliotheken, wie zum Beipiel die Windows Forms, Windows Presentation Foundations (GUI), Webdienste,... . Ein großer Vorteil ist die Portierung der Programme, dafür muss aber das .NET Framework installiert sein. Das ist für dieses Projekt essentiell, denn es soll auf Schreibgeschütze Medien ausführbar sein (Win PE) und aus diesem Grund wird es von mir nicht verwendet.
 
 
 
 
 %#######################################################################################
 \subsection{Windows.h}
-
-Die Window.h Headerdatei ist die Masterdatei, dass alle andere Headerdateien inkludiert. In diesen Dateien sind die Funktionsaufrufe, Konstanten, Typdefinitionen und Datenstrukturen für das Windowsbetriebssystem definiert. Diese Headerdateien sind die Teil der Dokumentation für den Programmierer. Wer die Headerdateien kennt, weiss auch was man unter windows programmieren kann. Die wichtigsten Headerdateien sind:
+\paragraph{}
+Die Window.h Headerdatei ist die Masterdatei, die alle anderen Headerdateien inkludiert. In diesen Dateien sind die Funktionsaufrufe, Konstanten, Typdefinitionen und Datenstrukturen für das Windowsbetriebssystem definiert. Diese Headerdateien sind Teil der Dokumentation der API. Im Folgenden sind ein Paar Headerdateien aufgeführt die in der Windwos.h inkludiert werden:
 
 \begin{tabular}{llll}
 \textbullet & WINBASE.H & Kernenfunktionen\\
@@ -151,7 +144,7 @@ Die Window.h Headerdatei ist die Masterdatei, dass alle andere Headerdateien ink
 %#######################################################################################
 \subsection{WinMain}
 \paragraph{}
-\textit{C/C++} Programme fangen mit eine \textit{int main()} Funktion an. Da die API auf \textit{C} implementiert ist, fangen Anwendungen mit Windows als Zielsystem mit eine ähnliche Funktion an. Unter Windows ist die \textit{main} Funktion unter "`WINBASE.H"' als:
+\textit{C/C++} Programme fangen mit eine \textit{int main()} Funktion an. Da die API auf \textit{C} basiert, fangen Anwendungen mit Windows als Zielsystem mit einer ähnliche Funktion an. Unter Windows ist die \textit{main} Funktion unter "`WINBASE.H"' als:
 
 \begin{tabbing}
 
@@ -161,24 +154,23 @@ int WINAPI \=WinMain(\\
     			\>LPSTR lpCmdLine,\\
     			\>int nShowCmd\\
 			\>);
-
+\\
 \end{tabbing}
 
-\paragraph{}
-Als erstes fällt auf der Bezeichner \textit{WINAPI}. Dieser Datentyp ist definiert als \textit{WINAPI \_\_stdcall}. \textit{\_\_stdcall} ist eine Aufrufkonvention um Funktionen aus der Win32 API aufzurufen. Die \textit{WinMain} Funktion bekommt als Parameter zwei \textit{HINSTANCE} Variablen, ein \textit{LPSTR} und ein \textit{int}.
+Der Bezeichner \textit{WINAPI} beschreibt einen Datentyp. Dieser Datentyp ist definiert als \textit{WINAPI \_\_stdcall}. \textit{\_\_stdcall} ist eine Aufrufkonvention um Funktionen aus der Win32 API aufzurufen. Die \textit{WinMain} Funktion bekommt als Parameter zwei \textit{HINSTANCE} Variablen, ein \textit{LPSTR} (Zeiger auf eine Zeichenkette) und ein \textit{int}.\\\\
 
-\paragraph{}
-\textit{HINSTANCE} ist ein Handle auf eine Instanz. Das ist die Basisadresse von einem Modul im Systemspeicher(eine 32-Bitzahl, dass auf ein Objekt zeigt). Das erste Parameter ist dann eine Instanz auf die aktuelle Anwendung. Das zweiter Parameter wurde nur unter Win16 benutzt und ist unter die Win32 API irrelevant, es wird automatisch auf \textit{NULL} gesetzt. Das dritte Parameter enthält die Befehlszeilenargumente als Zeichenfolge. Aus dieser Zeichenfolge wertet das Programm aus, wie es ausgeführt werden soll. Das vierte und letzte Parameter ist ein Flag und gibt an wie das Anwendungsfenster angezeigt werden soll (Minimiert, Maximiert oder Normalgröße).
+
+\textit{HINSTANCE} ist ein Handle auf eine Instanz. Das ist die Basisadresse von einem Modul im Systemspeicher(eine 32-Bitzahl, dass auf ein Objekt zeigt). Der erste Parameter ist eine Instanz auf die aktuelle Anwendung. Der zweiter Parameter wurde nur unter Win16 benutzt und ist in der Win32 API irrelevant, er wird automatisch auf \textit{NULL} gesetzt. Der dritte Parameter enthält die Befehlszeilenargumente als Zeichenfolge. Aus dieser Zeichenfolge wertet das Programm aus, wie es ausgeführt werden soll. Der vierte und letzte Parameter ist ein Flag und gibt an, wie das Anwendungsfenster angezeigt werden soll (Minimiert, Maximiert oder Normalgröße).
 
 %#######################################################################################
 \subsection{Graphic User Interface (GUI)}
 \paragraph{}
-Durch die grenzwertige Hardware(Speicher und Prozessoren) waren alle Betriebssysteme Kommandozeileorientiert. Dies sollte sich aber ändern durch die Recherche von Xerox Palo Alto Research Center(PARC). Mitte der 70 Jahren wurde in Xerox PARC nach graphische Benutzeroberflächen recherchiert. Aus diesen Ergebnisse profitierten Macintosh und Windows, und bauten darauf Ihre Betriebssysteme mit graphischen Benutzeroberflächen(Mac OS und Windows). Heutzutage kann man sich als Benutzer kaum eine Computerwelt ohne Benutzeroberflächen vorstellen. Die Windows API hat seit der Ankündigung(1983) und Veröffentlichung(1985) von Windows als Betriebssystem Funktionsaufrufe in die Headerdateien für die Programmierung von GUI's. Die Benutzung der API für die Programmierung von GUI's ist vielleicht "altmodisch", aber immerhin sehr genau und präzise. Im Gegensatz zu "`GUI Builders"' wird kein unnötiger, und oft für Programmierer, unverständlicher Code geschrieben. Der Überblick und Verständnis der GUI Elemente wird durch die direkte Benutzung der API vereinfacht. Vor allem wird das Verständnis wie eigentlich eine GUI unter Windows und Windows als Betriebssystem funktioniert, durch die Verwendung der API deutlicher.
+Durch die Begrenzung der einzubauenden Hardware in den frühen Jahren des Computerzeitalters (Speicher und Prozessoren) waren alle Betriebssysteme Kommandozeileorientiert. Dies sollte sich aber ändern durch die Recherche von Xerox Palo Alto Research Center(PARC). Mitte der 70 Jahren wurde im Xerox PARC nach graphische Benutzeroberflächen recherchiert. Aus diesen Ergebnissen profitierten Macintosh und Windows, und bauten darauf ihre Betriebssysteme mit graphischen Benutzeroberflächen(Mac OS und Windows). Heutzutage kann man sich als Benutzer kaum eine Computerwelt ohne Benutzeroberflächen vorstellen. Die Windows API hat seit der Ankündigung(1983) und Veröffentlichung(1985) von Windows als Betriebssystem Funktionsaufrufe in die Headerdateien für die Programmierung von GUI's. Die Benutzung der API für die Programmierung von GUI's ist vielleicht "altmodisch", aber immerhin sehr genau und präzise. Im Gegensatz zu "`GUI Builders"' wird kein unnötiger, und oft für Programmierer, unverständlicher Code geschrieben. Der Überblick und Verständnis der GUI Elemente wird durch die direkte Benutzung der API vereinfacht. Vor allem wird das Verständnis wie eigentlich eine GUI unter Windows und Windows als Betriebssystem funktioniert, durch die Verwendung der API deutlicher.
 
 %#######################################################################################
 \subsection{Aufbau einer GUI}
 \paragraph{}
-Nachdem die \textit{WinMain} Funktion die nötige Parameter bekommt und diese vom Programm ausgewertet werden, muss die GUI als solche gebaut und registriert werden. Eine GUI besteht aus drei Teile.
+Nachdem die \textit{WinMain} Funktion die nötigen Parameter bekommt und diese vom Programm ausgewertet werden, muss die GUI als solche gebaut und registriert werden. Eine GUI besteht aus drei Teilen.
 
 
 %----------------------------------------------------------------------------------------------

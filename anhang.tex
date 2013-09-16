@@ -9,3 +9,66 @@
 \chapter{Anhang}
 HIER KOMMEN DIE DATEIANHÄNGE HIN
 
+
+
+\lstset{language=C++,
+				backgroundcolor=\color{light-gray},
+				%frame=single,
+				tabsize=2,
+				numbers=left,
+				numbersep=5pt,
+				%numberstyle=\color{light-gray},
+				basicstyle=\ttfamily\color{black}\small,
+				keywordstyle=\color{HKS51}\bfseries,
+				commentstyle=\color{HKS13}\slshape,,
+				identifierstyle=\color{black}}
+\begin{lstlisting}	
+LRESULT Window::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
+{
+    switch (uMsg)
+    {
+
+    case WM_CREATE:
+        {
+            //Create all GUI Elements
+            
+            //example: Start button
+            _hwnd_Start = CreateWindowA("button", "Start",
+				WS_CHILD | WS_VISIBLE,
+				POS_X+20, POS_Y2 + 290, 70, 30, m_hwnd, (HMENU)ID_BT_START,
+				NULL, NULL);
+        }
+        break;
+        
+    case WM_COMMAND:
+        {
+            //React to GUI Elements actions
+            
+            //example: Start button
+            case ID_BT_START:
+
+				//hide the elements while testing
+				viewAllElements(FALSE);
+
+				//start a new thread
+				_t1 = thread(&Window::sendTestSettings, this);
+				
+				//detach the thread so it can test and main thread waits for it to finish
+				//or waits for the user to press stop
+				_t1.detach();
+        }
+        break;
+        
+    case WM_DESTROY:
+        PostQuitMessage(0);
+        break;
+
+	//call the default window procedure for the other messages
+    default:
+        return DefWindowProc(m_hwnd, uMsg, wParam, lParam);
+    }
+    return TRUE;
+}
+
+\end{lstlisting}
+
