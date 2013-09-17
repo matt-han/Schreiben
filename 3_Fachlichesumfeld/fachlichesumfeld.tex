@@ -176,7 +176,7 @@ Nachdem die \textit{WinMain} Funktion die nötigen Parameter bekommt und diese v
 %----------------------------------------------------------------------------------------------
 \subsubsection{Initialisierung und Erzeugung der GUI}
 \paragraph{}
-Damit der Benutzer ein Programmfenster sehen kann, muss dieses zuerst deklariert und initialisiert werden. Danach wird dieses Fenster an das System bekannt gegeben in dem man es registriert. Um ein Fenster zu deklarieren muss man eine Variable der Struktur \textit{WNDCLASS} erzeugen. Diese Struktur definiert in \textit{WINUSER.H} beinhaltet verschiedene Variablen die die Eigenschaften des jeweiliges Fenster beschreiben.
+Damit der Benutzer ein Programmfenster sehen kann, muss dieses zuerst deklariert und initialisiert werden. Danach wird dieses Fenster dem System bekannt gegeben, in dem es registriert wird. Um ein Fenster zu deklarieren muss eine Variable der Struktur \textit{WNDCLASS} erzeugt werden. Diese Struktur wird in \textit{WINUSER.H} definiert und beinhaltet verschiedene Variablen, die die Eigenschaften des jeweiliges Fenster beschreiben.
 
 
 
@@ -195,16 +195,11 @@ Damit der Benutzer ein Programmfenster sehen kann, muss dieses zuerst deklariert
 & & LPCTSTR     & lpszClassName ;\\
 &\}WNDCLASS,&* PWNDCLASS ;
 \end{tabular}
-\\
 
+Die zwei wichtigsten Variablen dieser Struktur ist die Zweite und die Letzte Variable. Die zweite Variable \textit{WNDPROC lpfnWndProc} beschreibt die Fensterprozedur. Genaueres zu dieser Variable wird demnächst erklärt. Die letzte Variable \textit{LPCSTR lpszClassName}, beschreibt die Klasse des Fensters. Die Variable \textit{HINSTANCE hInstance} muss dem Leser bekannt sein. Diese Variable wird auf den Wert gesetzt, welches das Programm über die \textit{WinMain} bekommen hat. Alle andere Variablen der Struktur beschreiben wie das Fenster aussehen soll und sind für das Verständnis weiterhin irrelevant.
+\\\\
+Nachdem die \textit{WNDCLASS} Struktur deklariert und initialisiert wird, muss diese registriert werden. Durch den Aufruf der Funktion \textit{RegisterClass}, die als Übergabeparameter einen Zeiger auf eine \textit{WNDCLASS} Struktur hat, wird dem System bekannt gegeben, dass ein Fenster aufgebaut werden soll (mit dem gesetzten Eigenschaften der \textit{WNDCLASS} Struktur). Wenn das Registrieren erfolgreich war, muss das Fenster noch erzeugt werden. Das System kennt das Fenster, aber es ist noch nicht sichtbar.\\
 
-\paragraph{}
-Die zwei wichtigsten Variablen dieser Struktur sind der zweite und letzte. Die zweite Variable \textit{WNDPROC lpfnWndProc} beschreibt die Fensterprozedur. Genaueres zu dieser Variable wir demnächst erklärt. Die letzte Variable \textit{LPCSTR lpszClassName}, beschreibt die Klasse des Fensters. Die Variable \textit{HINSTANCE hInstance} muss den Leser bekannt sein. Diese Variable wird auf den Wert gesetzt, welches das Programm über die \textit{WinMain} bekommen hat. Alle andere Variablen der Struktur beschreiben wie das Fenster aussehen soll und sind für das Verständnis weiterhin irrelevant.
-
-\paragraph{}
-Nachdem die \textit{WNDCLASS} Struktur deklariert und initialisiert wird, muss diese registriert werden. Durch den Aufruf der Funktion \textit{RegisterClass}, die als Übergabe Parameter ein Zeiger auf eine \textit{WNDCLASS} Struktur hat, wird dem System bekannt gegeben, dass ein Fenster aufgebaut werden soll (mit dem gesetzten Eigenschaften der \textit{WNDCLASS} Struktur). Wenn das Registrieren erfolgreich war, muss das Fenster noch erzeugt werden. Das System kennt das Fenster, aber es ist noch nicht sichtbar.
-
-\paragraph{}
 Damit ein Fenster sichtbar wird, muss der Programmierer die \textit{CreateWindow}\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms632679(v=vs.85).aspx; 27.08.2013} Funktion aufrufen. 
 
 
@@ -224,15 +219,12 @@ Damit ein Fenster sichtbar wird, muss der Programmierer die \textit{CreateWindow
 &);
 \end{tabular}
 
+Diese Funktion ist sehr wichtig bei der Erzeugung von graphischen Oberflächen, denn man kann alle Arten von Fenstern damit erzeugen. Damit ist gemeint, dass diese Funktion  nicht nur "`Hauptfenster"', sondern auch die einzelnen GUI Elemente erzeugt. Der erste Parameter beschreibt dieses Verhalten. Die \textit{CreateWindow} Funktion erwartet eine null terminierte Zeichenkette. Diese Zeichenkette ist immer eine vordefinierte Systemklasse. Zum Beispiel, um ein Schaltfläche zu erstellen, muss hier als Parameter "`button"' angegeben werden. Wenn der Programmierer ein von ihm erzeugtes Fenster darstellen will, muss er deswegen vorher im System eine Fensterklasse registrieren. Aus diesem Grund muss der Programmierer eine Fensterstruktur \textit{WNDCLASS} registrieren. Um danach ein selbst gebautes Fenster zu erzeugen, muss der Programmieren den registrierten Fensterklassenname(\textit{WNDCLASS lpszClassName}) angeben (anstatt "`button"' oder andere vordefinierte Fensterklassen).\\
 
-\paragraph{}
-Diese Funktion ist sehr wichtig bei der Erzeugung von graphischen Oberflächen, denn man kann alle Arten von Fenstern damit erzeugen. Damit wird gemeint, dass diese Funktion  nicht nur "`Hauptfenster"', sondern auch die einzelnen GUI Elemente erzeugt. Das erste Parameter beschreibt dieses Verhalten. Die \textit{CreateWindow} Funktion erwartet eine null terminierte Zeichenkette. Diese Zeichenkette ist immer eine vordefinierte Systemklasse. Zum Beispiel, um ein Knopf zu erstellen, muss hier als Parameter "`button"' angegeben werden. Wenn der Programmierer ein von ihm erzeugtes Fenster darstellen will, muss er deswegen vorher im System eine Fensterklasse registrieren. Aus diesem Grund muss der Programmierer eine Fensterstruktur \textit{WNDCLASS} registrieren. Um danach ein selbst gebautes Fenster zu erzeugen, muss der Programmieren das registrierte Fensterklassenname(\textit{WNDCLASS lpszClassName}) angeben (anstatt "`button"' oder andere vordefinierte Fensterklassen).
+Der zweite Parameter beschreibt der dargestellter Name des Fenster. \textit{DWORD dwStyle} ist eine Bitmaske, die die Darstellungsart des Fensters beschreibt. Die Darstellungsarten sind als konstante Werte (Window Styles\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms632600(v=vs.85).aspx; 27.08.2013})in der \textit{WINUSER.H} Headerdatei definiert. Um ein "`traditioneles"' Fenster zu erzeugen muss hier \textit{WS\_OVERLAPPEDWINDOW} angegeben werden. Die Nächste vier Parameter beschreiben die Positionierung im Bildschirm und die Breite und Höhe des Fensters.\\ 
 
-\paragraph{}
-Der zweite Parameter beschreibt der dargestellter Name des Fenster. \textit{DWORD dwStyle} ist eine Bitmaske die den Darstellungsart des Fensters beschreibt. Die Darstellungsarten sind als konstante Werte (Window Styles\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms632600(v=vs.85).aspx; 27.08.2013})in die \textit{WINUSER.H} Headerdatei definiert. Um ein "`traditioneles"' Fenster zu erzeugen muss hier \textit{WS\_OVERLAPPEDWINDOW} angegeben werden. Die Nächste vier Parameter Beschreibe die Positionierung im Bildschirm und die Breite und Höhe des Fensters. 
 
-\paragraph{}
-\textit{HWND hWndParent} beschreibt ein Handle auf ein anderes Fenster. Im Falle, dass dieses Fenster das Hauptfenster ist, wird hier NULL übergeben, sonst das Handle auf das "`Parent Windows"'. Das \textit{HMENU hMenu} ist für Hauptfenster irrelevant. Es ist aber wichtig für Unterfenster(Popup Fenster oder GUI Elemente wie Knöpfe). \textit{HMENU} ist eine Typdefinition für ein Handle auf ein Fenstermenü oder ein Unterfenster. Somit kann das Hauptfenster eine Kommando eines GUI Elements erkennen und auswerten, mehr dazu unter "`Die Message Loop"'. Das \textit{HINSTANCE hInstance} wurde schon vorher erläutert und das letzte Parameter beschreibt extra Information wenn es nötig ist, üblicherweise wird hier NULL angegeben.
+\textit{HWND hWndParent} beschreibt ein Handle auf ein anderes Fenster. Im Falle, dass dieses Fenster das Hauptfenster ist, wird hier NULL übergeben, sonst muss das Handle auf das "`Parent Windows"' zeigen. Das \textit{HMENU hMenu} ist für das Hauptfenster irrelevant. Es ist aber wichtig für Unterfenster(Popup Fenster oder GUI Elemente wie Knöpfe). \textit{HMENU} ist eine Typdefinition für ein Handle auf ein Fenstermenü oder ein Unterfenster. Somit kann das Hauptfenster eine Kommando eines GUI Elements erkennen und auswerten, mehr dazu unter "`Die Message Loop"'. Das \textit{HINSTANCE hInstance} wurde schon vorher erläutert und das letzte Parameter beschreibt extra Information wenn es nötig ist, üblicherweise wird hier NULL angegeben.
 
 \paragraph{}
 Die \textit{CreateWindow} Funktion liefert als Rückgawert ein \textit{HWND}. Dies steht für Handle auf ein Fenster. Somit kann der Programmierer und Programm auf ein gewünschtes Fenster zugreiffen. Um die erwähnte Parameter genauer zu verstehen folgende Beispiele. Hat man ein Hauptfenster, so ruft man die \textit{CreateWindow} Funktion folgendermaßen:
@@ -255,21 +247,21 @@ Die \textit{CreateWindow} Funktion liefert als Rückgawert ein \textit{HWND}. Di
 \end{tabular}                        
 
 \paragraph{}
-Will der Programmierer ein GUI Element (wie zum Beispiel ein Knopf) im Hauptfenster darstellen, muss die Funktion mit diesen Parametern aufgerufen werden:
+Will der Programmierer ein GUI Element (wie zum Beispiel ein Schaltfläche) im Hauptfenster darstellen, muss die Funktion mit diesen Parametern aufgerufen werden:
 \\
 \\
 \begin{tabular}{llll}
-& HWND hwnd\_Knopf = CreateWindow (\\
+& HWND Schaltfläche = CreateWindow (\\
 \\
-& "button",					& //Fensterklasse Knopf\\
-& "Das ist ein Knopf",		& //Text auf den Knopf\\
+& "button",					& //Fensterklasse Schaltfläche\\
+& "Das ist eine Schaltfläche",		& //Text auf den Schaltfläche\\
 & WS\_CHILD | WS\_VISIBLE,	& //Child Fenster und anzeigen\\
 & 100,						& //Position in der X Koordinate des Hauptfensters\\
 & 100,						& //Position in der Y Koordinate des Hauptfensters\\
-& 50,						& //Lange des Knopfes\\
-& 35,						& //Breite des Knopfes\\
+& 50,						& //Lange des Schaltfläche\\
+& 35,						& //Breite des Schaltfläche\\
 & hwnd\_Fenster,				& //Zugehöriges Hauptfenster\\
-& (HMENU) ID\_KNOPF,			& //Identifikationsnummer, wird vorher deklariert\\
+& (HMENU) ID\_Schaltfläche,			& //Identifikationsnummer, wird vorher deklariert\\
 & NULL,						& //keine Instanz\\
 & NULL						& //keine extra Information\\
 & );
@@ -301,7 +293,7 @@ Windows hat eine Nachrichten Schleife (message loop) für jede laufende Anwendun
 Jede Nachricht hat als erster Parameter ein Handle auf das zugehörige Fenster. Danach als \textit{unsigned int (UINT)} wird die Nachricht übergeben. Diese Nachrichten sind in \textit{WINUSER.H} deklariert und habe den Präfix \textit{WM} für "`Window Message"'. Zum Beispiel wird ein Mausklick in das Fenster gemacht, schickt Windows eine Nachricht an das Fenster(durch \textit{hwnd} angegeben) mit der Nachricht \textit{WM\_RBUTTONDOWN}.
 
 \paragraph{}
-\textit{wParam} und \textit{lParam} sind 32-Bit Nachrichtenparametern, abhängig vor der jeweiligen Nachricht. Wird zum Beispiel auf eine Knopf gedrückt, wird die \textit{WM\_COMMAND} Nachricht verschickt. Damit die Anwendung genau erkennen was für eine Aktion ausgeführt worden ist, wird in \textit{wParam} noch zwei weitere Angaben mitgeschickt. In die oberen 16-Bits wird die Notifikation \textit{BN\_CLICKED} verschickt. Dies deutet an, dass ein Knopf geklickt worden ist. In den unteren 16-Bits von \textit{wParam} wird die Identifikationsnummer(nach den obigen Beispiel: ID\_KNOPF) des Knopfes mitgeschickt. Mit diesen Informationen kann ein Programm genau auf die vom Benutzer ausgelöste Events reagieren. Beider 16-Bit Werte werden mit Hilfe der Makros \textit{HIWORD} \footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms632657(v=vs.85).aspx; 27.08.2013} und \textit{LOWORD} \footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms632659(v=vs.85).aspx; 27.08.2013}.
+\textit{wParam} und \textit{lParam} sind 32-Bit Nachrichtenparametern, abhängig vor der jeweiligen Nachricht. Wird zum Beispiel auf eine Schaltfläche gedrückt, wird die \textit{WM\_COMMAND} Nachricht verschickt. Damit die Anwendung genau erkennen was für eine Aktion ausgeführt worden ist, wird in \textit{wParam} noch zwei weitere Angaben mitgeschickt. In die oberen 16-Bits wird die Notifikation \textit{BN\_CLICKED} verschickt. Dies deutet an, dass ein Schaltfläche geklickt worden ist. In den unteren 16-Bits von \textit{wParam} wird die Identifikationsnummer(nach den obigen Beispiel: ID\_Schaltfläche) der Schaltfläche mitgeschickt. Mit diesen Informationen kann ein Programm genau auf die vom Benutzer ausgelöste Events reagieren. Beider 16-Bit Werte werden mit Hilfe der Makros \textit{HIWORD} \footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms632657(v=vs.85).aspx; 27.08.2013} und \textit{LOWORD} \footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms632659(v=vs.85).aspx; 27.08.2013}.
 
 \paragraph{}
 Der Parameter \textit{time} gibt die Uhrzeit wann die Nachricht verschickt worden ist und der Parameter \textit{pt} ist eine \textit{POINT} Struktur, wo die X und Y Koordinaten des Mausklicks gespeichert sind.
@@ -347,17 +339,17 @@ Der Datentyp \textit{CALLBACK} ist schon bekannt, und \textit{LRESULT} ist eine 
 Der Sinn für eine von Programmierer geschriebene Fensterprozedur ist, dass ein Programm auf ein Event reagiert soll, wie der Programmierer es will. Programmierer programmieren in der Regel nicht alle Events. Damit eine Nachricht nicht unbearbeitet bleibt, wird immer am Ende der selbstgeschriebene Fensterprozedur die \textit{DefWindowProc} Funktion aufgerufen. Diese Methode bearbeitet alle mögliche Nachrichten und ist die default Fensterprozedur. Wenn der Programmierer diese Funktion nicht aufruft, werden grundlegende Funktionen einer GUI nicht funktionieren.
 
 \paragraph{}
-Die erste Nachricht die eine Fensterprozedur bekommt ist \textit{WM\_CREATE} Nachricht. Hier baut der Programmierer alle GUI Elemente auf, mithilfe der \textit{CreateWindow} Funktion(Knopf Beispiel). Eine zweite sehr wichtige Nachricht ist \textit{WM\_DESTROY}. Die Nachricht wird verschickt wenn der Benutzer ein Fenster zu machen will. Der Programmierer ruft die \textit{PostQuitMessage(0)} Funktion auf und automatisch wird eine \textit{WM\_QUIT} Nachricht verschickt. Somit wird das Fenster geschlossen, die Message Loop verlassen und das Programm / Fenster richtig beendet.
+Die erste Nachricht die eine Fensterprozedur bekommt ist \textit{WM\_CREATE} Nachricht. Hier baut der Programmierer alle GUI Elemente auf, mithilfe der \textit{CreateWindow} Funktion(Schaltfläche Beispiel). Eine zweite sehr wichtige Nachricht ist \textit{WM\_DESTROY}. Die Nachricht wird verschickt wenn der Benutzer ein Fenster zu machen will. Der Programmierer ruft die \textit{PostQuitMessage(0)} Funktion auf und automatisch wird eine \textit{WM\_QUIT} Nachricht verschickt. Somit wird das Fenster geschlossen, die Message Loop verlassen und das Programm / Fenster richtig beendet.
 
 \paragraph{}
-Es gibt noch weitere Nachrichten, die der Programmierer "`manuell"' verschicken kann. Mit Hilfe der erwähnte \textit{SendMessage} \footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms644950(v=vs.85).aspx; 28.08.2013} Funktion. Die Funktion hat die gleichen Parameter wie eine Fensterprozedur. Durch das Handle wird angegeben an welches Fenster die Nachricht verschickt werden soll. Durch das zweite Parameter wird angegeben, welche Nachricht verschickt wird, und die letzten zwei sind extra Informationen der Nachricht(wenn nötig). Will der Programmierer im Ablauf des Programms zum Beispiel der Darstellungstext von unseren Knopf ändern, wird die \textit{SendMessage} Funktion so aufgerufen:
+Es gibt noch weitere Nachrichten, die der Programmierer "`manuell"' verschicken kann. Mit Hilfe der erwähnte \textit{SendMessage} \footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms644950(v=vs.85).aspx; 28.08.2013} Funktion. Die Funktion hat die gleichen Parameter wie eine Fensterprozedur. Durch das Handle wird angegeben an welches Fenster die Nachricht verschickt werden soll. Durch das zweite Parameter wird angegeben, welche Nachricht verschickt wird, und die letzten zwei sind extra Informationen der Nachricht(wenn nötig). Will der Programmierer im Ablauf des Programms zum Beispiel der Darstellungstext von unseren Schaltfläche ändern, wird die \textit{SendMessage} Funktion so aufgerufen:
 
 \begin{center}
-SendMessage(hwnd\_Knopf, WM\_SETTEXT, 0, (lParam)"NeuerText");
+SendMessage(hwnd\_Schaltfläche, WM\_SETTEXT, 0, (lParam)"NeuerText");
 \end{center}
 
 %----------------------------------------------------------------------------------------------
-\subsection{Die RS-232 Schnittstelle und die Windows API}
+\subsection{Die RS-232 Schnittstelle und die Windows API}\label{COMWINAPI}
 \paragraph{}
 Über die Windows API hat man direkt Zugriff auf die RS-232 Schnittstelle. Zum verwalten der Schnittstelle und die Eigenschaften zu setzen gibt es verschiedene Datenstrukturen die man aufrufen und ändern muss, je nach Bedarf.
 
@@ -396,7 +388,7 @@ Um die Schnittstelle richtig einzustellen und keine falsche Eingaben in die \tex
 
 
 \paragraph{}
-Während der Übertragung von Daten über eine Serielleschnittstelle sind maximale Wartezeiten fällig. Dieses Werte entstehen durch die Übertragungslänge und die eingestellte Baudrate. Auch die Wartezeit zwischen zwei ankommende Bytes ist wichtig um das Ende der Übertragung zu bestimmen. Diese Werte sollten dynamisch berechnet werden und danach die Schnittstelle einstelle. Dafür ist die \textit{COMMTIMEOUTS} \footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/aa363190(v=vs.85).aspx; 28.08.2013} Struktur zuständig. Die Struktur besteht aus fünf Variablen die die Wartezeiten in Millisekunden angeben. Die erste Variable beschreibt die Zeitüberschreitung zwischen zwei ankommende Bytes, wird dieser Wert überschritten, so wird die Leseoperation beendet.
+Während der Übertragung von Daten über eine Serielleschnittstelle sind maximale Wartezeiten fällig. Dieses Werte entstehen durch die Übertragungslänge und die eingestellte Baudrate. Auch die Wartezeit zwischen zwei ankommende Bytes ist wichtig um das Ende der Übertragung zu bestimmen. Diese Werte sollten dynamisch berechnet werden und danach in die Schnittstelle eingestellt werden. Dafür ist die \textit{COMMTIMEOUTS} \footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/aa363190(v=vs.85).aspx; 28.08.2013} Struktur zuständig. Die Struktur besteht aus fünf Variablen die die Wartezeiten in Millisekunden angeben. Die erste Variable beschreibt die Zeitüberschreitung zwischen zwei ankommende Bytes, wird dieser Wert überschritten, so wird die Leseoperation beendet.
 
 \paragraph{}
 Der zweite und vierte Parameter(jeweils für Lesen und Schreiben) beschreiben die Zeit, die für die Übertragung aller Bytes nötig ist(für die aktuelle Schreibe- oder Leseoperation). Diese Parametern sind von der Baudrate und die Bitlänge eines Charakters. Damit ist gemeint, wie unter 3.1.2 erläutert, ein Charakter kann aus 8 Bits plus Startbit, Stopbit und Parität bestehen. Also werden nicht genau 8 Bits(1 Byte) per Charakter, sondern oft mehr (11 Bits zum Beispiel) übertragen. Die Wartezeit wird durch die folgende Formel berechnet.

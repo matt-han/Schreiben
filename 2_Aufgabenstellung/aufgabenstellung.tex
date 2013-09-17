@@ -189,4 +189,24 @@ Folgende mögliche Fehlerfälle muss ein solches Tool erkennen:
 \paragraph{}
 Bei Erkennung eines Übertragungsfehlers wird dieser in die Logdatei eingetragen und / oder auf der Konsole angezeigt und danach der letzte Block wiederholt. Nach der x-ten erfolglosen Wiederholung (Wert aus Test-Datei) erfolgt Testabbruch
 
-\section{NEUE ANFORDERUNGEN}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Neue Anforderungen}
+\subsection{Logbuch}
+\paragraph{}
+Der Name der Logdatei soll im eine Nummer erweitert werden. Wenn eine Logdatei auf das Zielsystem schon vorhanden sein, wird die Nummer hochgezählt.\\
+
+\hspace*{10mm}<Programmname>\_<Computername>\_<Master/Slave>\_<Port>\_<Nummer>.ini
+
+Wenn der Test direkt über GUI-Optionen konfiguriert wurde, dann werden diese Werte in eine INI-Datei vor dem Teststart gesichert und diese in der Logdatei eingetragen.
+
+\subsection{Synchronisierungsprotokoll}
+\paragraph{}
+Das erste solcher Konfigurationspakete wird immer mit den Standardschnittstellenparametern (96,o,8,1) gesendet. Ein solches Paket beginnt mit einem Fluchtzeichen (in ASCII wäre das ESCAPE 0x1B) und wird vom Slave per Bestätigungszeichen (in ASCII ACK) beantwortet.
+
+
+\subsection{Anhalten eines Tests}
+\paragraph{}
+Will der Benutzer ein Test vorzeitig beenden, gibt es eine Schaltfläche auf der GUI die der Test anhaltet. Wird per Kommandozeile das Programm ausgeführt, kann der Benutzer durch das drücken der "`ESC"' Taste ein Test stoppen.
