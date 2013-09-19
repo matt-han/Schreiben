@@ -68,7 +68,7 @@
 \input{8_Bedienungsanleitung/bedienungsanleitung.tex}
 \input{9_Zusammenfassung_und_Ausblick/zusammenfassung_u_ausblick.tex}
 \listoffigures %Abbildungsverzeichnis
-\lstlistoflistings
+%\lstlistoflistings
 %--------------------------------------------------------------%
 % Anhang
 %--------------------------------------------------------------%
@@ -79,10 +79,11 @@
 %--------------------------------------------------------------%
 % Literaturverzeichnis
 %--------------------------------------------------------------%
-
+\nocite{*}
 \clearpage\newpage
 \addcontentsline{toc}{chapter}{Literatur- und Quellenverzeichnis}
-\bibliographystyle{IEEEtran}
+%\bibliographystyle{IEEEtran}
+\bibliographystyle{alpha}
 \bibliography{bhtThesis}
 
 \end{document}  

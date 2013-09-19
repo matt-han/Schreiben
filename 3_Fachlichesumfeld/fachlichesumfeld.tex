@@ -2,7 +2,7 @@
 
 \section{RS-232 (Radio Sector 232)}
 
-Die Quellen dieses Kapitel sind aus "`http://de.wikipedia.org/wiki/RS-232; 25.08.2013"' und "`Joe Campbell: V 24 / RS-232 Kommunikation. 4. Auflage. Sybex-Verlag GmbH"'.
+Die Quellen dieses Kapitel sind aus dem Wikipedia Artikel \cite{RS232}, aus den Büchern "`C Programmers Guide to Serial Communications"' \cite{CProgrammersGuide} und "`V 24 / RS-232 Kommunikation"' \cite{V24/RS232}.
 
 \paragraph{}
 Der RS-232 ist ein Standard der in den 60er Jahren von dem US-amerikanischen Standardisierungskomitee Electronic Industries Association(EIA) bearbeitet?? (entwickelt) und definiert wurde. Bei diesem Standard handelt es sich um eine serielle Schnittstelle, die für die serielle Kommunikation zwischen Rechnern und Modems für eine Punkt-zu-Punkt Verbindung (über Telefonleitungen) entwickelt wurde.
@@ -20,7 +20,6 @@ Der RS-232 Standard definiert eine Verbindung zwischen einer Datenendeinrichtung
 \item Timing
 \end{enumerate}
 
-\paragraph{}
 Die Übertragung ist Bit-seriell, das heißt, die Bits werden hintereinander in einer Datenleitung verschickt. Eine bestimmte Menge an Bits entspricht einem Zeichen. Ein Zeichen besteht aus einem Startbit, aus vier bis acht Datenbits (Nutzdaten), aus ein oder zwei Stopbits und der Parität. Die Parität ist in dem Standard nicht definiert, aber wird benutzt um Fehler zu erkennen und zu beheben. Im Allgemeinen ist die Parität nebensächlich, da sie aber in diesem Fall der Arbeit relevant ist wird sie im späteren Verlauf des Kapitels näher erklärt.
 
 
@@ -102,22 +101,27 @@ Die BEETLE Systeme benutzen die COM Ports für verschiedene Zwecke. Für die Kas
 
 \section{Microsoft Windows API}
 
-Die Quellen des folgenden Kapitel sind aus "`Programming Windows, Charles Petzold, 1995, 5. Auflage"' und "`Visual C++ 2010, Dirk Louis, 2010"'.
+Die Quellen des folgenden Kapitel sind aus die MSDN Online Bibliothek \cite{SerialCommunications}, aus dem Buch "`Programming Windows"' \cite{ProgrammingWindows} und aus dem Buch "`Visual C++ 2010"'\cite{VisualC++}.
 
 %#######################################################################################
 \subsection{Definition}
 
 \paragraph{}
 Die Microsoft Windows API "`Application Programming Interface"'(Schnittstelle zur Anwendungsprogrammierung) ist ein Programmteil, dass vom Windows Betriebssystem den Benutzern und vor allem Entwicklern angeboten wird, um Programme an das Betriebssystem anbinden zu können. Ein Betriebssystem (Microsoft Windows, Mac OS, Linux, etc.) ist für Entwickler und Programmierer durch die API definiert. Somit kann eine Applikation über die API alle Funktionsaufrufe ausführen, die ein Betriebssystem anbietet. Nicht nur Funktionen sind in einer API definiert, sondern bestimmte Datenstrukturen und Datentypen durch das Kommando \textit{typedef} wie \textit{LRESULT} oder \textit{CALLBACK}.
-\\\\
+\\
+
 Mit fast jedem neuen Microsoft Betriebssystem wird die Windows API erweitert und abgeändert. Die erste API, bekannt als \textit{Win16}, für die 16-Bit Versionen von Microsoft Windows. Für Windows 1.0 hatte die API etwa 450 Funktionsaufrufe. Bei der Zeit von Windows 98 wurde die API auf 32-Bit und mehrere tausende Funktionsaufrufe. Ab Windows XP "`x64 Edition"' und Windows Server 2003 wurde die API auch auf 64-Bit erweitert.
-\\\\
+\\
+
 Der hauptsächlichen Unterschiede zwischen den 16, 32 und 64 Bit Versionen von der API entstanden durch die verschiedenen Speicher und Prozessorarchitekturen. Unter der 16-Bit Architektur war die Registergröße 16 Bit groß, diese wurde bei den Prozessoren von Intel 8086 und 8088 eingesetzt. In der 32-Bit Architektur, 32 Bit groß bzw. in der 64-Bit, 62 Bit groß. Die Windows API ist in der Programmiersprache "`C"' geschrieben. Deswegen war unter der 16-Bit Architektur der Datentyp \textit{int} "`nur"' 16 Bit lang(Zahlen von -32.768 bis 32.767) . In der Speicherverwaltung bestanden Speicheradressen aus einen 16-Bit Segment und einen 16-Bit Offset, der als Zeiger verwendet werden konnte. Für Programmierer war diese Verwaltung sehr Umständlich, da der Programmierer genaue Unterscheiden musste, zwischen \textit{long} oder \textit{far} und \textit{short} oder \textit{near} Zeiger. 
-\\\\
+\\
+
 Ab der 32-Bit Architektur entstand das "`Flat Memory Model"', wo der Prozessor direkt die gesamte Speicheradressen ansprechen konnte, ohne Speichersegmentierung oder Pagingschemas. Somit wurde auch der \textit{int} Datentyp auf 32 Bitgröße (Zahlen von -2.147.483.649 bis 2.147.483.647) definiert. Programme, die auf einem System mit einer 32-Bit Architektur geschrieben worden sind, benutzen einfache Zeigerwerte um direkt die Speicheradresse ansprechen zu können. Bei der Umstellung von 16-Bit auf 32-Bit blieben viele Funktionsaufrufe gleich, aber manche brauchten eine Umstellung auf 32-Bit, wie zum Beispiel das graphische Koordinatensystem für die GUI Darstellungen.
-\\\\
+\\
+
 Aus Kompatibilitätsgründe sind die API's Rückwärts kompatibel. Die Kompatibilität entsteht durch eine Übersetzungsschicht. Es gibt zwei Wege der Übersetzung. Im ersten Weg, werden 16-Bit Funktionsaufrufe durch eine Übersetzungsschicht in 32-Bit Funktionsaufrufe umgewandelt und dann vom Betriebssystem bearbeitet. Der andere Weg führt genau in die andere Richtung. Die 32-Bit Funktionsaufrufe werden durch die Übersetzungsschicht übersetzt und wandelt diese in 16-Bit Funktionsaufrufe um, und werden dann vom Betriebssystem bearbeitet.
-\\\\
+\\
+
 Die Benutzung der API ist nicht die einzige Möglichkeit, Anwendung für die Windowsbetriebssysteme zu programmieren, aber durch die Benutzung der API ist eine bessere Effizienz gewährleistet. Die Anwendungen können auch in Visual Basic oder Borland Delphi geschrieben werden, wo die objektorientierten Grundlagen von Pascal dem Programmierer viel Arbeit abnehmen. Durch Verschachtelungen mehrerer Programmierschichten, die im Endeffekt auf die  API zugreifen, verlangsamen das Programm und im späteren Verlauf der Leistungsoptimierung des Programmes wird der Programmierer früher oder später mit der Komplexität der API konfrontiert.
 
 %----------------------------------------------------------------------------------------------
@@ -157,7 +161,7 @@ int WINAPI \=WinMain(\\
 \\
 \end{tabbing}
 
-Der Bezeichner \textit{WINAPI} beschreibt einen Datentyp. Dieser Datentyp ist definiert als \textit{WINAPI \_\_stdcall}. \textit{\_\_stdcall} ist eine Aufrufkonvention um Funktionen aus der Win32 API aufzurufen. Die \textit{WinMain} Funktion bekommt als Parameter zwei \textit{HINSTANCE} Variablen, ein \textit{LPSTR} (Zeiger auf eine Zeichenkette) und ein \textit{int}.\\\\
+Der Bezeichner \textit{WINAPI} beschreibt einen Datentyp. Dieser Datentyp ist definiert als \textit{WINAPI \_\_stdcall}. \textit{\_\_stdcall} ist eine Aufrufkonvention um Funktionen aus der Win32 API aufzurufen. Die \textit{WinMain} Funktion bekommt als Parameter zwei \textit{HINSTANCE} Variablen, ein \textit{LPSTR} (Zeiger auf eine Zeichenkette) und ein \textit{int}.\\
 
 
 \textit{HINSTANCE} ist ein Handle auf eine Instanz. Das ist die Basisadresse von einem Modul im Systemspeicher(eine 32-Bitzahl, dass auf ein Objekt zeigt). Der erste Parameter ist eine Instanz auf die aktuelle Anwendung. Der zweiter Parameter wurde nur unter Win16 benutzt und ist in der Win32 API irrelevant, er wird automatisch auf \textit{NULL} gesetzt. Der dritte Parameter enthält die Befehlszeilenargumente als Zeichenfolge. Aus dieser Zeichenfolge wertet das Programm aus, wie es ausgeführt werden soll. Der vierte und letzte Parameter ist ein Flag und gibt an, wie das Anwendungsfenster angezeigt werden soll (Minimiert, Maximiert oder Normalgröße).
@@ -174,7 +178,7 @@ Nachdem die \textit{WinMain} Funktion die nötigen Parameter bekommt und diese v
 
 
 %----------------------------------------------------------------------------------------------
-\subsubsection{Initialisierung und Erzeugung der GUI}
+\subsubsection{Initialisierung und Erzeugung der GUI}\label{Ini und Erzeugung}
 \paragraph{}
 Damit der Benutzer ein Programmfenster sehen kann, muss dieses zuerst deklariert und initialisiert werden. Danach wird dieses Fenster dem System bekannt gegeben, in dem es registriert wird. Um ein Fenster zu deklarieren muss eine Variable der Struktur \textit{WNDCLASS} erzeugt werden. Diese Struktur wird in \textit{WINUSER.H} definiert und beinhaltet verschiedene Variablen, die die Eigenschaften des jeweiliges Fenster beschreiben.
 
@@ -197,7 +201,7 @@ Damit der Benutzer ein Programmfenster sehen kann, muss dieses zuerst deklariert
 \end{tabular}
 
 Die zwei wichtigsten Variablen dieser Struktur ist die Zweite und die Letzte Variable. Die zweite Variable \textit{WNDPROC lpfnWndProc} beschreibt die Fensterprozedur. Genaueres zu dieser Variable wird demnächst erklärt. Die letzte Variable \textit{LPCSTR lpszClassName}, beschreibt die Klasse des Fensters. Die Variable \textit{HINSTANCE hInstance} muss dem Leser bekannt sein. Diese Variable wird auf den Wert gesetzt, welches das Programm über die \textit{WinMain} bekommen hat. Alle andere Variablen der Struktur beschreiben wie das Fenster aussehen soll und sind für das Verständnis weiterhin irrelevant.
-\\\\
+\\
 Nachdem die \textit{WNDCLASS} Struktur deklariert und initialisiert wird, muss diese registriert werden. Durch den Aufruf der Funktion \textit{RegisterClass}, die als Übergabeparameter einen Zeiger auf eine \textit{WNDCLASS} Struktur hat, wird dem System bekannt gegeben, dass ein Fenster aufgebaut werden soll (mit dem gesetzten Eigenschaften der \textit{WNDCLASS} Struktur). Wenn das Registrieren erfolgreich war, muss das Fenster noch erzeugt werden. Das System kennt das Fenster, aber es ist noch nicht sichtbar.\\
 
 Damit ein Fenster sichtbar wird, muss der Programmierer die \textit{CreateWindow}\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms632679(v=vs.85).aspx; 27.08.2013} Funktion aufrufen. 
@@ -224,10 +228,9 @@ Diese Funktion ist sehr wichtig bei der Erzeugung von graphischen Oberflächen, 
 Der zweite Parameter beschreibt der dargestellter Name des Fenster. \textit{DWORD dwStyle} ist eine Bitmaske, die die Darstellungsart des Fensters beschreibt. Die Darstellungsarten sind als konstante Werte (Window Styles\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms632600(v=vs.85).aspx; 27.08.2013})in der \textit{WINUSER.H} Headerdatei definiert. Um ein "`traditioneles"' Fenster zu erzeugen muss hier \textit{WS\_OVERLAPPEDWINDOW} angegeben werden. Die Nächste vier Parameter beschreiben die Positionierung im Bildschirm und die Breite und Höhe des Fensters.\\ 
 
 
-\textit{HWND hWndParent} beschreibt ein Handle auf ein anderes Fenster. Im Falle, dass dieses Fenster das Hauptfenster ist, wird hier NULL übergeben, sonst muss das Handle auf das "`Parent Windows"' zeigen. Das \textit{HMENU hMenu} ist für das Hauptfenster irrelevant. Es ist aber wichtig für Unterfenster(Popup Fenster oder GUI Elemente wie Knöpfe). \textit{HMENU} ist eine Typdefinition für ein Handle auf ein Fenstermenü oder ein Unterfenster. Somit kann das Hauptfenster eine Kommando eines GUI Elements erkennen und auswerten, mehr dazu unter "`Die Message Loop"'. Das \textit{HINSTANCE hInstance} wurde schon vorher erläutert und das letzte Parameter beschreibt extra Information wenn es nötig ist, üblicherweise wird hier NULL angegeben.
+\textit{HWND hWndParent} beschreibt ein Handle auf ein anderes Fenster. Im Falle, dass dieses Fenster das Hauptfenster ist, wird hier NULL übergeben, sonst muss das Handle auf das "`Parent Windows"' zeigen. Das \textit{HMENU hMenu} ist für das Hauptfenster irrelevant. Es ist aber wichtig für Unterfenster(Popup Fenster oder GUI Elemente wie Knöpfe). \textit{HMENU} ist eine Typdefinition für ein Handle auf ein Fenstermenü oder ein Unterfenster. Somit kann das Hauptfenster ein Kommando eines GUI Elements erkennen und auswerten, mehr dazu im Kapitel ~\ref{message-loop}. Da auf den Parameter \textit{HINSTANCE hInstance} im Vorlauf schon drauf eingegangen wurde wird er hier nicht mehr auf ihn drauf eingegangen. Der letzte Parameter beinhaltet Extrainformation, üblicherweise wird hier NULL angegeben.\\
 
-\paragraph{}
-Die \textit{CreateWindow} Funktion liefert als Rückgawert ein \textit{HWND}. Dies steht für Handle auf ein Fenster. Somit kann der Programmierer und Programm auf ein gewünschtes Fenster zugreiffen. Um die erwähnte Parameter genauer zu verstehen folgende Beispiele. Hat man ein Hauptfenster, so ruft man die \textit{CreateWindow} Funktion folgendermaßen:
+Die \textit{CreateWindow} Funktion liefert als Rückgabewert ein \textit{HWND}. Dies steht für Handle auf ein Fenster. Somit kann der Programmierer und das Programm auf ein gewünschtes Fenster zugreifen. Um die erwähnten Parameter genauer zu verstehen, werden diese in den folgenden Beispiele erläutert. 
 
 \begin{tabular}{llll}
 & HWND hwnd\_Fenster = CreateWindow (\\
@@ -245,10 +248,7 @@ Die \textit{CreateWindow} Funktion liefert als Rückgawert ein \textit{HWND}. Di
 & NULL                               & //keine extra Information\\  
 & );                          
 \end{tabular}                        
-
-\paragraph{}
-Will der Programmierer ein GUI Element (wie zum Beispiel ein Schaltfläche) im Hauptfenster darstellen, muss die Funktion mit diesen Parametern aufgerufen werden:
-\\
+Um verschiedene GUI Elemente im Hauptfenster darstellen zu können, wie z.B. eine Schaltfläche, muss die Funktion mit den folgenden Parametern gesetzt werden:
 \\
 \begin{tabular}{llll}
 & HWND Schaltfläche = CreateWindow (\\
@@ -258,8 +258,8 @@ Will der Programmierer ein GUI Element (wie zum Beispiel ein Schaltfläche) im H
 & WS\_CHILD | WS\_VISIBLE,	& //Child Fenster und anzeigen\\
 & 100,						& //Position in der X Koordinate des Hauptfensters\\
 & 100,						& //Position in der Y Koordinate des Hauptfensters\\
-& 50,						& //Lange des Schaltfläche\\
-& 35,						& //Breite des Schaltfläche\\
+& 50,						& //Länge der Schaltfläche\\
+& 35,						& //Breite der Schaltfläche\\
 & hwnd\_Fenster,				& //Zugehöriges Hauptfenster\\
 & (HMENU) ID\_Schaltfläche,			& //Identifikationsnummer, wird vorher deklariert\\
 & NULL,						& //keine Instanz\\
@@ -267,14 +267,12 @@ Will der Programmierer ein GUI Element (wie zum Beispiel ein Schaltfläche) im H
 & );
 \end{tabular}
 
-\paragraph{}	
-					
-Nachdem der Programmierer ein Hauptfenster erzeugt hat, muss dieses noch explizit mittels der Funktionen \textit{ShowWindow(hwnd\_Fenster, iCmdShow)} und \textit{UpdateWindow(hwnd\_Fenster)}	angezeigt werden.
+Nachdem ein Hauptfenster erzeugt worden ist, muss dieses noch explizit mittels der Funktionen \textit{ShowWindow(hwnd\_Fenster, iCmdShow)} und \textit{UpdateWindow(hwnd\_Fenster)}	angezeigt werden.
 
 %----------------------------------------------------------------------------------------------				
-\subsubsection{Die Message Loop}
+\subsubsection{Die Message Loop}\label{message-loop}
 \paragraph{}
-Windows hat eine Nachrichten Schleife (message loop) für jede laufende Anwendung. Wenn der Benutzer ein Event auslöst(Mausklick oder Tastatureingabe) muss das Programm reagieren. Windows übersetzt das Event in eine Nachricht und diese Nachricht wird in die Schleife reingeschrieben. Wenn eine neue Nachrichten empfangen wird, bevor die aktuelle Nachricht fertig bearbeitet wurde, wird die ankommende Nachricht in die "`Message Queue"'(Warteschlange) geschrieben. Jede Nachricht ist durch die \textit{MSG} Struktur beschrieben.
+Nachrichten zwischen verschiedenen Programmen werden unter Windows in sog. Nachrichtenschleifen, auch \textit{message loop} genannt, verarbeitet. In diesen \textit{message loops}  werden Events von Schaltflächen oder Tastatureingaben ausgewertet und dem entsprechend reagiert. Die ausgelösten Events werden von Windows in eine Nachricht übersetzt, jede dieser Nachrichten ist eindeutig durch eine \textit{MSG} Struktur beschrieben und eindeutig identifizierbar, diese wird anschließend in die \textit{message loop} hineingeschrieben und wenn möglich verarbeitet. Wird eine neue ankommende Nachricht empfangen während eine andere Nachricht bearbeitet wird, wird die neue Nachricht in die sog. "`Message Queue"'(Warteschlange) geschrieben. 
 
 \begin{tabular}{llll}
 & typedef & struct tagMSG\\
@@ -289,16 +287,12 @@ Windows hat eine Nachrichten Schleife (message loop) für jede laufende Anwendun
 & MSG,&* PMSG;\\
 \end{tabular}
 
-\paragraph{}
-Jede Nachricht hat als erster Parameter ein Handle auf das zugehörige Fenster. Danach als \textit{unsigned int (UINT)} wird die Nachricht übergeben. Diese Nachrichten sind in \textit{WINUSER.H} deklariert und habe den Präfix \textit{WM} für "`Window Message"'. Zum Beispiel wird ein Mausklick in das Fenster gemacht, schickt Windows eine Nachricht an das Fenster(durch \textit{hwnd} angegeben) mit der Nachricht \textit{WM\_RBUTTONDOWN}.
+Jede Nachricht hat als ersten Parameter ein Handle auf das zugehörige Fenster. Danach wird als zweiter Parameter ein \textit{unsigned int (UINT)} übergeben, welches als ID der jeweiligen Nachricht zu verstehen ist. Diese Nachrichten sind in \textit{WINUSER.H} deklariert und habe den Präfix \textit{WM}, welches für "`Window Message"' steht. Zum Beispiel wird ein Mausklick einem Fenster ausgelöst, sendet Windows eine Nachricht an das Fenster(durch \textit{hwnd} angegeben) mit der Nachricht \textit{WM\_RBUTTONDOWN}.\\
 
-\paragraph{}
-\textit{wParam} und \textit{lParam} sind 32-Bit Nachrichtenparametern, abhängig vor der jeweiligen Nachricht. Wird zum Beispiel auf eine Schaltfläche gedrückt, wird die \textit{WM\_COMMAND} Nachricht verschickt. Damit die Anwendung genau erkennen was für eine Aktion ausgeführt worden ist, wird in \textit{wParam} noch zwei weitere Angaben mitgeschickt. In die oberen 16-Bits wird die Notifikation \textit{BN\_CLICKED} verschickt. Dies deutet an, dass ein Schaltfläche geklickt worden ist. In den unteren 16-Bits von \textit{wParam} wird die Identifikationsnummer(nach den obigen Beispiel: ID\_Schaltfläche) der Schaltfläche mitgeschickt. Mit diesen Informationen kann ein Programm genau auf die vom Benutzer ausgelöste Events reagieren. Beider 16-Bit Werte werden mit Hilfe der Makros \textit{HIWORD} \footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms632657(v=vs.85).aspx; 27.08.2013} und \textit{LOWORD} \footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms632659(v=vs.85).aspx; 27.08.2013}.
+Die Parameter \textit{wParam} und \textit{lParam} sind 32-Bit Nachrichtenparametern, abhängig von der jeweiligen Nachricht. Wird zum Beispiel auf eine Schaltfläche gedrückt, wird die \textit{WM\_COMMAND} Nachricht verschickt. Damit die Anwendung genau erkennen kann welche Aktion ausgeführt worden ist, wird in \textit{wParam} noch eine zwei Angabe mitgeschickt. In den oberen 16-Bits wird die Notifikation \textit{BN\_CLICKED} verschickt. Dies deutet an, dass ein Schaltfläche geklickt worden ist. In den unteren 16-Bits von \textit{wParam} wird die Identifikationsnummer(nach den obigen Beispiel: ID\_Schaltfläche) der Schaltfläche mitgeschickt. Mit diesen Informationen kann ein Programm genau auf die vom Benutzer ausgelösten Events reagieren. Beide 16-Bit Werte werden mit Hilfe der Makros \textit{HIWORD} \footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms632657(v=vs.85).aspx; 27.08.2013} und \textit{LOWORD} \footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms632659(v=vs.85).aspx; 27.08.2013} ausgewertet.\\
 
-\paragraph{}
-Der Parameter \textit{time} gibt die Uhrzeit wann die Nachricht verschickt worden ist und der Parameter \textit{pt} ist eine \textit{POINT} Struktur, wo die X und Y Koordinaten des Mausklicks gespeichert sind.
-
-\paragraph{}
+Der Parameter \textit{time} gibt die Uhrzeit an, wann die Nachricht verschickt worden ist. Der Parameter \textit{pt} ist eine \textit{POINT} Struktur, wo die X und Y Koordinaten des Mausklicks gespeichert sind. Mit diesen Informationen erkennt das Fenster welche Schaltfläche betätigt wurde.
+\\\\
 Eine Nachrichten Schleife ist standardmäßig so aufgebaut:
 
 \begin{tabular}{llll}
@@ -309,18 +303,17 @@ while & (GetMessage (\&msg, NULL, 0, 0))\\
 \}\\
 \end{tabular}
 
-\paragraph{}
-Die \textit{GetMessage} Funktion speichert in der \textit{msg} Struktur die aktuelle Nachricht. Die drei andere Parameter spezifizieren, dass alle Nachrichten(von der jeweilige Anwendung) in die Schleife geschrieben werden. Die Funktion liefert immer ein Wert ungleich Null, außer wenn die Nachricht \textit{WM\_QUIT} lautet, denn damit wird die Schleife verlassen und das Programm beendet.
-
-\paragraph{}
-\textit{TranslateMessage} gibt die Nachricht an das Betriebssystem weiter und übersetzt die virtuelle Tasten Nachrichten auf tatsächliche Charakteren. Die \textit{DispachtMessage} Funktion gibt die an Windows weiter. Gemeint ist, dass Windows die richtige Fensterprozedur (\textit{WndProc} wird später erklärt)aufruft. Wenn die Fensterprozedur die Nachricht bearbeitet hat, gibt die Nachricht wieder an Windows. Windows gibt die bearbeitete Nachricht weiter an die jeweilige Anwendung und so kann die Schleife die nächste Nachricht laden und bearbeiten.
+Die \textit{GetMessage} Funktion speichert in der \textit{msg} Struktur die aktuelle Nachricht. Die drei anderen Parameter spezifizieren, dass alle Nachrichten(von der jeweilige Anwendung) in die Schleife geschrieben werden. Die Funktion liefert immer ein Wert ungleich Null, außer wenn die Nachricht \textit{WM\_QUIT} lautet, denn damit wird die Schleife verlassen und das Programm beendet.
+\\
+Die Funktion \textit{TranslateMessage} gibt die Nachricht an das Betriebssystem weiter und übersetzt die virtuellen Tasten-Nachrichten auf tatsächliche Zeichen\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms644955(v=vs.85).aspx; 27.08.2013}. Die \textit{DispachtMessage} Funktion gibt die Nachricht an Windows weiter, dabei wird die richtige Fensterprozedur (\textit{WndProc} wird später erklärt)aufgerufen. Wenn die Fensterprozedur die Nachricht bearbeitet hat, wird die Nachricht zurück an Windows gesendet.  Danach gibt Windows die bearbeitete Nachricht weiter an die jeweilige Anwendung und so kann die Schleife die nächste Nachricht laden und bearbeiten.
 
 
 
 %----------------------------------------------------------------------------------------------
 \subsubsection{Fensterprozedur: WndProc Funktion}
 \paragraph{}
-Unter der Initialisierung und Erzeugung der GUI wurde die Fensterprozedur schon einmal erwähnt. In dieser Variable ist der Name der Funktion, die die Nachrichten eines Fensters bearbeitet. Das heißt, wird eine Fensterstruktur als \textit{WNDCLASS wc} deklariert, und der Parameter \textit{WNDPROC lpfnWndProc} folgendermaßen initialisiert \textit{wc.lpfnWndProc = WndProc;} muss die Fensterprozedur für dieses Fenster \textit{WndProc} heißen. Wie die Fensterprozedur heißt ist irrelevant, solange die Namen in der Fensterklasse und die Prozedur übereinstimmen, somit sind Fenster und Prozedur verbunden. Eine Fensterprozedur ist immer so definiert:
+
+Im vorigen Unterkapitel ~\ref{Ini und Erzeugung} wurde die schon einmal Fensterprozedur erwähnt, aber noch nicht detailliert auf sie eingegangen, in diesem Kapitel wird nun näher auf deren Eigenschaften und dessen Funktionen eingegangen. Der Name der Funktion kann wie eine Variable gehandhabt werden. In dieser Variable sind die Nachrichten die das jeweilige Fenster bearbeitet. Das hat zur Folge, dass eine Fensterstruktur die als \textit{WNDCLASS wc} deklariert und mit den folgenden Parametern \textit{WNDPROC lpfnWndProc} initialisiert \textit{wc.lpfnWndProc = WndProc;} ist, muss die Fensterprozedur für dieses Fenster \textit{WndProc} heißen. Wie die Fensterprozedur heißt ist irrelevant, solange die Namen in der Fensterklasse und die Prozedur übereinstimmen, somit sind Fenster und Prozedur verbunden. Eine Fensterprozedur wird wie folgt definiert:
 
 \begin{tabular}{ll}
 LRESULT CALLBACK & WndProc(\\
@@ -330,19 +323,16 @@ LRESULT CALLBACK & WndProc(\\
 & LPARAM lParam);
 \end{tabular}
 
+Der Datentyp \textit{CALLBACK} ist schon aus den vorigen Kapiteln bekannt und \textit{LRESULT} ist eine Typdefinition vom Typ \textit{long}. Die vier Parameter der Funktion sind die gleichen wie die ersten vier Parameter bei einer \textit{MSG} Struktur. Falls ein Programm mehrere Fenster von der gleichen Fensterklasse hat, spezifiziert der erste Parameter welches Fenster(Handle) die Nachricht schickt. Programme rufen die Fensterprozedur in der Regel nicht auf, sondern Windows. Will ein Programm die Prozedur direkt aufrufen, dann wird die Funktion \textit{SendMessage} benutzt. Auf diese Methode wird im Folgenden drauf eingegangen.
+\\
 
+Eine selbst geschrieben Fensterprozedur hat den Vorteil, dass ein Programm auf die Event reagiert, auf die man reagieren möchte. Es müssen nicht alle Event programmiert werden. Um vorzubeugen, dass Nachrichten unbearbeitet bleiben, wird am Ende der selbstgeschriebenen Fensterprozedur die\textit{DefWindowProc} Funktion aufgerufen. Diese Methode bearbeitet alle mögliche Nachrichten und ist die default Fensterprozedur. Wenn diese Funktion nicht aufgerufen wird, werden grundlegende Funktionen in einer GUI nicht funktionieren.
+\\
 
-\paragraph{}
-Der Datentyp \textit{CALLBACK} ist schon bekannt, und \textit{LRESULT} ist eine Typdefinition von \textit{long}. Die vier Parameter der Funktion sind die gleichen wie die ersten vier Parameter bei eine \textit{MSG} Struktur. Falls ein Programm mehrere Fenster von der gleichen Fensterklasse hat, spezifiziert das erste Parameter welches Fenster(Handle) die Nachricht schickt. Programme rufen die Fensterprozedur in der Regel nicht auf, sondern Windows. Will ein Programm die Prozedur direkt aufrufen, dann wird die Funktion \textit{SendMessage}(wird später genauer erklärt) benutzt. 
+Die erste Nachricht die eine Fensterprozedur bekommt ist die \textit{WM\_CREATE} Nachricht. Hier baut der Programmierer alle GUI Elemente auf, mit Hilfe der \textit{CreateWindow} Funktion(Schaltfläche Beispiel). Eine zweite wichtige Nachricht ist die \textit{WM\_DESTROY} Nachricht. Diese Nachricht wird verschickt wenn der Benutzer ein Fenster schließen möchte. Der Programmierer ruft die \textit{PostQuitMessage(0)} Funktion auf und automatisch wird eine \textit{WM\_QUIT} Nachricht verschickt. Somit wird das Fenster geschlossen, die Message Loop verlassen und das Programm bzw. Fenster richtig beendet.
+\\
 
-\paragraph{}
-Der Sinn für eine von Programmierer geschriebene Fensterprozedur ist, dass ein Programm auf ein Event reagiert soll, wie der Programmierer es will. Programmierer programmieren in der Regel nicht alle Events. Damit eine Nachricht nicht unbearbeitet bleibt, wird immer am Ende der selbstgeschriebene Fensterprozedur die \textit{DefWindowProc} Funktion aufgerufen. Diese Methode bearbeitet alle mögliche Nachrichten und ist die default Fensterprozedur. Wenn der Programmierer diese Funktion nicht aufruft, werden grundlegende Funktionen einer GUI nicht funktionieren.
-
-\paragraph{}
-Die erste Nachricht die eine Fensterprozedur bekommt ist \textit{WM\_CREATE} Nachricht. Hier baut der Programmierer alle GUI Elemente auf, mithilfe der \textit{CreateWindow} Funktion(Schaltfläche Beispiel). Eine zweite sehr wichtige Nachricht ist \textit{WM\_DESTROY}. Die Nachricht wird verschickt wenn der Benutzer ein Fenster zu machen will. Der Programmierer ruft die \textit{PostQuitMessage(0)} Funktion auf und automatisch wird eine \textit{WM\_QUIT} Nachricht verschickt. Somit wird das Fenster geschlossen, die Message Loop verlassen und das Programm / Fenster richtig beendet.
-
-\paragraph{}
-Es gibt noch weitere Nachrichten, die der Programmierer "`manuell"' verschicken kann. Mit Hilfe der erwähnte \textit{SendMessage} \footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms644950(v=vs.85).aspx; 28.08.2013} Funktion. Die Funktion hat die gleichen Parameter wie eine Fensterprozedur. Durch das Handle wird angegeben an welches Fenster die Nachricht verschickt werden soll. Durch das zweite Parameter wird angegeben, welche Nachricht verschickt wird, und die letzten zwei sind extra Informationen der Nachricht(wenn nötig). Will der Programmierer im Ablauf des Programms zum Beispiel der Darstellungstext von unseren Schaltfläche ändern, wird die \textit{SendMessage} Funktion so aufgerufen:
+Es gibt noch weitere Nachrichten, die man "`manuell"' verschicken kann. Mit Hilfe der erwähnten Funktion \textit{SendMessage} \footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms644950(v=vs.85).aspx; 28.08.2013}. Die Funktion hat die gleichen Parameter wie eine Fensterprozedur. Durch das Handle wird angegeben, an welches Fenster die Nachricht verschickt werden soll. Durch den zweiten Parameter wird angegeben, welche Nachricht verschickt wird, und die letzten zwei sind Extrainformationen der Nachricht(wenn nötig). Möchte man im Ablauf des Programms zum Beispiel der Darstellungstext von unserer Schaltfläche ändern, wird die \textit{SendMessage} Funktion so aufgerufen:
 
 \begin{center}
 SendMessage(hwnd\_Schaltfläche, WM\_SETTEXT, 0, (lParam)"NeuerText");
@@ -351,16 +341,15 @@ SendMessage(hwnd\_Schaltfläche, WM\_SETTEXT, 0, (lParam)"NeuerText");
 %----------------------------------------------------------------------------------------------
 \subsection{Die RS-232 Schnittstelle und die Windows API}\label{COMWINAPI}
 \paragraph{}
-Über die Windows API hat man direkt Zugriff auf die RS-232 Schnittstelle. Zum verwalten der Schnittstelle und die Eigenschaften zu setzen gibt es verschiedene Datenstrukturen die man aufrufen und ändern muss, je nach Bedarf.
-
+Über die Windows API hat man direkt Zugriff auf die RS-232 Schnittstelle. Zum Verwalten der Schnittstelle und zum Setzen der Eigenschaften gibt es verschiedene Datenstrukturen, die man aufrufen und ändern muss je nach Bedarf.
 
 %----------------------------------------------------------------------------------------------
 \subsubsection{Öffnen und Schließen eines Ports}
 \paragraph{}
-Um Zugriff auf die Datenstrukturen zu haben, muss man zuerst eine RS-232 Schnittstelle (COM Port) öffnen. Durch die Funktion CreateFile\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/aa363858(v=vs.85).aspx; 25.08.2013} bekommt man ein Handle auf den angegeben Port. Ein Handle ist eine Referenzwert zu einer vom Betriebssystem verwalteten Systemressource, im diesem Fall eine im System vorhandene RS-232 Schnittstelle. Mit \textit{CreateFile} kann man auch Zugriff auf Dateien, Datenstreams und andere Kommunikationsressourcen bekommen. Das Handle muss gespeichert werden, denn damit wird der jeweiliger Port identifiziert und angesprochen für weitere Operationen. Durch die \textit{CreateFile} Funktion wird die Datei, oder im diesem Fall die Input / Output Schnittstelle für diese Anwendung reserviert. Das heißt, für das Betriebssystem und andere Anwendungen steht diese Schnittstelle nicht mehr zur Verfügung.
+Um Zugriff auf die Datenstrukturen zu bekommen, muss zuerst eine RS-232 Schnittstelle (COM Port) geöffnet. Durch die Funktion \textit{CreateFile}{http://msdn.microsoft.com/en-us/library/windows/desktop/aa363858(v=vs.85).aspx; 25.08.2013} bekommt man ein Handle auf den angegeben Port. Ein Handle ist eine Referenzwert zu einer vom Betriebssystem verwalteten Systemressource, in diesem Fall eine im System vorhandene RS-232 Schnittstelle. Mit \textit{CreateFile} kann man auch Zugriff auf Dateien, Datenstreams und andere Kommunikationsressourcen bekommen. Das Handle muss gespeichert werden, denn damit wird der jeweiliger Port identifiziert und angesprochen für weitere Operationen. Durch die \textit{CreateFile} Funktion wird die Datei oder in diesem Fall die Input / Output Schnittstelle für diese Anwendung reserviert. Das heißt, für das Betriebssystem und andere Anwendungen steht diese Schnittstelle nicht mehr zur Verfügung.
+\\
 
-\paragraph{}
-Um den richtigen Zugriff auf einen Port zu haben, muss auch die richtige Flags bei dem Aufruf der \textit{CreateFile} Funktion angegeben werden. Als Flags sind die folgende Parameter anzugeben:
+Um den richtigen Zugriff auf einen Port zu haben, müssen auch die richtigen Flags bei dem Aufruf der \textit{CreateFile} Funktion angegeben werden. Als Flags sind die folgende Parameter anzugeben:
 \begin{itemize}
 \item Schreib und Leserechte
 \item Non-Sharing Modus
@@ -368,60 +357,40 @@ Um den richtigen Zugriff auf einen Port zu haben, muss auch die richtige Flags b
 \item Asynchron Modus
 \end{itemize}
 
-
-\paragraph{}
-Um ein Programm "`sauber"' zu beenden müssen offene Handles geschlossen werden. Durch die Funktion \textit{CloseHandle}\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms724211(v=vs.85).aspx; 25.08.2013} mit Angabe eines gültiges Handles wird dieses geschlossen, und steht für das Betriebssystem und andere Anwendungen wieder zur Verfügung.
+Um ein Programm "`sauber"' zu beenden, müssen offene Handles geschlossen werden. Durch die Funktion \textit{CloseHandle}\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms724211(v=vs.85).aspx; 25.08.2013} mit Angabe eines gültiges Handles wird dieses geschlossen und steht für das Betriebssystem und andere Anwendungen wieder zur Verfügung.
 
 
 %----------------------------------------------------------------------------------------------
 \subsubsection{Konfiguration eines Ports}
 \paragraph{}
 Es gibt drei wichtige Strukturen, die für die Konfiguration einer COM Schnittstelle relevant sind. Mittels dieser Strukturen werden die Eigenschaften, einstellbare Parameter und Wartezeiten einer Schnittstelle eingestellt.
+\\
 
-\paragraph{}
-Die \textit{DCB}\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/aa363214(v=vs.85).aspx; 28.08.2013} Struktur definiert die Ansteuerungseigenschaften für die Schnittstelle. Um die Struktur für eine angegebene Schnittstelle zu laden, wird die Funktion \textit{GetCommState} aufgerufen. Diese Struktur besteht aus 28 verschiedene Variablen die ich nicht einzeln benennen werde. Diese Variablen beschreiben wie die Schnittstelle konfiguriert ist. Man kann die Baudrate, Parität, Stopbits, Datenbits, Flusssteuerung und Fehlerbenachrichtigung einstellen.
+Die \textit{DCB}\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/aa363214(v=vs.85).aspx; 28.08.2013} Struktur definiert die Ansteuerungseigenschaften für die Schnittstelle. Um die Struktur für eine angegebene Schnittstelle zu laden, wird die Funktion \textit{GetCommState} aufgerufen. Diese Struktur besteht aus 28 verschiedene Variablen. Diese Variablen beschreiben wie die Schnittstelle konfiguriert ist. Man kann die Baudrate, Parität, Stopbits, Datenbits, Flusssteuerung und Fehlerbenachrichtigung einstellen.
+\\
 
-\paragraph{}
-Um die Schnittstelle richtig einzustellen und keine falsche Eingaben in die \textit{DCB} Struktur zu schreiben, ist es sinnvoll vorher die \textit{COMMPROP} \footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/aa363189(v=vs.85).aspx; 28.08.2013} Struktur zu auswerten. Durch die Funktion \textit{GetCommProperties} wird die Struktur für die angegebene Schnittstelle geladen. Diese Struktur besteht aus 18 Variablen und beschreibt die mögliche Einstellung für die Schnittstelle. Die Einstellungen werden aus dem Treiber der jeweiliger Schnittstelle(Onboard Ports, Sunix, Intel SOL oder ITE) gelesen. Die für diese Arbeit relevanter Parameter ist die maximale einstellbare Baudrate.
+Um die Schnittstelle richtig einzustellen und keine falsche Eingaben in die \textit{DCB} Struktur zu schreiben, ist es sinnvoll vorher die \textit{COMMPROP} \footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/aa363189(v=vs.85).aspx; 28.08.2013} Struktur auszuwerten. Durch die Funktion \textit{GetCommProperties} wird die Struktur für die angegebene Schnittstelle geladen. Diese Struktur besteht aus 18 Variablen und beschreibt die möglichen Einstellungen für diese Schnittstelle. Die Einstellungen werden aus dem Treiber der jeweiliger Schnittstelle(Onboard Ports, Sunix, Intel SOL oder ITE) gelesen. Die für diese Arbeit relevanten Parameter ist die maximale einstellbare Baudrate.
 %wSettableStopParity
 %dwSettableParams
+\\
 
-
-\paragraph{}
-Während der Übertragung von Daten über eine Serielleschnittstelle sind maximale Wartezeiten fällig. Dieses Werte entstehen durch die Übertragungslänge und die eingestellte Baudrate. Auch die Wartezeit zwischen zwei ankommende Bytes ist wichtig um das Ende der Übertragung zu bestimmen. Diese Werte sollten dynamisch berechnet werden und danach in die Schnittstelle eingestellt werden. Dafür ist die \textit{COMMTIMEOUTS} \footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/aa363190(v=vs.85).aspx; 28.08.2013} Struktur zuständig. Die Struktur besteht aus fünf Variablen die die Wartezeiten in Millisekunden angeben. Die erste Variable beschreibt die Zeitüberschreitung zwischen zwei ankommende Bytes, wird dieser Wert überschritten, so wird die Leseoperation beendet.
-
-\paragraph{}
-Der zweite und vierte Parameter(jeweils für Lesen und Schreiben) beschreiben die Zeit, die für die Übertragung aller Bytes nötig ist(für die aktuelle Schreibe- oder Leseoperation). Diese Parametern sind von der Baudrate und die Bitlänge eines Charakters. Damit ist gemeint, wie unter 3.1.2 erläutert, ein Charakter kann aus 8 Bits plus Startbit, Stopbit und Parität bestehen. Also werden nicht genau 8 Bits(1 Byte) per Charakter, sondern oft mehr (11 Bits zum Beispiel) übertragen. Die Wartezeit wird durch die folgende Formel berechnet.
+Während der Übertragung von Daten über eine serielle Schnittstelle sind maximale Wartezeiten fällig. Dieses Werte entstehen durch die Übertragungslänge und der eingestellten Baudrate. Auch die Wartezeit zwischen zwei ankommenden Bytes ist wichtig um das Ende der Übertragung bestimmen zu können. Diese Werte sollten dynamisch berechnet werden und danach in die Schnittstelle eingestellt werden. Dafür ist die \textit{COMMTIMEOUTS} \footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/aa363190(v=vs.85).aspx; 28.08.2013} Struktur zuständig. Die Struktur besteht aus fünf Variablen, die die Wartezeiten in Millisekunden angeben. Die erste Variable beschreibt die Zeitüberschreitung zwischen zwei ankommende Bytes, wird dieser Wert überschritten, so wird die Leseoperation beendet. Der zweite und vierte Parameter(jeweils für Lesen und Schreiben) beschreiben die Zeit, die für die Übertragung aller Bytes nötig ist(für die aktuelle Schreibe- oder Leseoperation). Diese Parametern sind von der Baudrate und der Bitlänge eines Zeichens abhängig. Damit ist gemeint, wie unter 3.1.2 erläutert, ein Zeichen kann aus 8 Bits plus Startbit, Stopbit und Parität bestehen. Also werden nicht genau 8 Bits(1 Byte) per Charakter, sondern oft mehr (11 Bits zum Beispiel) übertragen. Die Wartezeit wird durch die folgende Formel berechnet:
 
 \begin{center}
 $ Wartezeit = \frac{Anzahl der Bits}{Baudrate} \times 1.1$
 \end{center}
 
-\paragraph{}
 In der Formel wird mal 1.1 multipliziert um eine 10\% Kulanz zu haben. Der dritte und fünfte Parameter sind eine extra Wartezeit, für jeweils Lesen und Schreiben, die zu der gesamte berechnete Wartezeit pro Lese-/Schreibvorgang addiert wird. Falls der berechnete Wert unter zehn Millisekunden ist, wird dieser auf zehn Millisekunden gesetzt.
+\\
 
-
-\paragraph{}
-Wenn ein Port geöffnet wird, muss der Programmierer die Art der Kommunikation angeben. Die Kommunikation zwischen die Schnittstellen kann synchron(nonoverlapped) oder asynchron(overlapped) erfolgen. Für diese Arbeit habe ich mich für asynchrone Kommunikation entschieden. Dieser Art der Kommunikation ist etwa komplexer, bietet aber mehr Flexibilität und Effizienz.
+Wenn ein Port geöffnet wird, muss die Art der Kommunikation angeben werden. Die Kommunikation zwischen den Schnittstellen kann synchron(nonoverlapped) oder asynchron(overlapped) erfolgen. Für diese Arbeit habe ich mich für asynchrone Kommunikation entschieden. Dieser Art der Kommunikation ist etwas komplexer, bietet aber mehr Flexibilität und Effizienz.
 
 
 
 %----------------------------------------------------------------------------------------------
 \subsubsection{Lesen und Schreiben}
 \paragraph{}
-Nach dem ein Port konfiguriert ist, wie es nötig ist, kann man dieses Port benutzen um Informationen zu schicken oder empfangen. Um in einem Port zu schreiben oder aus einem Port zu lesen gibt es jeweils eine Funktion. Um im einem Port zu schreiben wird die Funktion \textit{WriteFile}\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/aa365747(v=vs.85).aspx; 28.08..2013}. Die Funktion benötigt als erster Parameter das Handle auf das geöffnete Port. Als zweites muss angegeben werden, welche Information geschrieben werden soll und die Größe dieser Information in Bytes. Als optionale Parameter kann man ein Zeiger wo die Menge der geschriebene Bytes geschrieben wird und ein Zeiger zu einer \textit{OVERLAPPED} Struktur. Die Kommunikation zwischen Ports in dieser Arbeit ist Asynchron, deswegen wird hier eine Zeiger auf eine Struktur gegeben.
+Nachdem ein Port konfiguriert ist, wie es nötig ist, kann man diesen Port benutzen um Informationen zu schicken oder zu empfangen. Um in einen Port schreiben oder aus einem Port lesen zu können  werden zwei verschiedene Funktionen benötigt. Um in einen Port zu schreiben wird die Funktion \textit{WriteFile}\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/aa365747(v=vs.85).aspx; 28.08..2013} benötigt. Diese Funktion benötigt als ersten Parameter das Handle auf den geöffnete Port. Als zweiten muss angegeben werden, welche Information geschrieben werden soll und die Größe dieser Information in Bytes. Als optionale Parameter kann man einen Zeiger wo die Menge der geschriebene Bytes geschrieben wird und ein Zeiger zu einer \textit{OVERLAPPED} Struktur übergeben. Die Kommunikation zwischen Ports in dieser Arbeit ist Asynchron, deswegen wird hier eine Zeiger auf eine Struktur übergeben.
+\\
 
-\paragraph{}
-Das Lesen aus einem Port geschieht sehr ähnlich wie das Schreiben.Die Funktion dafür heißt \textit{ReadFile}\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/aa365467(v=vs.85).aspx; 28.08.2013}. Die Lesefunktion brauch genau die gleichen Parameter wie die Schreibfunktion. Da die Lese und Schreibvorgange sehr ähnlich sind, ist der Aufbau beider Funktionsaufrufe auch ähnlich.
-
-\paragraph{}
-Um aus einem Port zu lesen oder schreiben muss zuerst eine \textit{OVERLAPPED} Struktur deklariert werden. Somit sichern wir, dass die Kommunikation asynchron ist. Danach muss in der Struktur der Parameter \textit{hEvent} initialisiert werden. Dieser Parameter ist ein Handle auf ein Event. Ein Event im diesem Fall ist der Schreibe oder Lesevorgang. Durch dieses Event kann der Status von der Vorgang abgefragt werden. Als erstes wird die jeweilige Lese oder Schreibfunktion aufgerufen. Wenn dieser Vorgang erfolgreich war, muss der Status abgefragt werden, um sicher zu sein, dass der Vorgang vollständig ist.
- 
-\paragraph{}
-Im Fall, dass sich das Schreiben oder Lesen noch verzögert, muss auf das beenden des Events gewartet werden. Zuerst muss der Programmierer Abfragen, ob ein Fehler entstanden ist. Wenn der Fehler \textit{ERROR\_IO\_PENDING} muss das Programm noch warten, sonst ist ein anderer Fehler entstanden. Um an das Beenden eines Events zu warten und reagieren, wird die Funktion \textit{WaitForSingleObject}\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms687032(v=vs.85).aspx; 28.08.2013} aufgerufen. Diese Funktion wartet bis das angegebene Event(lesen oder schreiben) sein Status ändert oder eine bestimmte Zeit abläuft. Diese Zeit ist der Timeout was vorher berechnet worden ist.
- 
-\paragraph{}
-Wenn die Zeit abläuft, wir ein Timeout Fehler angegeben. Das heißt, das Programm muss noch warten. Ändert sich der Status des Events, bevor die Zeit abläuft wird mittels der Funktion \textit{GetOverlappedResult}\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms683209(v=vs.85).aspx; 28.08.2013} das Event noch abgefragt. Dieser Funktion müssen das Handle des Ports, sowie die \textit{OVERLAPPED} Struktur und die Anzahl an Bytes die transferiert werden sollten, angeben. Wenn diese Funktion keine Fehler meldet, dann wurde der jeweilige Vorgang erfolgreich abgeschlossen.
-
-\paragraph{}
-Im Fall eines Schreibvorgang, muss der Programmierer sicherstellen, dass alle Bytes geschrieben worden sind. Ist es ein Lesevorgang, muss sicher gestellt werden, dass die komplette Information angekommen ist, bevor gelesen wird. Es kann daher zu Timeout Fehler kommen. Um solche Fehler nicht als Abbruchbedingung zu melden, wird nach Vereinbarung mit dem Auftragsteller, fünf mal versucht, fertig zu lesen oder schreiben. Wenn danach der Fehlern noch vorliegt, wird dieser gemeldet.
+Das Lesen aus einem Port geschieht sehr ähnlich. Die Funktion dafür heißt \textit{ReadFile}\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/aa365467(v=vs.85).aspx; 28.08.2013}. Die Lesefunktion benötigt genau die gleichen Parameter wie die Schreibfunktion. Da die Lese und Schreibvorgänge sehr ähnlich sind, ist der Aufbau beider Funktionsaufrufe auch ähnlich. Um aus einem Port zu lesen oder schreiben muss zuerst eine \textit{OVERLAPPED} Struktur deklariert werden. Somit versichern wir uns, dass die Kommunikation asynchron ist. Danach muss in der Struktur der Parameter \textit{hEvent} initialisiert werden. Dieser Parameter ist ein Handle auf ein Event. Ein Event in diesem Fall ist der Schreibe- oder Lesevorgang. Durch dieses Event kann der Status von dem Vorgang abgefragt werden. Als erstes wird die jeweilige Lese- oder Schreibfunktion aufgerufen. Wenn dieser Vorgang erfolgreich war, muss der Status abgefragt werden, um sicher zu sein, dass der Vorgang vollständig ist. Im Fall, dass sich das Schreiben oder Lesen noch verzögert, muss auf die Beendigung des Events gewartet werden. Zuerst muss abgefragt werden, ob ein Fehler entstanden ist. Wenn der Fehler \textit{ERROR\_IO\_PENDING} heißt muss das Programm noch warten, sonst ist ein anderer Fehler entstanden. Um auf das Beenden eines Events zu warten und zu reagieren, wird die Funktion \textit{WaitForSingleObject}\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms687032(v=vs.85).aspx; 28.08.2013} aufgerufen. Diese Funktion wartet bis das angegebene Event(lesen oder schreiben) sein Status ändert oder nach einer bestimmten Zeit abläuft. Diese Zeit ist der Timeout, welcher vorher berechnet wurde. Wenn die Zeit abgelaufen ist, wir ein Timeout Fehler ausgegeben. Das heißt, das Programm muss noch warten. Ändert sich der Status des Events, bevor die Zeit abläuft wird mittels der Funktion \textit{GetOverlappedResult}\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/ms683209(v=vs.85).aspx; 28.08.2013} das Event noch abgefragt. Diese Funktion muss das Handle des Ports, sowie die \textit{OVERLAPPED} Struktur und die Anzahl an Bytes die transferiert werden sollten, angeben. Wenn diese Funktion keine Fehler meldet, dann wurde der jeweilige Vorgang erfolgreich abgeschlossen. Im Fall eines Schreibvorgang, muss sichergestellt werden, dass alle Bytes geschrieben worden sind. Wird ein Lesevorgang durchgeführt, muss sicher gestellt werden, dass die komplette Information angekommen ist, bevor gelesen wird. Es kann daher zu Timeout Fehler kommen. Um solche Fehler nicht als Abbruchbedingung zu melden, wird nach einer Vereinbarung mit dem Auftragsgeber, fünf mal versucht die Zeichen zu lesen oder zu schreiben. Wenn danach der Fehlern noch vorliegt, wird dieser gemeldet.

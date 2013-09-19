@@ -44,26 +44,23 @@ Linux - Distributionen werden vom Programm nicht unterstützt.
 \paragraph{}
 Alle Ereignisse und Testschritte können zu Dokumentations- und Analysezwecken in einer Log-Datei gespeichert werden. Auch Fehler, die der Parser in der Test-Datei(.ini) findet, werden in der Log-Datei eingetragen. Der Name der Log-Datei ist für jede Instanz und jedes Testsystem eindeutig zu wählen, wie im folgenden Beispiel zu sehen ist:
 \\
-\\ \hspace*{10mm}<Programmname>\_<Computername>\_<Master/Slave>\_<Port>.csv
+\\ \hspace*{10mm}\textit{<Programmname>\_<Computername>\_<Master/Slave>\_<Port>.csv}
 
-\paragraph{}
+
 Jeder Eintrag bekommt einen Uhrzeit und Datums-Stempel. Eine Zeile sieht dann wie folgt aus:
 \\
-\\ \hspace*{10mm} <Datum>; <Uhrzeit>;<Ereignis>;<Wert>;<Kommentar>
+\\ \hspace*{10mm} \textit{<Datum>; <Uhrzeit>;<Ereignis>;<Wert>;<Kommentar>}
 
-\paragraph{}
+
 Die ersten beiden  Einträge der Log-Datei:
 \\
-\\ \hspace*{10mm} <Datum>; <Uhrzeit>;START;RS232-Port-Nummer; INI-Dateiname als Kommentar
+\\ \hspace*{10mm} \textit{<Datum>; <Uhrzeit>;START;RS232-Port-Nummer; INI-Dateiname als Kommentar}
 
 
 
 \section{Programminstanzen}
 \paragraph{}
 Das Programm kann in mehrfachen Programm-Instanzen gestartet werden, in der Regel läuft bei umfangreichen Tests für jeden zu testenden RS-232-Port eine Programm-Instanz. Das vermeidet aufwändige Thread-Programmierung eines einzigen Programms für alle Ports. Das ist keine feste Vorgabe, der Entwickler kann entscheiden welcher Lösungsweg  als geeignet befindet.
-
-\textbf{würde ich nochmal umschreiben zu umgangssprachlich -> alt...} Das ist keine feste Vorgabe, sollte sich Thread-Programmierung als einfacher erweisen, dann sollte es auch benutzt werden.
-
 
 \section{Master / Slave}
 \paragraph{}
@@ -90,15 +87,16 @@ Die Master-Instanz übernimmt die Steuerung des Ablaufes, der Slave antwortet de
 \begin{center}
 BAUD = 9600 - 115200
 \end{center}
-\paragraph{}
-Hier werden die Baudrate von 9600 bis 115200 für den Test berücksichtigt, aber 2400, 300, etc. weiter nicht. Wenn mehrere Parameter flexibel gesetzt / programmiert sind, werden alle Kombinationen getestet. Das kann dann durchaus eine nicht unerhebliche Testzeit beanspruchen.
-\paragraph{}
+
+
+Hier werden die Baudrate von 9600 bis 115200 für den Test berücksichtigt, aber 2400, 300, etc. weiter nicht. Wenn mehrere Parameter flexibel gesetzt / programmiert sind, werden alle Kombinationen getestet. Das kann dann durchaus eine nicht unerhebliche Testzeit beanspruchen.\\
+
 Die Programminstanz öffnet die zugehörige Schnittstelle automatisch mit der ersten von allen der programmierten Optionen (Baudrate, Parität, etc.) und startet dann einen Testdurchlauf mit diesen Einstellungen. Wenn alle Daten fehlerfrei gesendet und danach auch das Echo fehlerfrei empfangen wurden,  wird der Port geschlossen, mit der nächsten Kombination geöffnet und wieder Daten gesendet und empfangen. Wenn Fehler (Parität, Offline, etc.) vom Master erkannt oder vom Slave gesendet wurden, dann wird der letzte Schritt wiederholt. Jedes Lese- oder Schreibvorgang wird fünf mal versucht. Wenn der aktuelle Test schon die x-te Fehler-Wiederholung war, dann stoppt das Programm und zeigt den Fehler an. Dieser Fehler-Zustand darf durch das Programm nicht verändert werden. Der Tester / Entwickler muss die Fehler analysieren.
 
 \subsection{Synchronisierungsprotokoll}
 \paragraph{}
-Für den Wobbelmodus ist ein minimales Protokoll zur Synchronisation nötig. Wenn eine Programminstanz als Master gestartet wird, erhält sie die nötigen Schnittstellenparameter per GUI oder aus der Konfigurationsdatei. Sie sendet diese in From eines Konfigurationspakets dem Slave. Solche Konfigurationspakete werden immer mit den Standardschnittstellenparametern (96,o,8,1) gesendet. Der Slave synchronisiert sich dann, d.h. programmiert -per WIN-API- seinen zu testenden Port mit den empfangenen Parametern und wartet auf Nutzdaten.
-\paragraph{}
+Für den Wobbelmodus ist ein minimales Protokoll zur Synchronisation nötig. Wenn eine Programminstanz als Master gestartet wird, erhält sie die nötigen Schnittstellenparameter per GUI oder aus der Konfigurationsdatei. Sie sendet diese in From eines Konfigurationspakets dem Slave. Solche Konfigurationspakete werden immer mit den Standardschnittstellenparametern (96,o,8,1) gesendet. Der Slave synchronisiert sich dann, d.h. programmiert -per WIN-API- seinen zu testenden Port mit den empfangenen Parametern und wartet auf Nutzdaten.\\
+
 Wenn der erste Test erfolgreich war (Master hat gesendet und der Slave hat ein Echo geschickt), dann schickt der Master an den Slave die Parameter des nächsten Testschritts. Das ist nötig, weil im Fehlerfall (Echo fehlerhaft empfangen) der Slave nicht mehr synchron wäre, er weiß nur ob seine Daten fehlerfrei gesendet wurden, aber nicht ob der Empfang richtig angekommen ist. Der Slave kann so einfach nur mit Standard-Parametern gestartet werden und folgt dann dem Master.
 
 
@@ -157,7 +155,7 @@ Folgende Werte sollen für den Benutzer einstellbar sein:
 \item Stopbits
 \item Flusssteuerung
 \end{itemize}
-\paragraph{}
+
 Das Programm kann hier mit Variablen MIN und MAX umgehen. Wenn beispielsweise die Zeile „BAUDRATE = MAX“ oder „BAUDRATE = MIN“  programmiert wurde,  sucht das Programm die maximale bzw. minimale Baudrate, die angegebene RS-232-Port unterstützt und nutzt sie für den Test. Diese Werte werden aus „dem System“ –beispielsweise Registry oder  MSPORTS.DLL direkt ausgelesen. Manuell können diese MIN/MAX-Werte über den Gerätemanager ermittelt werden. Wenn keine Parameter übergeben wurden, startet das Programm mit diesen Standardparametern: 9600,odd,8,1,RTS/CTS (von der Wincor Nixdorf Anzeige BA66).
 
 \paragraph{}
@@ -186,7 +184,7 @@ Folgende mögliche Fehlerfälle muss ein solches Tool erkennen:
 \item Dauerhaft gezogene Kabel / Kurzschlussstecker
 \item Windows-interne Ressourcenprobleme (Shared Interrupts)
 \end{itemize} 
-\paragraph{}
+
 Bei Erkennung eines Übertragungsfehlers wird dieser in die Logdatei eingetragen und / oder auf der Konsole angezeigt und danach der letzte Block wiederholt. Nach der x-ten erfolglosen Wiederholung (Wert aus Test-Datei) erfolgt Testabbruch
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -196,11 +194,11 @@ Bei Erkennung eines Übertragungsfehlers wird dieser in die Logdatei eingetragen
 \section{Neue Anforderungen}
 \subsection{Logbuch}
 \paragraph{}
-Der Name der Logdatei soll im eine Nummer erweitert werden. Wenn eine Logdatei auf das Zielsystem schon vorhanden sein, wird die Nummer hochgezählt.\\
+Der Name der Logdatei soll um eine ID-Nummer erweitert werden. Wenn eine Logdatei auf dem Zielsystem schon vorhanden ist, wird diese Nummer hochgezählt.\\
 
-\hspace*{10mm}<Programmname>\_<Computername>\_<Master/Slave>\_<Port>\_<Nummer>.ini
+\hspace*{10mm}\textit{<Programmname>\_<Computername>\_<Master/Slave>\_<Port>\_<Nummer>.ini}
 
-Wenn der Test direkt über GUI-Optionen konfiguriert wurde, dann werden diese Werte in eine INI-Datei vor dem Teststart gesichert und diese in der Logdatei eingetragen.
+Wenn der Test direkt über die GUI konfiguriert wurde, dann werden diese Werte in einer INI-Datei vor dem Teststart gesichert und diese in die Logdatei eingetragen.
 
 \subsection{Synchronisierungsprotokoll}
 \paragraph{}
@@ -209,4 +207,4 @@ Das erste solcher Konfigurationspakete wird immer mit den Standardschnittstellen
 
 \subsection{Anhalten eines Tests}
 \paragraph{}
-Will der Benutzer ein Test vorzeitig beenden, gibt es eine Schaltfläche auf der GUI die der Test anhaltet. Wird per Kommandozeile das Programm ausgeführt, kann der Benutzer durch das drücken der "`ESC"' Taste ein Test stoppen.
+Möchte der Benutzer ein Test vorzeitig beenden, gibt es eine Schaltfläche in der GUI die den Test anhält. Wird per Kommandozeile das Programm ausgeführt, kann der Benutzer durch drücken der "`ESC"' Taste ein Test stoppen.

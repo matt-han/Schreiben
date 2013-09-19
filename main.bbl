@@ -1,0 +1,31 @@
+\begin{thebibliography}{Cam94}
+
+\bibitem[Cam90]{V24/RS232}
+Joe Campbell.
+\newblock {\em V 24 / RS-232 Kommunikation}.
+\newblock Sybex-Verlag GmbH, 1990.
+
+\bibitem[Cam94]{CProgrammersGuide}
+Joe Campbell.
+\newblock {\em C Programmers Guide to Serial Communications}.
+\newblock SAMS Publishing, 1994.
+
+\bibitem[Lou10]{VisualC++}
+Dirk Louis.
+\newblock {\em Visual C++ 2010}.
+\newblock Addison-Wesley, 2010.
+
+\bibitem[Mic95]{SerialCommunications}
+Microsoft, \url{http://msdn.microsoft.com/en-us/library/ff802693.aspx}.
+\newblock {\em Serial Communications}, 1995.
+
+\bibitem[Pet98]{ProgrammingWindows}
+Charles Petzold.
+\newblock {\em Programming Windows}.
+\newblock Microsoft Press, 1998.
+
+\bibitem[Wik13]{RS232}
+Wikipedia, http://de.wikipedia.org/wiki/RS-232.
+\newblock {\em RS-232}, 2013.
+
+\end{thebibliography}
