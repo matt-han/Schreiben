@@ -1,14 +1,12 @@
 \chapter{Lösungsansätze}\label{chp:loesungsansaetze}
-Nach der Beschreibung des fachlichen Umfeldes können ausgewählte (vielleicht alle?) für die Aufgabenstellung relevanten Probleme vorgestellt, Vor- und Nachteile bestehender Lösungen argumentiert und die voraussichtlich angestrebte (weil vorteilhafte) Lösung herausgestellt werden.
-
 
 \section{Fehlererkennung}
 \paragraph{}
-Das Ziel des COM-Por-Test-Tools ist Fehler in der Hardware beziehungsweise in der Kommunikation zu erkennen. Damit dieses Ziel erreicht wird, muss die Ermittlung eines Fehlers äußerst genau geschehen. So muss jeden Funktionsaufruf und Kommunikationsvorgang immer abgefragt werden. Bei jeder Abfrage müssen die Fehler ausgewertet und gemeldet werden. Nur so erfüllt das Testprogramm sein Zweck. Die Herausforderung wird darin bestehen, die Fehler genau zu definieren und sie so zu melden, dass der Tester die Ursache sofort erkennt.
+Das Ziel des COM-Port-Test-Tools ist Fehler in der Hardware beziehungsweise in der Kommunikation zu erkennen. Damit dieses Ziel erreicht wird, muss die Ermittlung eines Fehlers äußerst genau geschehen. So muss jeder Funktionsaufruf und Kommunikationsvorgang immer abgefragt werden. Bei jeder Abfrage müssen die Fehler ausgewertet und gemeldet werden. Nur so erfüllt das Testprogramm seinen Zweck. Die Herausforderung wird darin bestehen, die Fehler genau zu definieren und sie so zu melden, dass der Tester die Ursache sofort erkennt.
 
 \section{Master Slave Modus zwischen zwei Systeme}
 \paragraph{}
-Die Synchronisierung zwischen zwei verschiedene BEETLE Systeme wird eine große Herausforderung darstellen. Dafür wird ein kleines Protokoll oder Handshake definieren. In diesem Vorgang muss der Master wissen, dass der Slave fertig eingestellt ist, und bereit für ein Datenverkehr ist. Dabei müssen beide Schnittstellen richtig eingestellt sein(Baudrate, Paritätbits, Stopbits, Datenbits, unter anderem).
+Die Synchronisierung zwischen zwei verschiedenen BEETLE Systeme wird eine große Herausforderung darstellen. Dafür wird ein kleines Protokoll oder Handshake definieren. In diesem Vorgang muss der Master wissen, dass der Slave fertig eingestellt ist und bereit für ein Datenverkehr ist. Dabei müssen beide Schnittstellen richtig eingestellt sein(Baudrate, Paritätbits, Stopbits, Datenbits, etc.).
 
 \paragraph{}
 Um das Protokoll oder Handshake zu definieren gibt es verschiedene Möglichkeiten. Darunter müssen als erstes die Timeouts beachtete werden. Der Master darf keine Senden, bevor der Slave nicht bereit ist, Daten zu empfangen. Sonst wurde der Master ein Lese-Timeout melden, weil er Daten schickt, aber keine empfängt. Im Gegensatz dazu, darf der Slave nicht Daten erwarten, so lange der Master nicht in der Lage ist, Daten zu schicken.

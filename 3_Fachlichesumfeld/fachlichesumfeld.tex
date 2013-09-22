@@ -1,9 +1,7 @@
 \chapter{Fachlichesumfeld}\label{chp:fachlichesumfeld}
+Die Quellen dieses Kapitel sind aus dem Wikipedia Artikel \cite{RS232}, aus der MSDN Online Bibliothek \cite{SerialCommunications}, aus den Büchern "`C Programmers Guide to Serial Communications"' \cite{CProgrammersGuide}, "`Programming Windows"' \cite{ProgrammingWindows}, "`Visual C++ 2010"'\cite{VisualC++} und "`V 24 / RS-232 Kommunikation"' \cite{V24/RS232}.\\
 
 \section{RS-232 (Radio Sector 232)}
-
-Die Quellen dieses Kapitel sind aus dem Wikipedia Artikel \cite{RS232}, aus den Büchern "`C Programmers Guide to Serial Communications"' \cite{CProgrammersGuide} und "`V 24 / RS-232 Kommunikation"' \cite{V24/RS232}.
-
 \paragraph{}
 Der RS-232 ist ein Standard der in den 60er Jahren von dem US-amerikanischen Standardisierungskomitee Electronic Industries Association(EIA) bearbeitet?? (entwickelt) und definiert wurde. Bei diesem Standard handelt es sich um eine serielle Schnittstelle, die für die serielle Kommunikation zwischen Rechnern und Modems für eine Punkt-zu-Punkt Verbindung (über Telefonleitungen) entwickelt wurde.
 
@@ -11,7 +9,6 @@ Der RS-232 ist ein Standard der in den 60er Jahren von dem US-amerikanischen Sta
 %#######################################################################################
 \subsection{Definition}
 \paragraph{}
-
 Der RS-232 Standard definiert eine Verbindung zwischen einer Datenendeinrichtung (DEE, zum Beispiel das Terminal) und einer Datenübertragungseinrichtung (DÜE, zum Beispiel einem Modem) und dessen Parameter. Unter den einzelnen Parametern sind folgende Eigenschaften zu verstehen:
 \begin{enumerate}
 \item Spannungspegel
@@ -25,19 +22,15 @@ Die Übertragung ist Bit-seriell, das heißt, die Bits werden hintereinander in 
 
 \subsection{Übertragung}
 \paragraph{}
-Das Startbit meldet dem Empfänger das die Übertragung anfängt. Die Start- und Stopbits haben inversen Pegeln. Ist eine Leitung im Ruhezustand oder hat die Stopbits erhalten, wird durch die Ankunft einer inversen Signalflanke der Empfänger aufmerksam gemacht, dass Nutzdaten ankommen werden. Bei der Ankunft eines Startbits tastet der Empfänger die Nutzdaten mit seiner Bitrate (Bits pro Sekunde) ab. Die Nutzdaten sind die Bitdarstellung von einem ASCII Zeichnen. Die Länge der Daten sind einstellbar, dabei kann die Übertragung von vier bis acht Bits pro Zeichen eingestellt werden. Im Anschluss kommt mindestens ein Stopbit, es können auch 1,5 Bits oder zwei Bits eingestellt werden. 1,5 Bits sind sehr ungewöhnlich, aber damit ist gemeint, dass die Mindestdauer der Pause zwischen zwei ankommenden Zeichen 1,5 Bitzeichen entspricht. 
+Das Startbit meldet dem Empfänger das die Übertragung anfängt. Die Start- und Stopbits haben inversen Pegeln. Ist eine Leitung im Ruhezustand oder hat die Stopbits erhalten, wird durch die Ankunft einer inversen Signalflanke der Empfänger aufmerksam gemacht, dass Nutzdaten ankommen werden. Bei der Ankunft eines Startbits tastet der Empfänger die Nutzdaten mit seiner Bitrate (Bits pro Sekunde) ab. Die Nutzdaten sind die Bitdarstellung von einem ASCII Zeichnen. Die Länge der Daten sind einstellbar, dabei kann die Übertragung von vier bis acht Bits pro Zeichen eingestellt werden. Im Anschluss kommt mindestens ein Stopbit, es können auch 1,5 Bits oder zwei Bits eingestellt werden. 1,5 Bits sind sehr ungewöhnlich, aber damit ist gemeint, dass die Mindestdauer der Pause zwischen zwei ankommenden Zeichen 1,5 Bitzeichen entspricht. \\
 
-\paragraph{}
 Im Folgenden wird die Übertragung von einem Zeichen näher erläutert:
-Wird ein Zeichen 'z' übertragen, mit einem Startbit, acht Datenbits und zwei Stopbits, ist die Gesamtlänge der Übertragung elf Bits lang. 'z' entspricht laut ASCII Kodierung den Wert 122 dezimal und "`7A"' hexadezimal(0x7A). Die Bitdarstellung für 0x7 lautet "`0111"' und für 0xA "`1010"', zusammengesetzt ergibt sich für 0x7A = "`01111010"'. Die Übertragung in diesem Standard folgt dem LSB(Less significant Bit) zuerst, also werden die Bits vertauscht, demnach ergibt sich "`0101 1110"'. Davor wird eine Null hinzugefügt als Startbit und am Ende zwei Einsen als Stopbits. Demnach ergibt sich für die Übertragung des Zeichen 'z' folgenden Bitreihenfolge "`0 0101 1110 11"', die versendet wird.
+Wird ein Zeichen 'z' übertragen, mit einem Startbit, acht Datenbits und zwei Stopbits, ist die Gesamtlänge der Übertragung elf Bits lang. 'z' entspricht laut ASCII Kodierung den Wert 122 dezimal und "`7A"' hexadezimal(0x7A). Die Bitdarstellung für 0x7 lautet "`0111"' und für 0xA "`1010"', zusammengesetzt ergibt sich für 0x7A = "`01111010"'. Die Übertragung in diesem Standard folgt dem LSB(Less significant Bit) zuerst, also werden die Bits vertauscht, demnach ergibt sich "`0101 1110"'. Davor wird eine Null hinzugefügt als Startbit und am Ende zwei Einsen als Stopbits. Demnach ergibt sich für die Übertragung des Zeichen 'z' folgenden Bitreihenfolge "`0 0101 1110 11"', die versendet wird.\\
 
-\paragraph{}
-Die Datenübertragung unter RS-232 ist asynchron, das bedeutet es existiert kein gemeinsamer Takt. Die Bitraten zwischen Sender und Empfänger dürfen um wenige Prozent von einander abweichen, sonst wird der Empfänger das Wort zu schnell / langsam abtasten und falsch interpretieren. Dagegen muss die Baudrate bei Sender und Empfänger genau gleich sein. Beide Begriffe sind nicht zu verwechseln. Eine Bitrate definiert die übertragenen Bits pro Sekunde und die Baudrate die übertragenen Symbole pro Sekunde, wo jedes Symbol als definierte messbare Signaländerung im physischen Übertragungsmedium definiert ist. Da die Übertragung im diesem Standard binär ist, ist ein Symbol als ein Bit definiert. Dies hat zu Folge, dass im diesem Spezialfall der Übertragung die Bitrate und die Baudrate gleich sind. Bei anderen Übertragungsarten unterscheiden sie sich jedoch.
+Die Datenübertragung unter RS-232 ist asynchron, das bedeutet es existiert kein gemeinsamer Takt. Die Bitraten zwischen Sender und Empfänger dürfen um wenige Prozent von einander abweichen, sonst wird der Empfänger das Wort zu schnell / langsam abtasten und falsch interpretieren. Dagegen muss die Baudrate bei Sender und Empfänger genau gleich sein. Beide Begriffe sind nicht zu verwechseln. Eine Bitrate definiert die übertragenen Bits pro Sekunde und die Baudrate die übertragenen Symbole pro Sekunde, wo jedes Symbol als definierte messbare Signaländerung im physischen Übertragungsmedium definiert ist. Da die Übertragung im diesem Standard binär ist, ist ein Symbol als ein Bit definiert. Dies hat zu Folge, dass im diesem Spezialfall der Übertragung die Bitrate und die Baudrate gleich sind. Bei anderen Übertragungsarten unterscheiden sie sich jedoch.\\
 
-\paragraph{}
 Die Baudrate ist vom Benutzer frei wählbar. Jedoch hat der Anwender die Kabellänge, den Leitungswiderstand und die Kapazität des Kabels zu beachtet. Je länger das Kabel, desto starker nimmt die Spannung ab. Nach Erfahrungswerten von Texas Instruments ist bei einer Baudrate von 9600, eine maximale Kabellänge von 152 Meter möglich. Bei 115200 muss das Kabel kürzer als 2 Meter sein.\\
 
-%\paragraph{}
 Der Empfänger muss die Datenübertragung anhalten können, wenn er keine Daten mehr verarbeiten kann. Dieser Handshake wird softwaretechnisch oder über die Hardware mit Steuerleitungen realisiert. Bei der Softwarelösung werden am Sender spezielle Steuerzeichen gesendet. Dieses Protokoll ist als "`Xon/Xoff"' bekannt. Es ist nur möglich dieses Protokoll zu benutzen wenn die Steuerzeichen(Xon = 0x11 und Xoff = 0x13) nicht in den Nutzdaten vorkommen. Bei der Hardwarelösung signalisieren Sender und Empfänger sich gegenseitig ihren Status. Solche Protokoll besteht zum Beispiel aus fünf Steuerleitungen(TxD, RxD, GND, RTS und CTS). Damit triviale Fehler vermieden werden, müssen Sender und Empfänger die gleichen Einstellungen haben. Das heißt dass die Baudrate, Stopbits, Parität, Handshake und Kabellänge übereinstimmen müssen.
 
 
@@ -71,22 +64,20 @@ RI &: Ring Indicator, Datenverbindungsaufbau \\\\
 \end{tabular}
 
 
-EIA-232 ist eine Spannungsschnittstelle, also werden die logische Null und Eins durch positive oder negative Spannungen vertreten. Die Datenleitungen (TxD und RxD) benutzt eine negative Logik. Spannungen zwischen -3V und -15V repräsentieren eine logische Eins. Signale zwischen -3V und +3V gelten als nicht definierte Signale. Die logische Null wird als eine Spannung zwischen +3V und +15V interpretiert.
-\\\\
-Beim Empfänger, wird ein Signal zwischen +3V und +15V auf den Steuerleitungen als aktiv betrachtet, und inaktiv zwischen -3V und -15V. Beim Sender üblicherweise ±12V.
-\\\\
+EIA-232 ist eine Spannungsschnittstelle, also werden die logische Null und Eins durch positive oder negative Spannungen vertreten. Die Datenleitungen (TxD und RxD) benutzt eine negative Logik. Spannungen zwischen -3V und -15V repräsentieren eine logische Eins. Signale zwischen -3V und +3V gelten als nicht definierte Signale. Die logische Null wird als eine Spannung zwischen +3V und +15V interpretiert. Beim Empfänger, wird ein Signal zwischen +3V und +15V auf den Steuerleitungen als aktiv betrachtet, und inaktiv zwischen -3V und -15V. Beim Sender üblicherweise ±12V.\\
+
 Um Sender und Empfänger zu verbinden, gibt es verschiedene Kabelvarianten, abhängig vom Sender und vom Empfänger. Verbindet man ein Rechner (in der Regel mit einem Stecker) zu einem Modem (mit einer Buchse) ist ein 1:1 Kabel nötig. Sind zwei Rechner mit einander Verbunden, so ist die Rede von einem Nullmodemkabel, bei dem die Leitungen gekreuzt sind. Durch ein Loopback-Stecker bzw. Kurzschlussstecker wird die Sendeleitung direkt and die Empfangsleitung der gleichen Schnittstelle umgeleitet. So ein Stecker wird für die Entwicklung und deren Tests von Kommunikationsanwendungen und Hardware (UART) benutzt.
 
 
 %#######################################################################################
 \subsection{Verwendung der RS-232 Schnittstelle bei Wincor Nixdorf}
 \paragraph{}
-Die aktuellen BEETLE Systeme haben ein integrierten UART im Chipsatz. Diese COM Ports werden "`Onboard Ports"' genannt und sind "`Legacy Devices"'. Je nach System sind zwei bis sechs COM Ports eingebaut. Wenn ein Kunde weitere Schnittstellen benötigt, kann er diese über den PCI Bus die Anzahl an Ports erweitern. Diese Erweiterung findet durch eine Sunix PCI Karte mit vier oder acht COM Ports statt. Der Kunde kann auch zwei Sunix PCI Karten einbauen.
-\\\\
-Eine andere Erweiterungsmöglichkeit sind "`ITE"' COM Ports. Diese Ports sind direkt am PCI Bus angeschlossen und im Mainboard eingebaut. Die ITE COM Ports wurden eingebaut, weil der Super I/O in älteren Mainboards nur zwei Legacy COM Ports verwalten konnten. Um mehrere „On Board“ Ports dem Benutzer zur Verfügung zu stellen wurde der ITE Chip eingebaut. Modernere Mainboards sind in der Lage mehr als zwei COM Ports zu verwalten, und deswegen gibt es jetzt bis zu sechs Legacy Ports plus Erweiterungsmöglichkeiten.
-\\\\
-Die vorgestellten Schnittstellen sind für das Test Tools relevant. Es gibt noch ein anderen COM Port, der nicht in allen BEETLE Systemen vorhanden ist. Einige BEETLE Systeme haben ein iAMT (Intel Active Managment Technologie)\footnote{http://software.intel.com/en-us/articles/using-intel-amt-serial-over-lan-to-the-fullest; 30.08.2013} Chip. Dieser Port ist ein virtueller Port. Durch ein Treiber (SOL, Serial Over LAN) wird der Datenverkehr von der seriellen Schnittstelle auf das LAN umgeleitet. Da es ein virtueller Port ist, wird es nicht möglich sein, diesen Port zu testen. Die genauere Verwendung von iAMT und SOL ist für diese Arbeit nicht relevant, für mehrere Informationen wenden Sie sich an die angegebene Quelle.
-\\\\
+Die aktuellen BEETLE Systeme haben ein integrierten UART im Chipsatz. Diese COM Ports werden "`Onboard Ports"' genannt und sind "`Legacy Devices"'. Je nach System sind zwei bis sechs COM Ports eingebaut. Wenn ein Kunde weitere Schnittstellen benötigt, kann er diese über den PCI Bus die Anzahl an Ports erweitern. Diese Erweiterung findet durch eine Sunix PCI Karte mit vier oder acht COM Ports statt. Der Kunde kann auch zwei Sunix PCI Karten einbauen.\\
+
+Eine andere Erweiterungsmöglichkeit sind "`ITE"' COM Ports. Diese Ports sind direkt am PCI Bus angeschlossen und im Mainboard eingebaut. Die ITE COM Ports wurden eingebaut, weil der Super I/O in älteren Mainboards nur zwei Legacy COM Ports verwalten konnten. Um mehrere „On Board“ Ports dem Benutzer zur Verfügung zu stellen wurde der ITE Chip eingebaut. Modernere Mainboards sind in der Lage mehr als zwei COM Ports zu verwalten, und deswegen gibt es jetzt bis zu sechs Legacy Ports plus Erweiterungsmöglichkeiten.\\
+
+Die vorgestellten Schnittstellen sind für das Test Tools relevant. Es gibt noch ein anderen COM Port, der nicht in allen BEETLE Systemen vorhanden ist. Einige BEETLE Systeme haben ein iAMT (Intel Active Managment Technologie)\footnote{http://software.intel.com/en-us/articles/using-intel-amt-serial-over-lan-to-the-fullest; 30.08.2013} Chip. Dieser Port ist ein virtueller Port. Durch ein Treiber (SOL, Serial Over LAN) wird der Datenverkehr von der seriellen Schnittstelle auf das LAN umgeleitet. Da es ein virtueller Port ist, wird es nicht möglich sein, diesen Port zu testen. Die genauere Verwendung von iAMT und SOL ist für diese Arbeit nicht relevant, für mehrere Informationen wenden Sie sich an die angegebene Quelle.\\
+
 Die BEETLE Systeme benutzen die COM Ports für verschiedene Zwecke. Für die Kassensysteme, werden an den COM Ports die Scanner und Kundenanzeigen angeschlossen. So kann das BEETLE System die beiden Peripheriegeräte mit Strom versorgen und Daten senden und empfangen. Es werden auch noch Drucker an die COM Ports angeschlossen. Bei ältere BEETLE Systeme wurden die Touchkomponenten für Bildschirme an die RS-232 Schnittstelle angeschlossen. Der Bildschirm war an eine Videoschnittstelle angeschlossen und die Touchsignale wurden über ein COM Port empfangen. Im Banking Bereich werden viele verschiedene Peripheriegeräte pro System über die RS-232 Schnittstelle gesteuert und mit Strom versorgt.
 
 
@@ -100,9 +91,6 @@ Die BEETLE Systeme benutzen die COM Ports für verschiedene Zwecke. Für die Kas
 
 
 \section{Microsoft Windows API}
-
-Die Quellen des folgenden Kapitel sind aus die MSDN Online Bibliothek \cite{SerialCommunications}, aus dem Buch "`Programming Windows"' \cite{ProgrammingWindows} und aus dem Buch "`Visual C++ 2010"'\cite{VisualC++}.
-
 %#######################################################################################
 \subsection{Definition}
 
@@ -230,7 +218,7 @@ Der zweite Parameter beschreibt der dargestellter Name des Fenster. \textit{DWOR
 
 \textit{HWND hWndParent} beschreibt ein Handle auf ein anderes Fenster. Im Falle, dass dieses Fenster das Hauptfenster ist, wird hier NULL übergeben, sonst muss das Handle auf das "`Parent Windows"' zeigen. Das \textit{HMENU hMenu} ist für das Hauptfenster irrelevant. Es ist aber wichtig für Unterfenster(Popup Fenster oder GUI Elemente wie Knöpfe). \textit{HMENU} ist eine Typdefinition für ein Handle auf ein Fenstermenü oder ein Unterfenster. Somit kann das Hauptfenster ein Kommando eines GUI Elements erkennen und auswerten, mehr dazu im Kapitel ~\ref{message-loop}. Da auf den Parameter \textit{HINSTANCE hInstance} im Vorlauf schon drauf eingegangen wurde wird er hier nicht mehr auf ihn drauf eingegangen. Der letzte Parameter beinhaltet Extrainformation, üblicherweise wird hier NULL angegeben.\\
 
-Die \textit{CreateWindow} Funktion liefert als Rückgabewert ein \textit{HWND}. Dies steht für Handle auf ein Fenster. Somit kann der Programmierer und das Programm auf ein gewünschtes Fenster zugreifen. Um die erwähnten Parameter genauer zu verstehen, werden diese in den folgenden Beispiele erläutert. 
+Die \textit{CreateWindow} Funktion liefert als Rückgabewert ein \textit{HWND}. Dies steht für Handle auf ein Fenster. Somit kann der Programmierer und das Programm auf ein gewünschtes Fenster zugreifen. Um die erwähnten Parameter genauer zu verstehen, werden diese in den folgenden Beispiele erläutert.\\
 
 \begin{tabular}{llll}
 & HWND hwnd\_Fenster = CreateWindow (\\
@@ -246,10 +234,12 @@ Die \textit{CreateWindow} Funktion liefert als Rückgabewert ein \textit{HWND}. 
 & NULL,                              & //Keine Identifikationsnummer\\                               
 & hInstance,                         & //Programminstanz\\                                 
 & NULL                               & //keine extra Information\\  
-& );                          
-\end{tabular}                        
-Um verschiedene GUI Elemente im Hauptfenster darstellen zu können, wie z.B. eine Schaltfläche, muss die Funktion mit den folgenden Parametern gesetzt werden:
-\\
+& );\\\\                 
+\end{tabular} 
+
+                       
+Um verschiedene GUI Elemente im Hauptfenster darstellen zu können, wie z.B. eine Schaltfläche, muss die Funktion mit den folgenden Parametern gesetzt werden:\\\\\\\\
+
 \begin{tabular}{llll}
 & HWND Schaltfläche = CreateWindow (\\
 \\
@@ -346,7 +336,7 @@ SendMessage(hwnd\_Schaltfläche, WM\_SETTEXT, 0, (lParam)"NeuerText");
 %----------------------------------------------------------------------------------------------
 \subsubsection{Öffnen und Schließen eines Ports}
 \paragraph{}
-Um Zugriff auf die Datenstrukturen zu bekommen, muss zuerst eine RS-232 Schnittstelle (COM Port) geöffnet. Durch die Funktion \textit{CreateFile}{http://msdn.microsoft.com/en-us/library/windows/desktop/aa363858(v=vs.85).aspx; 25.08.2013} bekommt man ein Handle auf den angegeben Port. Ein Handle ist eine Referenzwert zu einer vom Betriebssystem verwalteten Systemressource, in diesem Fall eine im System vorhandene RS-232 Schnittstelle. Mit \textit{CreateFile} kann man auch Zugriff auf Dateien, Datenstreams und andere Kommunikationsressourcen bekommen. Das Handle muss gespeichert werden, denn damit wird der jeweiliger Port identifiziert und angesprochen für weitere Operationen. Durch die \textit{CreateFile} Funktion wird die Datei oder in diesem Fall die Input / Output Schnittstelle für diese Anwendung reserviert. Das heißt, für das Betriebssystem und andere Anwendungen steht diese Schnittstelle nicht mehr zur Verfügung.
+Um Zugriff auf die Datenstrukturen zu bekommen, muss zuerst eine RS-232 Schnittstelle (COM Port) geöffnet. Durch die Funktion \textit{CreateFile}\footnote{http://msdn.microsoft.com/en-us/library/windows/desktop/aa363858(v=vs.85).aspx; 25.08.2013} bekommt man ein Handle auf den angegeben Port. Ein Handle ist eine Referenzwert zu einer vom Betriebssystem verwalteten Systemressource, in diesem Fall eine im System vorhandene RS-232 Schnittstelle. Mit \textit{CreateFile} kann man auch Zugriff auf Dateien, Datenstreams und andere Kommunikationsressourcen bekommen. Das Handle muss gespeichert werden, denn damit wird der jeweiliger Port identifiziert und angesprochen für weitere Operationen. Durch die \textit{CreateFile} Funktion wird die Datei oder in diesem Fall die Input / Output Schnittstelle für diese Anwendung reserviert. Das heißt, für das Betriebssystem und andere Anwendungen steht diese Schnittstelle nicht mehr zur Verfügung.
 \\
 
 Um den richtigen Zugriff auf einen Port zu haben, müssen auch die richtigen Flags bei dem Aufruf der \textit{CreateFile} Funktion angegeben werden. Als Flags sind die folgende Parameter anzugeben:
