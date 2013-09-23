@@ -13,12 +13,12 @@ Die Klasse \textit{Window} baut die Benutzeroberfläche auf und speichert die Ei
     \includegraphics[scale=0.6]{gui.png}
   		  \caption{Design der Benutzeroberfläche}
   		  %\footnotesize{Quelle: www.pololu.com}
-     \label{fig.3pi-m3pi-Module}
+     \label{GUI_Bild}
   \end{center}
 \end{figure}
 
 
-Die Benutzeroberfläche ist in drei Abteilungen geteilt. Die verschidene Abteilungen sind in Abbildung 5.1 zu erkennen. Genaueres zu alle Parametern wird in Kapitel ~\ref{chp:bedienungsanleitung} und  ~\ref{chp:fachlichesumfeld} erläutert. Die erste Reihe von Einstellungen hantieren die Testeinstellungen. Diese Einstellung sind:
+Die Benutzeroberfläche ist in drei Abteilungen geteilt. Die verschidene Abteilungen sind in Abbildung \ref{GUI_Bild} zu erkennen. Genaueres zu alle Parametern wird in Kapitel ~\ref{chp:bedienungsanleitung} und  ~\ref{chp:fachlichesumfeld} erläutert. Die erste Reihe von Einstellungen hantieren die Testeinstellungen. Diese Einstellung sind:
 \begin{itemize}
 \item Main Port: welches COM Port soll getestet werden.
 \item Baud rate: beschreibt mit welcher Baudrate der ausgewählte Port getestet werden soll.
@@ -59,20 +59,14 @@ Bei drücken des Start-, Save- oder "`Load test file"'knopfes werden die Testein
 
 \subsection{Aufbau}
 \paragraph{}
+Die Klasse \textit{Window} erbt von der \textit{Template class} in die Headerdatei "`BaseWindow"'. Die Headerdatei beinhaltet die Definition des Templates. Im das Template wird die, für die Nachrichtenschleife nötige, statische Fensterprozedur deklariert. Hier wird nur nach der Nachricht \textit{WN\_NCCREATE} abgefragt, wie bereits im Kapitel \ref{C++GUILoesung} erwähnt. Wenn die Nachricht empfangen worden ist, werden die weitere Nachrichten an das Handle des Fensterobjekt weitergeleitet. In das Template wird außerdem auch eine Fensterklasse deklariert, registriert und danach erzeugt. Somit werden alle Nachrichten eines Fensterobjektes immer zuerst an die statische Fensterprozedur gesendet, diese leitet durch Zeiger und Handles die Nachricht an das korrekte Fenster. Um genauer die Funktionalität des Templates zu verstehen, bitte siehe Anhang \ref{TemplateClass}.
+
+\subsection{Aufgaben}
+\paragraph{}
 Die Klasse hinter der Benutzeroberfläche besteht aus zwei Teilen. Das erste Teil bearbeitet die Eingabe des Benutzer und der Aufbau der Oberfläche, das zweite Teil die Weitererarbeitung der Daten.\\
 
-Das erste Teil besteht aus die Methode \textit{HandleMessage}, diese Methode ist die Fensterprozedur. Als erstes werden die Elemente, mit der Ankunft der Nachricht \textit{WM\_CREATE},des Fensters aufgebaut. Danach wird auf die Nachricht \textit{WM\_COMMAND} gewartet und jeweils reagiert. Wird zum Beispiel das Start Knopf gedrückt, bekommt die \textit{HandleMessage} die \textit{WM\_COMMAND} Nachricht mit dem Parameter \textit{ID\_BT\_START}. Das ist die Identifikationsnummer im Programm für das Start Knopf.\\
-\lstset{language=C++,
-				backgroundcolor=\color{white},
-				%frame=single,
-				tabsize=2,
-				numbers=left,
-				numbersep=5pt,
-				%numberstyle=\color{light-gray},
-				basicstyle=\ttfamily\color{black}\small,
-				keywordstyle=\color{HKS51}\bfseries,
-				commentstyle=\color{HKS13}\slshape,,
-				identifierstyle=\color{black}}
+Das erste Teil besteht aus die Methode \textit{HandleMessage}, diese Methode ist die Fensterprozedur. Als erstes werden die Elemente, mit der Ankunft der Nachricht \textit{WM\_CREATE}, des Fensters aufgebaut. Danach wird auf die Nachricht \textit{WM\_COMMAND} gewartet und jeweils reagiert. Wird zum Beispiel das Start Knopf gedrückt, bekommt die \textit{HandleMessage} Methode die \textit{WM\_COMMAND} Nachricht mit dem Parameter \textit{ID\_BT\_START}. Das ist die Identifikationsnummer im Programm für die Startschaltfläche.\\
+
 \begin{lstlisting}	 
     case WM_CREATE:
         {
@@ -87,9 +81,9 @@ Das erste Teil besteht aus die Methode \textit{HandleMessage}, diese Methode ist
         break;
 \end{lstlisting}
 
-Wenn der Start Knopf gedrückt worden ist, fängt das zweite Teil der Klasse an. Das zweite Teil besteht aus die Weiterverarbeitung der Eingaben. Im Fall vom Start Knopf, wird als erstes einen neuen Thread aufgerufen. So kann die Benutzeroberfläche immer noch Nachrichten verarbeiten, während im Hintergrund, das Programm die Datenverarbeitung beginnt. Der gleiche Vorgang geschieht, wenn der \textit{Load test file} gedrückt wird.\\
+Wenn die Startschaltfläche gedrückt worden ist, fängt das zweite Teil der Klasse an. Das zweite Teil besteht aus die Weiterverarbeitung der Eingaben. Im Fall von der Startschaltfläche, wird als erstes einen neuen Thread aufgerufen. So kann die Benutzeroberfläche immer noch Nachrichten verarbeiten, während im Hintergrund, das Programm die Datenverarbeitung beginnt. Der gleiche Vorgang geschieht, wenn die \textit{Load test file} Schaltfläche gedrückt wird.\\
 
-Im Fall vom Start Knopf, ruft das Thread die Methode \textit{sendTestSettings} auf, die die Eingaben weiter gibt. Dies geschieht in dem ein Objekt der Klasse \textit{Interpreter} erzeugt wird und dessen Eigenschaften werden gesetzt.
+Im Fall von der Startschaltfläche, ruft das Thread die Methode \textit{sendTestSettings} auf, die die Eingaben weiter an ein Interpreter-Objekt gibt. Dies geschieht in dem ein Objekt der Klasse \textit{Interpreter} erzeugt wird und dessen Eigenschaften gesetzt werden.
 
 \begin{lstlisting}	 
 	case WM_COMMAND:
@@ -120,7 +114,7 @@ Im Fall vom Start Knopf, ruft das Thread die Methode \textit{sendTestSettings} a
 
 \section{Klasse Interpreter}
 
-Die Klasse \textit{Interpreter} trennt die Benutzeroberfläche von die Fachlogik des Programms. Die Benutzeroberfläche kann den Interpreter aufrufen und hat Zugriff auf die \textit{public} Methoden der Klasse. Der Interpreter kann nicht auf Elemente oder Methoden der Klasse \textit{Window} zugreiffen. Durch diese Trennung kann den Benutzer nie die auf die Fachlogik zugreifen, nur über die Möglichkeiten die der Programmierer anbietet.\\
+Die Klasse \textit{Interpreter} trennt die Benutzeroberfläche von die Fachlogik des Programms. Die Benutzeroberfläche kann den Interpreter aufrufen und hat Zugriff auf die \textit{public} Methoden der Klasse. Der Interpreter kann nicht auf Elemente oder Methoden der Klasse \textit{Window} zugreifen. Durch diese Trennung kann der Benutzer nie "ùnkontrolliert"' auf die Fachlogik zugreifen, nur über die Möglichkeiten die der Programmierer anbietet.\\
 
 \subsection{Aufgaben}
 \paragraph{}
@@ -134,18 +128,18 @@ void Interpreter::setTransfer(int iTransfer)
 }
 \end{lstlisting}
 
-Danach werden die lokalen Variablen auf Fehleingaben geprüft. Sind Fehler erkannt worden, werden diese dem Benutzer bekannt gemacht und alle Parameter in der Klasse werden auf ein Standardwert zurückgesetzt. Sind keine Fehleingaben erkannt, werden die Werte der Variablen in einer Datenstruktur gespeichert. Mehr zu dieser Struktur erfahren sie im Kapitel ~\ref{TestStruct}. Folgende Codezeilen stellen dar, wie so ein Vorgang aussieht. Hier wird nach dem Übertragungsmodus abgefragt.
+Danach werden die lokalen Variablen auf Fehleingaben geprüft. Sind Fehler erkannt worden, werden diese dem Benutzer bekannt gemacht und alle Parameter in der Klasse werden auf ein Standardwert zurückgesetzt. Sind keine Fehleingaben erkannt, werden die Werte der Variablen in einer Datenstruktur gespeichert. Mehr zu dieser Struktur erfahren sie im Kapitel ~\ref{TestStruct}. Folgende Codezeilen stellen dar, wie ein Fehlerüberprüfvorgang aussieht. Hier wird nach dem Übertragungsmodus abgefragt.
 
 \begin{lstlisting}	 
 if (_iTransfer == DEFAULT_VALUE)
 {
-	MessageBoxA(NULL,"Please select a transfer mode",
+	MessageBoxA(NULL,"Bitte wählen Sie ein Transfermodus aus",
 							WINDOW_TITLE, MB_OK | MB_ICONERROR);
 	setDefaultValues();
 }
 else
 {
-	//save the transfer mode
+	//speichern des Transfermodus
 	_testManager->testStruct.iTransfer = _iTransfer;
 }
 \end{lstlisting}
@@ -154,9 +148,9 @@ Die Werte in den Variablen müssen überprüft werden, um Fehler zu vermeiden. D
 
 Außer die Überprüfung der Eingabeparameter und setzen der lokalen Variablen, gibt diese Klasse die Testeinstellungen an die anderen Klassen weiter. Hier trennt sich das Programm in zwei Pfade. Das erste Pfad gibt die Datenstruktur an die Klasse \textit{TestManager} weiter. Der zweite Pfad speichert oder liest eine Testkonfigurationsdatei. Im Fall, dass eine Testkonfigurationsdatei gelesen werden soll, wird als erstes die Klasse \textit{IniFileHandler} aufgerufen und danach die Klasse \textit{TestManager}, damit ein Test mit den gelesenen Einstellungen gestartet wird. Sollen die Eingabeparameter der Benutzeroberfläche in einer Testkonfigurationsdatei gespeichert werden, werden die überprüfte Eingabeparameter in einer vom Benutzer angegebene Datei gespeichert. Dafür wird auch die Klasse \textit{IniFileHandler} aufgerufen.\\
 
-Da die Klasse \textit{Interpreter} die Schnittstelle für die Kommunikation zwischen Fachlogik und Benutzer ist, wird auch durch diese Klasse die Meldung gegeben, ein Test zu anhalten. Durch das Klicken des Button "`Stop"' in der Benutzeroberfläche wird eine boolische Variable weiter an die Testlogik gegeben. Diese Variable wird vor jedem Testschleife abgefragt, ist sie gesetzt, dann wird das Testen angehalten.\\
+Da die Klasse \textit{Interpreter} die Schnittstelle für die Kommunikation zwischen Fachlogik und Benutzer ist, wird auch durch diese Klasse die Meldung gegeben, ein Test anzuhalten. Durch das Klicken der Schaltfläche "`Stop"' in der Benutzeroberfläche wird eine boolesche Variable weiter an die Testlogik gegeben. Diese Variable wird vor jedem Testschleife abgefragt, ist sie gesetzt, dann wird das Testen angehalten.\\
 
-Die Klasse hat ein Objekt der Klasse \textit{Com}, um in der Benutzeroberfläche die im System zur Verfügung stehende COM Ports aufgelistet werden können. Durch die Trennung der GUI mit der Fachlogik, darf die \textit{Window} Klasse kein Objekt der Klasse \textit{Com} haben.\\
+Die Klasse hat ein Objekt der Klasse \textit{Com}, um in der Benutzeroberfläche die im System zur Verfügung stehende COM Ports aufzulisten. Durch die Trennung der GUI mit der Fachlogik, darf die \textit{Window} Klasse kein Objekt der Klasse \textit{Com} haben.\\
 
 
 
@@ -205,15 +199,15 @@ Jeder dieser Variablen stellt ein Wert dar, für eine Einstellung in der Benutze
 
 \section{Klasse Com}
 \paragraph{}
-Die Klasse \textit{Com} fasst alles um die Verwaltung eines COM Ports um. Um aus einem COM Port lesen und schreiben zu können, müssen zuerst die Eigenschaften des jeweiligen Ports gesetzt werden. Alle Ports in einem System werden beim Systemstart mit einer Standardkonfiguration konfiguriert. Will der Benutzer Peripherieelemente an einem COM Port anschließen, die nicht die gleiche Konfiguration besitzt wie die im System vordefiniert, muss die Konfiguration des Ports angepasst werden. Dafür muss ein COM Port zuerst geöffnet werden, danach kann die Konfiguration geändert werden. Wenn diese beide Schritte erfolgreich abgelaufen sind, können aus dem COM Port Informationen gesendet und empfangt werden. Als letzter Schritt ist sehr wichtig der benutze COM Port wieder zu schließen. Somit steht der COM Port wieder andere Applikationen und das System zur Verfügung.\\
+Die Klasse \textit{Com} umfasst alles um die Verwaltung eines COM Ports. Um aus einem COM Port lesen und schreiben zu können, müssen zuerst die Eigenschaften des jeweiligen Ports gesetzt werden. Alle Ports in einem System werden beim Systemstart mit einer Standardkonfiguration konfiguriert. Will der Benutzer Peripherieelemente an einem COM Port anschließen, die nicht die gleiche Konfiguration besitzt wie die im System vordefiniert, muss die Konfiguration des Ports angepasst werden. Dafür muss ein COM Port zuerst geöffnet werden, danach kann die Konfiguration geändert werden. Wenn diese beide Schritte erfolgreich abgelaufen sind, können aus dem COM Port Informationen gesendet und empfangen werden. Als letzter Schritt ist sehr wichtig der öffene COM Port wieder zu schließen. Somit steht der COM Port wieder andere Applikationen und das System zur Verfügung.\\
 
 \subsection{Aufgaben}
 \paragraph{}
-Das Öffnen eines Ports benutzt die gleiche Systemfunktion wie um eine Datei zu erzeugen. Die Funktion \textit{CreateFile} gibt ein Handle auf das gewünschte Port. Durch dieses Handle wird der jeweilige Port für andere Operationen identifiziert.
+Um einem COM Port zu öffnen, wird die gleiche Systemfunktion aufgerufen, wie um eine Datei zu erzeugen. Die Funktion \textit{CreateFile} gibt ein Handle auf das gewünschte COM Port. Durch dieses Handle wird der jeweilige Port für andere Operationen identifiziert.
 
 \begin{lstlisting}	 
 hCom = CreateFile(portNumber.c_str(),  
-            GENERIC_READ|GENERIC_WRITE,
+            GENERIC_READ | GENERIC_WRITE,
             0, 
             NULL,
             OPEN_EXISTING, 
@@ -222,14 +216,14 @@ hCom = CreateFile(portNumber.c_str(),
 
 \end{lstlisting}
 
-Das erste Parameter der Funktion ist der Name des gewünschtes Ports. Besitzt der COM Port einen Wert von eins bis neun wird ein Wert wie "`COM5"' gesetzt. Ist der Wert des Ports größer neuen und maximal 256 muss der erste Parameter folgendermaßen gesetzt werden: "`\textbackslash\textbackslash.\textbackslash COM255"'. Der zweite Parameter beschreibt die Zugriffsrechte auf der COM Port. Da wir Informationen senden und empfangen möchten, braucht das Programm Lese- und Schreibrechte. Sehr wichtig ist der fünfte Parameter. Dieser beschreibt das nur existierende COM Ports geöffnet werden sollen. Da die Funktion auch Dateien erzeugen kann, sind diese nicht vorhanden sind, werden sie kreiert. Im Fall von COM Ports sollen keine erzeugt werden, sondern die als Hardware vorhandene Ports öffnen. \textit{FILE\_FLAG\_OVERLAPPED} setzt die Eingenschaft, dass der COM Port im asynchron Modus geöffnet werden soll.\\
+Das erste Parameter der Funktion ist der Name des gewünschtes Ports. Besitzt der COM Port einen Wert von eins bis neun wird ein Wert wie "`COM5"' gesetzt. Ist der Wert des Ports größer neun und maximal 256, muss der erste Parameter folgendermaßen gesetzt werden: "`\textbackslash\textbackslash.\textbackslash COM255"'. Der zweite Parameter beschreibt die Zugriffsrechte auf der COM Port. Da wir Informationen senden und empfangen möchten, braucht das Programm Lese- und Schreibrechte. Sehr wichtig ist der fünfte Parameter. Dieser beschreibt das nur existierende COM Ports geöffnet werden sollen. Da die Funktion auch Dateien erzeugen kann, sind diese nicht vorhanden, werden sie kreiert. Im Fall von COM Ports,  keine COM Ports sollen erzeugt werden, sondern die als Hardware im System vorhanden öffnen. \textit{FILE\_FLAG\_OVERLAPPED} setzt die Eingenschaft, dass der COM Port im asynchron Modus geöffnet werden soll.\\
 
-Damit den Benutzer, in der Benutzeroberfläche, nicht vorhandene COM Ports angeboten werden, wird bei der Aufbau der GUI alle zur Verfügung stehende COM Ports aufgelistet. Dafür wird in einer Schleife versucht alle COM Ports zwischen Null bis 256 zu öffnen, die Ports die einen nicht ungültigen Handle zurück geben werden aufgelistet.\\
+Damit den Benutzer, in der Benutzeroberfläche, nicht vorhandene COM Ports angeboten werden, wird bei der Aufbau der GUI alle zur Verfügung stehende COM Ports aufgelistet. Dafür wird in einer Schleife versucht alle COM Ports zwischen Null bis 256 zu öffnen, alle die Ports die einen gültigen Handle zurück geben werden aufgelistet.\\
 
 
 Wenn ein COM Port nicht erfolgreich geöffnet werden konnte, gibt die \textit{CreateFile} Funktion ein nicht valides Handle zurück. Wird ein Port erfolgreich geöffnet, können die Eigenschaften des Ports bearbeitet werden. Wie in Unterkapitel \ref{COMWINAPI} erklärt, werden die Eigenschaften des Ports durch verschiedene Strukturen gesetzt.\\
 
-Für jeden Test kann der Benutzer die Baudrate einstellen. In der Benutzeroberfläche, wird in Form einer Liste in einem Combo Box, die unterstützten Baudrate aufgelistet. Um die Baudraten zu ermitteln muss zuerst die Struktur \textit{COMMPROP} geladen werden. In der Variable \textit{dwSettableBaud} sind als Bitmaske die unterstützten Baudraten gespeichert. Das Algorithmus dafür sieht so aus:
+Für jeden Test kann der Benutzer die Baudrate einstellen. In der Benutzeroberfläche wird in Form einer Liste, in einer "`Combo Box"', die unterstützten Baudrate aufgelistet. Um die Baudraten zu ermitteln muss zuerst die Struktur \textit{COMMPROP} geladen werden. In der Variable \textit{dwSettableBaud} sind als Bitmaske die unterstützten Baudraten gespeichert. Das Algorithmus dafür sieht so aus:
 
 \begin{lstlisting}
 	//Lade die COMMPROP Stuktur des geöffneten Ports	 
@@ -252,7 +246,7 @@ Für jeden Test kann der Benutzer die Baudrate einstellen. In der Benutzeroberfl
 
 In der Schleife wird geprüft ob der jeweilige Bit an der Stelle "`i"' eine Eins oder Null ist. Falls es eine Eins ist, dann wird die Baudrate im Array an der Stelle "`i"' in eine Vektor gespeichert. In diesem Vektor werden alle Baudraten gespeichert, die vom angegebene Port unterstützt werden. Der Vektor gehört zur \textit{Com} Klasse und wird durch das ganze Programm benutzt.\\
 
-Die Timeoutwerte für Lese- und Schreibzugriffe werden auch in dieser Klasse berechnet und gesetzt. Dafür muss eine  Struktur \textit{COMMTIMEOUTS} deklariert werden. Die Struktur wird bearbeitet nach Wünsch und Zweck des Programms. Für das Test Tool werden in der Struktur die Zeit für die Übertragung eines Zeichens geschrieben. Für die Berechnung für dieses Wert und die Erklärung siehe bitte Unterkapitel ~\ref{COMWINAPI}.
+Die Timeoutwerte für Lese- und Schreibzugriffe werden auch in dieser Klasse berechnet und gesetzt. Dafür muss eine  Struktur \textit{COMMTIMEOUTS} deklariert werden. Die Struktur wird nach .....Wünsch und Zweck..... des Programms bearbeitet. Für das Test Tool werden in der Struktur die Zeit für die Übertragung eines Zeichens geschrieben. Für die Berechnung für dieses Wert und die Erklärung siehe bitte Unterkapitel ~\ref{COMWINAPI}.
 
 \begin{lstlisting}
 	//Port Timeout Struktur
@@ -269,7 +263,7 @@ Die Timeoutwerte für Lese- und Schreibzugriffe werden auch in dieser Klasse ber
 
 Durch die Funktion \textit{SetCommTimeouts} mit Angaben des geöffneten Ports und eine Referenz auf einer Variable der Struktur \textit{COMMTIMEOUTS} werden die Timeouts gesetzt. Davor müssen die Elemente von der Struktur initialisiert werden. Die Werte \textit{ReadTotalTimeoutMultiplier} und \textit{WriteTotalTimeoutMultiplier} werden mit der berechnete Zeit pro Zeichen gesetzt. Für die andere drei Variablen worden die empfohlene Werte aus der MSDN Online Bibliothek\cite{SerialCommunications} übernommen. \\
 
-Objekte der Klasse \textit{Com} können durch der Aufruf von zwei verschiedene Konstruktoren erzeugt werden. Der erste Konstruktor ist der Standardkonstruktor, dieser wird verwendet für die Auflistung von die zur Verfügung stehende Ports und dessen Baudraten. Der zweite Konstruktor bekommt als Parameter ein String mit dem Namen des Ports. Dieser Port wird geöffnet und die Eigenschaften werden in lokale Variablen geladen und gespeichert für zukünftige Operationen in den Tests.
+Objekte der Klasse \textit{Com} können durch der Aufruf von zwei verschiedene Konstruktoren erzeugt werden. Der erste Konstruktor ist der Standardkonstruktor, dieser wird für die Auflistung von die zur Verfügung stehende Ports und dessen Baudraten verwendet. Der zweite Konstruktor bekommt als Parameter ein String mit dem Namen des Ports. Dieser Port wird geöffnet und die Eigenschaften werden in lokale Variablen geladen und  für zukünftige Operationen in den Tests gespeichert.
  
 %****************************************************************************************
 \newpage
@@ -278,15 +272,15 @@ Objekte der Klasse \textit{Com} können durch der Aufruf von zwei verschiedene K
 
 \section{Klasse PortCommunications}\label{PortCommClass}
 \paragraph{}
-In der Klasse \textit{PortCommunications} werden die Lese- und Schreiboperation ausgeführt. Die Klasse besteht aus zwei Konstruktoren, drei Methoden und ein Destruktor. Obwohl die Klasse nur aus drei Methoden besteht, ist diese Klasse die sich um das tatsächliche Senden und Empfangen von Daten befasst.\\
+In der Klasse \textit{PortCommunications} werden die Lese- und Schreiboperation ausgeführt. Die Klasse besteht aus zwei Konstruktoren, drei Methoden und ein Destruktor. Obwohl die Klasse nur aus drei Methoden besteht, diese ist die Klasse die tatsächliche Systemaufrufe für Senden und Empfangen von Daten befasst.\\
 
 Die erste Methode in der Klasse speichert ein Handle von ein offenen COM Port in einer lokalen Variable. Durch dieses Handle weist die Klasse aus welchem Port die Lese- oder Schreibmethoden ihre Zugriffe ausüben sollen. Dieses Handle kann auch durch den Aufruf eines personalisiertes Konstruktor gesetzt werden, dass als Parameter an den Konstruktor übergeben wird.\\
 
-Das Schreiben zu einem COM Port ist sehr ähnlich wie das Lesen. Beide Operationen werden in einer Schleife wiederholt bis alles Bytes aus dem Puffer gelesen worden sind. Der ganze Programmcode kann in Anhang ~\ref{ReadDataCode} und ~\ref{WriteDataCode} gelesen werden. Im folgenden werden nur Ausblicke der beiden Vorgänge erklärt.\\
+Das Schreiben zu einem COM Port ist sehr ähnlich wie das Lesen. Beide Operationen werden in einer Schleife wiederholt bis alles Bytes aus dem Puffer gelesen worden sind. Der ganze Programmcode zu diesen Methoden kann in Anhang ~\ref{ReadDataCode} und ~\ref{WriteDataCode} gelesen werden. Im folgenden werden nur Ausblicke der beiden Vorgänge erklärt.\\
 
 \subsection{Schreiben}
 \paragraph{}
-Die Methode \textit{writeData} erhält als Parametern das zu übertragene Text und die Länge des Textes. Die Länge des Textes ist für den Schreibvorgang nötig, damit die Schreibmethode ermitteln kann, wenn alle Bytes geschrieben worden sind. Bevor der Schreibvorgang beginnt, muss eine \textit{OVERLAPPED} Struktur deklariert werden, zuständig für das asynchrone Schreiben. In der Struktur wird die Variable \textit{hEvent} initialisiert, in dem ein neues Event deklariert wird.\\
+Die Methode \textit{writeData} erhält als Parametern der zu übertragene Text und die Länge des Textes. Die Länge des Textes ist für den Schreibvorgang nötig, damit die Schreibmethode ermitteln kann, wenn alle Bytes geschrieben worden sind. Bevor der Schreibvorgang beginnt, muss eine \textit{OVERLAPPED} Struktur deklariert werden, zuständig für das asynchrone Schreiben. In der Struktur wird die Variable \textit{hEvent} initialisiert, in dem ein neues Event deklariert wird.\\
 
 Der Schreibvorgang wird in einer Schleife, die im Fehlerfall maximal fünf mal wiederholt wird, ausgeführt. In der Schleife wird die Methode \textit{WriteFile} folgendermaßen aufgerufen:
 \begin{lstlisting}
@@ -305,22 +299,22 @@ Die Methode \textit{WaitForSingleObject} bekommt als Parametern das am Anfang kr
 	GetOverlappedResult(hCom, &osWrite, &dwWritten, FALSE);
 \end{lstlisting}
 
-Wieder bekommt die Methode das Handle auf das COM Port, die Adresse der \textit{OVERLAPPED} Struktur und die Adresse der Variable \textit{dwWritten}. Das letzte Parameter spezifiziert ob auf das Event noch gewartet werden soll. Da aber in \textit{WaitForSingleObject} schon gewartet wird, bis das Event signalisiert wird, muss bei dem Aufruf von \textit{GetOverlappedResult} nicht noch mal gewartet werden, und deswegen wird der letzte Parameter mit \textit{FALSE} belegt.\\
+Wieder bekommt die Methode das Handle auf das COM Port, die Adresse der \textit{OVERLAPPED} Struktur und die Adresse der Variable \textit{dwWritten}. Das letzte Parameter spezifiziert ob auf das Event gewartet werden soll. Da aber in \textit{WaitForSingleObject} schon gewartet wird, bis das Event signalisiert wird, muss bei dem Aufruf von \textit{GetOverlappedResult} nicht nochmal gewartet werden, deswegen wird der letzte Parameter mit \textit{FALSE} belegt.\\
 
-Wenn die Methode \textit{GetOverlappedResult} eine \textit{FALSE} zurückliefert, wird der Benutzer dem letzten Fehler benachrichtigt. Ist der Rückgabewert der Methode \textit{TRUE}, bedeutet es, dass der Schreibzugriff beendet worden ist. Um zu Erfahren ob der Zugriff erfolgreich war, werden die Variablen mit den zu schreibende Bytes und die geschriebene Bytes verglichen. Wenn diese Werte sich von einander unterscheiden, dann ist die Zeit für den Schreibzugriff abgelaufen (time out). Sind beide Werte gleich, dann war die der Vorgang erfolgreich und die Schreibmethode wird beendet.
+Wenn die Methode \textit{GetOverlappedResult} \textit{FALSE} zurückliefert, wird der Benutzer den letzten Fehler benachrichtigt. Ist der Rückgabewert der Methode \textit{TRUE}, bedeutet es, dass der Schreibzugriff beendet worden ist. Um zu Erfahren ob der Zugriff erfolgreich war, werden die Variablen mit den zu schreibende Bytes und die geschriebene Bytes verglichen. Wenn diese Werte sich von einander unterscheiden, dann ist die Zeit für den Schreibzugriff abgelaufen (time out). Sind beide Werte gleich, dann war die der Vorgang erfolgreich und die Schreibmethode wird beendet.
 
 
 \subsection{Lesen}
 \paragraph{}
-Die Lesemethode erhält die gleiche Parameter wie Schreibmethode. Sie braucht auch eine \textit{OVERLAPPED} Struktur um das Event abfragen zu können. Das Grundgerüst für die Lesemethode ist der gleiche wie die von der Schreibmethode. Beide Vorgänge werden in einer Schleife wiederholt, bis der Vorgang beendet wird oder ein Fehler gemeldet wird. Der Unterschied ist das beim Lesen die Schleife nicht fünf mal wiederholt wird, sonder die Schleife ist Unendlich. Obwohl das programmiertechnisch nicht empfehlenswert ist, muss die Leseoperation so oft wiederholt werden, bis alle Bytes angekommen sind. Der Empfänger muss diese Daten durch ein Pollingverfahren\footnote{Das zyklische Abfragen eines Status} aus dem Puffer lesen. Die Methode zum Lesen lautet:
+Die Lesemethode erhält die gleiche Parameter wie die Schreibmethode. Sie braucht auch eine \textit{OVERLAPPED} Struktur um das Event abfragen zu können. Das Grundgerüst für die Lesemethode ist der gleiche wie die von der Schreibmethode. Beide Vorgänge werden in einer Schleife wiederholt, bis der Vorgang beendet wird oder ein Fehler gemeldet wird. Der Unterschied ist das beim Lesen die Schleife nicht fünf mal wiederholt wird, sonder die Schleife ist unendlich. Obwohl das programmiertechnisch nicht empfehlenswert ist, muss die Leseoperation so oft wiederholt werden, bis alle Bytes angekommen sind. Der Empfänger muss diese Daten durch ein Pollingverfahren aus dem Puffer lesen. Die Methode zum Lesen lautet:
 
 \begin{lstlisting}
 	ReadFile(hCom, ourBuf, dwSize, NULL, &osReader)
 \end{lstlisting}
 
-Die \textit{ReadFile} Methode bekommt die gleiche Parameter wie die Schreibmethode. Der Unterschied ist, dass durch die asynchrone Kommunikation die Lesemethode nicht die Anzahl der gelesene Bytes speichert, weil diese verfälscht sein kann. Wird der Lesezugriff Fehlerhaft ausgeführt wird der Benutzer benachrichtigt, ansonsten werden die Methoden \textit{WaitForSingleObject} und \textit{GetOverlappedResult} aufgerufen. Die \textit{WaitForSingleObject} Methode bekommt als Ablaufzeit ein vordefiniertes Wert von 500 Millisekunden \footnote{\cite{SerialCommunications}}. Die Methode \textit{GetOverlappedResult} bekommt die gleiche Parameter wir im Schreibzugriff.\\
+Die \textit{ReadFile} Methode bekommt die gleiche Parameter wie die Schreibmethode. Der Unterschied ist, dass durch die asynchrone Kommunikation die Lesemethode nicht die Anzahl der gelesene Bytes speichert, weil diese verfälscht sein können. Wird der Lesezugriff Fehlerhaft ausgeführt, wird der Benutzer benachrichtigt, ansonsten werden die Methoden \textit{WaitForSingleObject} und \textit{GetOverlappedResult} aufgerufen. Die \textit{WaitForSingleObject} Methode bekommt als Ablaufzeit ein vordefiniertes Wert von 500 Millisekunden \footnote{\cite{SerialCommunications}}. Die Methode \textit{GetOverlappedResult} bekommt die gleiche Parameter wie im Schreibzugriff.\\
 
-Um zu ermitteln ob der Lesevorgang erfolgreich abgeschlossen worden ist, müssen die Anzahl der gelesene Bytes mit der Anzahl der zu lesende Bytes verglichen werden. Da die Lesemethode mehrmals aufgerufen wird, werden bei jedem Vorgang nicht die ganze Anzahl an Bytes gelesen. Die gelesene Bytes müssen in eine Puffer gespeichert werden, ohne die schon gelesene Bytes zu überschreiben. Um dieses Problem zu lösen, wird ein Zeiger deklariert, der auf dem Anfang des Puffers im ersten Lesezugriff zeigt. Mit Hilfe von Zeigerarithmetik, wird der Zeiger immer die gelesene Anzahl von Bytes addiert. Um zu ermitteln wann alle Bytes gelesen worden sind, wird einer Variable die Anzahl der gelesene Bytes subtrahiert. Wenn diese Variable gleich Null ist, dann worden alle Bytes gelesen und der Lesevorgang wird erfolgreich abgebrochen. Um ein Fehler im Lesevorgang zu erkennen, darf eine Leseoperation maximal fünf mal in ein time out geraten, dann wird der Vorgang abgebrochen und der Benutzer wird benachrichtigt.
+Um zu ermitteln ob der Lesevorgang erfolgreich abgeschlossen worden ist, müssen die Anzahl der gelesene Bytes mit der Anzahl der zu lesende Bytes verglichen werden. Da die Lesemethode mehrmals aufgerufen wird, werden bei jedem Vorgang nicht die ganze Anzahl an Bytes gelesen. Die gelesene Bytes müssen in einem Puffer gespeichert werden, ohne die schon gelesene Bytes zu überschreiben. Um dieses Problem zu lösen, wird ein Zeiger deklariert, der auf dem Anfang des Puffers im ersten Lesezugriff zeigt. Mit Hilfe von Zeigerarithmetik, wird der Zeiger immer um die gelesene Anzahl von Bytes addiert. Um zu ermitteln wann alle Bytes gelesen worden sind, wird einer Variable die Anzahl an gelesenen Bytes subtrahiert. Wenn diese Variable gleich Null ist, dann worden alle Bytes gelesen und der Lesevorgang wird erfolgreich abgebrochen. Um ein Fehler im Lesevorgang zu erkennen, darf eine Leseoperation maximal fünf mal in ein time-out geraten, dann wird der Vorgang abgebrochen und der Benutzer wird benachrichtigt.
 
 
 
@@ -341,7 +335,7 @@ Die Klasse besteht aus vier Methoden, wo drei die Klasse \textit{FixedTest} (Kap
 
 Es gibt drei Testmodi (Fixed, Wobble und Automatic), und jedes Testmodi hat verschiedene Testeinstellungen. Im Fall von \textit{Fixed}, werden alle mögliche Test und Port Einstellungen berücksichtigt. Im \textit{Wobble} Test wird zwischen eine Unter- und Obergrenze der Baudrate und / oder der Parität gewobbelt. Der \textit{Automatic} Test ist ein vordefiniertes Testfall. Hier muss der Benutzer nur der zu testende COM Port auswählen und welche Transfermöglichkeit er sich wünscht.\\
 
-Im Fall von einem \textit{Fixed} Test, wird in der Methode \textit{startManager} die Methode \textit{startFixedTest} aufgerufen. In der Methode \textit{startFixedTest} wird als erstes ein Objekt der Klasse \textit{FixedTest} erzeugt mit der aktuellen Teststruktur als Übergabeparameter. Ein Schleifenzähler wird initialisiert, dieser repräsentiert der \textit{Repeater} aus der GUI oder Konfigurationsdatei. Wenn die Log-Option gesetzt ist, wird die Testeinstellungen in einer Testkonfigurationsdatei gespeichert. Als nächstes in einer "`\textit{do while}"' Schleife werden die Methoden des Objektes \textit{FixedTest} aufgerufen, abhängig von die  Transfereinstellung (Shorted, Double, Master, Slave). Ist der Transfermodus \textit{Master} gesetzt, werden fünf Sekunden gewartet, damit der Benutzer Zeit hat, das \textit{Slave} Modul in einem anderen System zu starten. Die Schleife wird wiederholt so lange der Schleifenzähler nicht seine Grenze erreicht oder der Benutzer den Test abbricht (durch drücken der Stopp-Schaltfläche in der Benutzeroberfläche oder der "`ESC"' Taste in der Kommandozeile). Ist die Option "`stop on first error"' gesetzt und ein Fehler in der Kommunikation wird erkannt, so wird auch die Schleife unterbrochen und der Errorcode zurückgegeben.\\
+Im Fall von einem \textit{Fixed} Test, wird in der Methode \textit{startManager} die Methode \textit{startFixedTest} aufgerufen. In der Methode \textit{startFixedTest} wird als erstes ein Objekt der Klasse \textit{FixedTest} erzeugt mit der aktuellen Teststruktur als Übergabeparameter. Ein Schleifenzähler wird initialisiert, dieser repräsentiert der \textit{Repeater} aus der GUI oder Konfigurationsdatei. Wenn die Log-Option gesetzt ist, wird die Testeinstellungen in einer Testkonfigurationsdatei gespeichert. Als nächstes in einer "`\textit{do while}"' Schleife werden die Methoden des Objektes \textit{FixedTest} aufgerufen, abhängig von die  Transfereinstellung (Shorted, Double, Master, Slave). Ist der Transfermodus \textit{Master} gesetzt, werden drei Sekunden gewartet, damit der Benutzer Zeit hat, das \textit{Slave} Modul in einem anderen System zu starten. Die Schleife wird wiederholt so lange der Schleifenzähler nicht seine Grenze erreicht oder der Benutzer den Test abbricht (durch drücken der Stopp-Schaltfläche in der Benutzeroberfläche oder der "`ESC"' Taste in der Kommandozeile). Ist die Option "`stop on first error"' gesetzt und ein Fehler in der Kommunikation wird erkannt, so wird auch die Schleife unterbrochen und der Errorcode zurückgegeben.\\
 
 Hat der Benutzer ein \textit{Wobble} Test eingestellt, ist der Ablauf der Testvorbereitungen und Abbruchkriterien gleich wie in einem \textit{FixedTest}. Der einzige Unterschied zu einem \textit{Fixed} Test ist, dass zu einer Verschachtlung von Schleifen kommt. In diesem Test wird zwischen eine minimale und maximale Baudrate gewobbelt. Dafür werden alle Standard einstellbare Baudraten zwischen den Grenzen betrachten. Möchte der Benutzer auch durch die drei verschiedene Paritätseinstellungen (gerade, ungerade oder keine Parität) wobbeln, gibt es eine zweite Schleife, wo diese Eigenschaft wechseln eingestellt wird. So wird im ....breiten - längsten..... Testfall für eine  Baudrate die drei verschiedene Paritätseinstellungen eingestellt und für jede Paritätseinstellung der Test so oft wiederholt, wie im \textit{Repeater} angegeben.\\
 
@@ -354,11 +348,11 @@ Der \textit{Automatic} Test besitzt eine vordefinierte Testeinstellung. Für den
 
 \section{Klasse FixedTest}\label{FixedTextClass}
 \paragraph{}
-Die Klasse \textit{FixedTest} ist die Klasse die Kommunikation zwischen ein oder zwei COM Ports organisiert. Alle Testeinstellungen und organisatorisches ist schon eingestellt. Die Klasse besitzt Objekte der Klassen \textit{PortCommunications} und \textit{Com} um COM Ports zu verwalten und zwischen Ports zu kommunizieren.\\
+Die Klasse \textit{FixedTest} ist die Klasse die Kommunikation zwischen ein oder zwei COM Ports organisiert. Alle Testeinstellungen und organisatorisches wurde schon eingestellt. Die Klasse besitzt Objekte der Klassen \textit{PortCommunications} und \textit{Com}, um COM Ports zu verwalten und zwischen Ports zu kommunizieren.\\
 
 \subsection{Ablauf eines Tests}
 \paragraph{}
-Für ein Test muss als erstes die ausgewählte Schnittstelle mit den ausgewählten Einstellungen eingestellt werden, unabhängig davon was für ein Testfall betrachtet wird. Die \textit{Master} und \textit{Slave} Test sind komplexer als ein \textit{Shorted} oder \textit{Double} Test. Als erstes muss der ausgewählte Port geöffnet werden und die Port Eigenschaften geladen werden. Mit dem Aufruf der Methode \textit{setPortSettings} werden die angegebene Schnittstelleneinstellungen für den Test eingestellt. Im Fall von einem \textit{Shorted} Test muss nur eine Schnittstelle initialisiert werden. Ist es ein \textit{Double} Test müssen die ausgewählte Ports mit den gleichen Parametern initialisiert werden.\\
+Für ein Test muss als erstes die ausgewählte Schnittstelle mit den ausgewählten Einstellungen eingestellt werden, unabhängig davon was für ein Testfall betrachtet wird. Die \textit{Master} und \textit{Slave} Tests sind komplexer als ein \textit{Shorted} oder \textit{Double} Test. Als erstes muss der ausgewählte Port geöffnet werden und die Port Eigenschaften geladen werden. Mit dem Aufruf der Methode \textit{setPortSettings} werden die angegebene Schnittstelleneinstellungen für den Test eingestellt. Im Fall von einem \textit{Shorted} Test muss nur eine Schnittstelle initialisiert werden. Ist es ein \textit{Double} Test müssen die ausgewählte Ports mit den gleichen Parametern initialisiert werden.\\
 
 Ist dieser Schritt erfolgreich abgeschlossen worden, dann kann der Informationsaustausch beginnen. In einem \textit{Shorted} Test sendet und empfängt die gleiche Schnittstelle die Information. Diese wird verglichen um Fehler bei der Übertragung zu ermitteln. Ist es ein \textit{Double} Test, gibt es getrennte Sender und Empfänger. Da aber beide Schnittstellen sich im gleichen System befinden, kann die gesendete und empfangene Information auch verglichen werden. Das Ergebnis des Vergleichs wird in einem Vektor geschrieben, der am Ende der Übertragung als Ergebnis ausgegeben wird. Wurde die Option "`stop on first error"' gesetzt und ein Unterschied wurde im Vergleich erkannt, dann wird der Testvorgang abgebrochen. Wenn das Ende der Übertragungsinformation (eine Zeile, eine Datei oder der vordefinierte Text) erreicht wird, werden die geöffnete Schnittstellen geschlossen und das Testergebnis dem Benutzer gemeldet. Dieser Vorgang wird so oft wiederholt, wir es im \textit{Repeater} angegeben worden ist.\\
 
