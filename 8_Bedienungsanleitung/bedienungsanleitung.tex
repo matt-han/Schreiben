@@ -38,7 +38,16 @@ Mit der GUI kann der Benutzer ein Test starten, mit bestimmten Parametern oder d
 
 \section{Bedienung über die Kommandozeile}
 \paragraph{}
-Über die Kommandozeile kann der Benutzer eine Testdatei und das zu testende Port angeben. Wenn keine Parameter angegeben worden sind, wird die GUI gestartet.
+Über die Kommandozeile kann der Benutzer eine Testdatei und das zu testende Port angeben. Wenn keine Parameter angegeben worden sind, wird die GUI gestartet. Um eine Testdatei zu laden muss folgender Programmaufruf erfolgen:
+\begin{center}
+\textit{SerialPortTester.exe Dateipfad\textbackslash Testdatei.ini}
+\end{center}
+
+wo Dateipfad ein gültiger Pfad zu der Testdatei ist. Um ein spezieller Port zu testen, muss dieser Port noch dazu angegebene werden. Bitte beachten, dass die Testdatei nur die Konfiguration für einen Port haben darf, die "`Sektion"' muss "`[COM]"' heißen. Um der COM Port COMx zu testen, muss der Programmaufruf folgendermaßen gestaltet sein:
+
+\begin{center}
+\textit{SerialPortTester.exe Dateipfad\textbackslash Testdatei.ini /COM1}
+\end{center}
 
 \section{Testmodus}
 
@@ -62,29 +71,34 @@ Der Automatic Test ist vordefiniert. Für diesen Test muss der Benutzer nur den 
 \\ &Repeater &: &Unendlich
 \end{tabular}
 
+Der Test wird so lange wiederholt bis der Benutzer den Test stoppt oder wenn die Eigenschaft \textit{stop on first error} gesetzt ist, und ein Fehler erkannt wird.
+
+
+
 \subsection{Wobble}
 \paragraph{}
-In einem Wobble Test kann der Benutzer alle Parameter einstellen. Die wichtigsten Parametern sind die minimale und maximale Baudrate. Diese Werte geben an, mit welchen Baudraten getestet wird.
+In einem Wobble Test kann der Benutzer alle Parameter einstellen. Die wichtigsten Parametern sind die minimale und maximale Baudrate. Diese Werte geben an, die Unter- und Obergrenze der Baudraten. Alle Standard einstellbaren Baudraten dazwischen werden für einen Test eingestellt. Es ist möglich zwischen die drei verschiedene Paritäteinstellungen (ungeraden, gerade und keine Parität) zu wobbeln. Diese Option ist nur über eine Testdatei einstellbar.
 
 
 \subsection{Fixed}
-Im Fixed Test muss der Benutzer alle Parameter einstellen. Im diesem Test werden sich die Parameter nicht ändern. Der Benutzer kann nach Fehler mit spezifischen Einstellungen testen.
+Im Fixed Test muss der Benutzer alle Parameter einstellen. Im diesem Testverlauf werden sich die Parameter nicht ändern und der gleiche Test wird so oft wiederholt wie in der Option "`Repeater"'.
 \paragraph{}
 
 
 \section{Übertragungsmodus}
 \paragraph{}
-Jedes Testmodus kann in vier Übertragungsmodus eingestellt werden, die den Test ablauft bestimmen
+Jedes Testmodus kann in vier Übertragungsmodus eingestellt werden, die den Test ablauft bestimmen. Die Einstellungen für ein Übertragungsmodus sind abhängig von der eingestellte Testmodus.
 
+%Für ein "`Shorted"' Test muss an dem ausgewählten COM Port ein Kurzschlussstecker angeschlossen werden. Bei einem "`Double"' oder "`Master - Slave"' Test müssen die beteiligten Schnittstellen mit einem Null-Modemkabel verbunden werden.
 
 \subsection{Shorted}
 \paragraph{}
-Im Shorted Modus wird an der angegebene Schnittstelle eine Kurzschlussstecker angeschlossen. Hier ist der Port Master und Slave gleichseitig. Der Port schickt und empfängt die Daten sofort.
+Im Shorted Modus muss an der angegebene Schnittstelle eine Kurzschlussstecker angeschlossen. Hier ist der Port Master und Slave gleichseitig. Der Port schickt und empfängt die Daten sofort.
 
 
 \subsection{Double}
 \paragraph{}
-Hier werden zwei Ports in einem System getestet. Mittels eines Null-Modem-Kabel wird Port1 and Port2 angeschlossen. Port1 ist der Master und Port2 ist der Slave. So sendet der Master Informationen und der Slave empfängt sie.
+Hier werden zwei COM Ports in einem System getestet. Mittels eines Null-Modem-Kabel wird Port1 and Port2 angeschlossen. Port1 sendet die Übertragungsinformation und Port2 empfängt diese.
 
 
 \subsection{Master}
@@ -94,7 +108,16 @@ Der Master Modus involviert zwei verschiedene Systeme. Im System1 schickt der Ma
 
 \subsection{Slave}
 \paragraph{}
-Der Slave im System2 wartet auf den Empfang von Daten aus System1. Der Slave kennt sein Master nicht, er empfangt Daten und schickt die gleiche Daten zurück, damit der Master die Fehlerauswertung machen kann.
+Der Slave im System2 wartet auf den Empfang von Daten aus System1. Der Slave kennt sein Master nicht, er empfängt Daten und schickt die gleiche Daten zurück, damit der Master die Fehlerauswertung machen kann. Im Slave Modus müssen nur folgende Parameter eingestellt werden:
+
+\begin{itemize}
+\item COM Port
+\item Bei einem "`Double"' Test die minimale und maximale Baudrate
+\item Logger
+\item Repeater (gleicher Wert wie der Master)
+\item Textübertragungsmodus
+\item Übertragungstext oder Übertragungsdatei
+\end{itemize}
 
 
 \section{Schnittstelleneigenschaften}
@@ -107,11 +130,11 @@ Der Slave im System2 wartet auf den Empfang von Daten aus System1. Der Slave ken
 
 \section{Sendedaten}
 \paragraph{}
-Durch klicken des Buttons "`Load file to send"' kann der Benutzer eine Datei auswählen, diese wird dann beim testen geöffnet und Zeilenweise verschickt. Will der Benutzer ein spezifischer Text senden, muss er dieser unter "`Send text"' eingeben und "`Load text to send"' klicken. Wenn keiner dieser beiden Möglichkeiten benutzt wird, wird ein im Programm fest kodierter Text übertragen.
+Durch klicken des Buttons "`Load file to send"' kann der Benutzer eine Datei auswählen, diese wird dann beim testen geöffnet und Zeilenweise verschickt. Ist eine Zeile in der Übertragungsdatei länger als 100 Zeichen, werden nur die ersten 100 Zeichen betrachtet. Will der Benutzer ein spezifischer Text senden, muss er dieser unter "`Send text"' eingeben und "`Load text to send"' klicken. In einer Testdatei muss der Übertragungstext nicht länger als 100 Zeichen Lang sein. Wenn keiner dieser beiden Möglichkeiten benutzt wird, wird ein im Programm fest kodierter Text übertragen.
 
 \section{Logger}
 \paragraph{}
-Wenn die Checkbox ausgewählt ist, wie eine Textdatei im "`\%Temp\%"' Verzeichnis angelegt und alle Meldung dort geloggt. Die Datei hat immer den Namen des Ports dass getestet wird.
+Wenn die Checkbox ausgewählt ist, wird eine Textdatei im "`\%Temp\%"' Verzeichnis angelegt und alle Meldung dort geloggt. Die Datei hat immer den Namen des Ports dass getestet wird.
 
 \section{Wiederholzähler}
 \paragraph{}
@@ -134,7 +157,25 @@ Diese Option gilt für die Fehlersuche. Wenn diese Option gesetzt ist, haltet da
 
 \section{Testdatei}
 \paragraph{}
-In einer Testdatei werden die Testkonfiguration gespeichert. Eine Testdatei kann manuell oder mit Hilfe der GUI erzeugt werden. Die Testdatei ist wie eine Datei aus der Registrierungsdatenbank (Windows Registry)aufgebaut. In "`\[\]"' wird der Port angegeben und darunter die jeweilige Testparametern. Für ein Beispiel bitte siehe Anhang. 
+In einer Testdatei werden die Testkonfiguration gespeichert. Eine Testdatei kann manuell oder mit Hilfe der GUI erzeugt werden. Die Testdatei ist wie eine Datei aus der Registrierungsdatenbank (Windows Registry)aufgebaut. In "`\[\]"' wird der Port angegeben und darunter die jeweilige Testparametern. Für ein Beispiel bitte siehe Anhang \ref{TestDatei}.
+
+
+\section{Einstellbare Werte}
+\paragraph{}
+Die Einstellparameter können folgende Werte in der GUI oder Testdatei zugewiesen bekommen:
+\paragraph{Main/Master und Slave Port} im system vorhandene COM Ports. Diese werden für den Benutzer in der GUI aufgelistet.
+\paragraph{Baudrate} Für den ausgewählten COM Port einstellbare Baudraten.
+\paragraph{Test Mode} automatic, wobble, fixed.
+\paragraph{Transfer Mode} shorted, double, master, slave.
+\paragraph{Parity} none, odd, even.
+\paragraph{Protocol} XON/XOFF, hardware, none.
+\paragraph{Stopbits} 1, 2.
+\paragraph{Databits} 7, 8.
+\paragraph{File to send} Pfad zu einer Testdatei. Wenn eine Zeile länger als 100 Zeichen ist, werden nur die ersten 100 Zeichen Übertragen.
+\paragraph{Text to send} Vom Benutzer auswählbarer String das Übertragen wird. Wenn eine Zeile länger als 100 Zeichen ist, werden nur die ersten 100 Zeichen Übertragen.
+\paragraph{Logger} Gibt an ob eine Log-Datei angelegt wird oder keine.
+\paragraph{Repeater} Anzahl der Testwiederholungen.
+
 
 \section{Einfaches Beispiel}
 \paragraph{}
@@ -143,12 +184,24 @@ Will zum Beispiel ein Benutzer der Port COM1 testen. Dieser soll an COM2 die Wö
 \paragraph{}
 Als erstes muss der Benutzer unter \textit{Main Port} "`COM1"' auswählen. Danach werden die mögliche Baudraten in \textit{Baud rate} aufgelistet. Dort muss der Benutzer 9600 wählen. Da nur eine bestimmte Konfiguration gegeben ist, ohne Variablen, wird auf "`Fixed"' unter \textit{Test Mode} geklickt und als Übertragungsmodus "`Double"' ausgewählt. Unter \textit{Parity} wird "`Even"', \textit{Protocol} wird "`XON/XOFF"', \textit{Stopbits} wird "`2"' und \textit{Databits} wird "`7"' ausgewählt.\\
 
-BILD\\
+\begin{figure}[h]
+  \begin{center}		%width=\linewidth
+    \includegraphics[scale=0.4]{Beispiel1}
+  		  \caption{Beispiel der Testeinstellungen}
+     \label{Beispielbild 1}
+  \end{center}
+\end{figure}
 
 \paragraph{}
 Unter \textit{Send text} soll der Benutzer "`Hallo Welt"' schreiben. Will der Benutzer Escape-Sequenzen schicken, müssen diese als Hexadezimal Werte angegeben werden(zum Beispiel \textbackslash0a oder \textbackslash0d). Danach wird auf \textit{Load text to send} geklickt. Ein Pop-Up Fenster meldet, dass der Text geladen worden ist. Damit der Test fünfmal wiederholt wird, muss in \textit{Repeater} eine fünf anstatt der eins geschrieben werden. Danach ist die GUI konfiguriert und kann auf \textit{Start} geklickt werden.\\
 
-BILD\\
+\begin{figure}[h]
+  \begin{center}		%width=\linewidth
+    \includegraphics[scale=0.4]{Beispiel2}
+  		  \caption{Beispiel laden eines Textes}
+     \label{Beispielbild 2}
+  \end{center}
+\end{figure}
 
 \paragraph{}
 Durch ein Pop-Up Fenster wird dem Benutzer gemeldet, wenn der Test fertig ist. Um eine Evaluation des Tests machen zu können muss die Log-Datei ausgewertet werden.

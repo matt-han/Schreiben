@@ -94,13 +94,15 @@
 \BOOKMARK [1][-]{section.7.9}{Beim ersten Fehler anhalten}{chapter.7}% 94
 \BOOKMARK [1][-]{section.7.10}{Buttons}{chapter.7}% 95
 \BOOKMARK [1][-]{section.7.11}{Testdatei}{chapter.7}% 96
-\BOOKMARK [1][-]{section.7.12}{Einfaches Beispiel}{chapter.7}% 97
-\BOOKMARK [0][-]{chapter.8}{Zusammenfassung und Ausblick}{}% 98
-\BOOKMARK [0][-]{appendix.A}{Anhang}{}% 99
-\BOOKMARK [1][-]{section.A.1}{Template Class}{appendix.A}% 100
-\BOOKMARK [1][-]{section.A.2}{HandleMessage}{appendix.A}% 101
-\BOOKMARK [1][-]{section.A.3}{Readdata}{appendix.A}% 102
-\BOOKMARK [1][-]{section.A.4}{Writedata}{appendix.A}% 103
-\BOOKMARK [1][-]{section.A.5}{Logdatei}{appendix.A}% 104
-\BOOKMARK [1][-]{section.A.6}{Ablaufdiagramm eines Master - Slave Test}{appendix.A}% 105
-\BOOKMARK [0][-]{section.A.6}{Literatur- und Quellenverzeichnis}{}% 106
+\BOOKMARK [1][-]{section.7.12}{Einstellbare Werte}{chapter.7}% 97
+\BOOKMARK [1][-]{section.7.13}{Einfaches Beispiel}{chapter.7}% 98
+\BOOKMARK [0][-]{chapter.8}{Zusammenfassung und Ausblick}{}% 99
+\BOOKMARK [0][-]{appendix.A}{Anhang}{}% 100
+\BOOKMARK [1][-]{section.A.1}{Template Class}{appendix.A}% 101
+\BOOKMARK [1][-]{section.A.2}{HandleMessage}{appendix.A}% 102
+\BOOKMARK [1][-]{section.A.3}{Readdata}{appendix.A}% 103
+\BOOKMARK [1][-]{section.A.4}{Writedata}{appendix.A}% 104
+\BOOKMARK [1][-]{section.A.5}{Logdatei}{appendix.A}% 105
+\BOOKMARK [1][-]{section.A.6}{Testdatei}{appendix.A}% 106
+\BOOKMARK [1][-]{section.A.7}{Ablaufdiagramm eines Master - Slave Test}{appendix.A}% 107
+\BOOKMARK [0][-]{section.A.7}{Literatur- und Quellenverzeichnis}{}% 108
