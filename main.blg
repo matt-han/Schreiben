@@ -5,14 +5,14 @@ The style file: alpha.bst
 Database file #1: bhtThesis.bib
 You've used 6 entries,
             2543 wiz_defined-function locations,
-            593 strings with 4958 characters,
-and the built_in function-call counts, 1516 in all, are:
+            592 strings with 4954 characters,
+and the built_in function-call counts, 1520 in all, are:
 = -- 140
 > -- 34
 < -- 4
 + -- 8
 - -- 8
-* -- 80
+* -- 84
 := -- 252
 add.period$ -- 16
 call.type$ -- 6

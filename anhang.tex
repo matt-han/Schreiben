@@ -424,25 +424,227 @@ bool PortCommunications::writeData(const char * lpBuf, DWORD dwSize)
 \newpage
 %****************************************************************************************
 \section{Logdatei}\label{LogDatei}
-hier kommt die logdatei für ein Kurzchlussstecker
+Logdatei für ein \textit{Fixed-Shorted} Test mit default Übertragungstext:
 
+\lstset{language=C++,
+				backgroundcolor=\color{white},
+				%frame=single,
+				tabsize=2,
+				%numbers=left,
+				numbersep=10pt,
+				basicstyle=\ttfamily\color{black}\small,
+				keywordstyle=\color{black},
+				commentstyle=\color{black},
+				identifierstyle=\color{black}
+		}
+\begin{lstlisting}
+++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++
+++  Thu Sep 26 13:04:48 2013              ++
+++  Serial Port Tester                    ++
+++  Version 0.80                          ++
+++++++++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++++++++++++++++++++++
+
+
+TEST NR. 1
+*********************************************
+
+Communication Settings
+----------------------
+ * Port        COM1
+ * Baud rate   9600
+ * Parity      1
+ * Stopbits    1
+ * Databits    8
+ * Protocol    2
+----------------------
+
+-----------------------------------------
+Transmission started
+Thu Sep 26 13:04:48 2013
+-----------------------------------------
+Text line nr.: 1
+time out: 30 ms
+
+--> main port writes
+...Write attempt number: 1
+write was true
+
+--> main port reads buffer
+sSendData Freude, schöner Götterfunken,
+sTemp     Freude, schöner Götterfunken,
+read was true
+
+
+Text line nr.: 2
+time out: 21 ms
+
+--> main port writes
+...Write attempt number: 1
+write was true
+
+--> main port reads buffer
+sSendData Tochter aus Elysium!
+sTemp     Tochter aus Elysium!
+read was true
+
+
+Text line nr.: 3
+time out: 27 ms
+
+--> main port writes
+...Write attempt number: 1
+write was true
+
+--> main port reads buffer
+sSendData Wir betreten feuertrunken,
+sTemp     Wir betreten feuertrunken,
+read was true
+
+
+Text line nr.: 4
+time out: 29 ms
+
+--> main port writes
+...Write attempt number: 1
+write was true
+
+--> main port reads buffer
+sSendData Himmlische, Dein Heiligthum.
+sTemp     Himmlische, Dein Heiligthum.
+read was true
+
+
+Text line nr.: 5
+time out: 28 ms
+
+--> main port writes
+...Write attempt number: 1
+write was true
+
+--> main port reads buffer
+sSendData Deine Zauber binden wieder,
+sTemp     Deine Zauber binden wieder,
+read was true
+
+
+Text line nr.: 6
+time out: 30 ms
+
+--> main port writes
+...Write attempt number: 1
+write was true
+
+--> main port reads buffer
+sSendData Was die Mode streng getheilt,
+sTemp     Was die Mode streng getheilt,
+read was true
+
+
+Text line nr.: 7
+time out: 29 ms
+
+--> main port writes
+...Write attempt number: 1
+write was true
+
+--> main port reads buffer
+sSendData Alle Menschen werden Brüder,
+sTemp     Alle Menschen werden Brüder,
+read was true
+
+
+Text line nr.: 8
+time out: 29 ms
+
+--> main port writes
+...Write attempt number: 1
+write was true
+
+--> main port reads buffer
+sSendData Wo Dein sanfter Flügel weilt
+sTemp     Wo Dein sanfter Flügel weilt
+read was true
+
+-----------------------------------------
+Transmission finished
+Thu Sep 26 13:04:49 2013
+-----------------------------------------
+   Test Results   
+__________________
+LineNr. | ExitCode
+1       | 0
+2       | 0
+3       | 0
+4       | 0
+5       | 0
+6       | 0
+7       | 0
+8       | 0
+
+
+Transmission finished successfully
+
+closing logger
+
+\end{lstlisting}
 
 %****************************************************************************************
 \newpage
 %****************************************************************************************
 \section{Testdatei}\label{TestDatei}
-hier kommen die testdateien\\
-fixed master slave\\
-wobble shorted\\
-automatic double
+
+Testdatei für ein \textit{Fixed-Shorted} Test:\\
+
+\textit{
+\hspace*{10mm}[COM1]\\
+\hspace*{10mm}TestMode=fixed\\
+\hspace*{10mm}TransferMode=shorted\\
+\hspace*{10mm}BaudRate=9600\\
+\hspace*{10mm}Parity=odd\\
+\hspace*{10mm}Protocol=none\\
+\hspace*{10mm}Stopbits=1\\
+\hspace*{10mm}Databits=8\\
+\hspace*{10mm}TransferTextMode=default\\
+\hspace*{10mm}TransferText=\\
+\hspace*{10mm}Logger=true\\
+\hspace*{10mm}StopOnFirstError=false\\
+\hspace*{10mm}Repeater=1\\
+}
+
+Testdateien für ein \textit{Automatic Master-Slave} Test:\\
+
+\begin{tabular}{llll}
+&\hspace*{5mm}\textit{[COM4]} & \textit{[COM5]}\\
+&\hspace*{5mm}\textit{TestMode=automatic} & \textit{TestMode=automatic}\\
+&\hspace*{5mm}\textit{TransferMode=master} & \textit{TransferMode=slave}\\
+&\hspace*{5mm}\textit{Logger=true} & \textit{Logger=true}\\
+&\hspace*{5mm}\textit{StopOnFirstError=true} & \textit{StopOnFirstError=true}\\\\
+\end{tabular}
+
+
+Testdatei für ein \textit{Wobble-Double} Test:\\
+
+\textit{
+\hspace*{10mm}[COM2]\\
+\hspace*{10mm}TestMode=wobble\\
+\hspace*{10mm}TransferMode=double\\
+\hspace*{10mm}SlavePort=COM3\\
+\hspace*{10mm}BaudRate=9600-115200\\
+\hspace*{10mm}Parity=odd\\
+\hspace*{10mm}Protocol=XON/XOFF\\
+\hspace*{10mm}Stopbits=1\\
+\hspace*{10mm}Databits=8\\
+\hspace*{10mm}TransferTextMode=default\\
+\hspace*{10mm}TransferText=CustomText\\
+\hspace*{10mm}Logger=true\\
+\hspace*{10mm}StopOnFirstError=false\\
+\hspace*{10mm}Repeater=1\\
+}
 
 
 %****************************************************************************************
 \newpage
 %****************************************************************************************
-\section{Ablaufdiagramm eines Master - Slave Test}\label{MasterSlaveDiagramm}
-
-\begin{figure}[htbp]
-	%\centering 
-	\includegraphics[width=15cm]{MasterSlave}  
-\end{figure}
+\section{Errorcodes}\label{Errorcodes}

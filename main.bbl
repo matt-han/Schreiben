@@ -15,9 +15,9 @@ Dirk Louis.
 \newblock {\em Visual C++ 2010}.
 \newblock Addison-Wesley, 2010.
 
-\bibitem[Mic95]{SerialCommunications}
+\bibitem[Mic13]{SerialCommunications}
 Microsoft, \url{http://msdn.microsoft.com/en-us/library/ff802693.aspx}.
-\newblock {\em Serial Communications}, 1995.
+\newblock {\em Serial Communications}, August 2013.
 
 \bibitem[Pet98]{ProgrammingWindows}
 Charles Petzold.
@@ -26,6 +26,6 @@ Charles Petzold.
 
 \bibitem[Wik13]{RS232}
 Wikipedia, http://de.wikipedia.org/wiki/RS-232.
-\newblock {\em RS-232}, 2013.
+\newblock {\em RS-232}, August 2013.
 
 \end{thebibliography}

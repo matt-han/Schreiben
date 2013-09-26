@@ -74,35 +74,40 @@
 \BOOKMARK [2][-]{subsection.5.10.1}{Aufbau}{section.5.10}% 74
 \BOOKMARK [1][-]{section.5.11}{Klasse Logger}{chapter.5}% 75
 \BOOKMARK [1][-]{section.5.12}{Header Constants}{chapter.5}% 76
-\BOOKMARK [0][-]{chapter.6}{Realisierung}{}% 77
-\BOOKMARK [0][-]{chapter.7}{Bedienungsanleitung}{}% 78
-\BOOKMARK [1][-]{section.7.1}{Bedienung \374ber die GUI}{chapter.7}% 79
-\BOOKMARK [1][-]{section.7.2}{Bedienung \374ber die Kommandozeile}{chapter.7}% 80
-\BOOKMARK [1][-]{section.7.3}{Testmodus}{chapter.7}% 81
-\BOOKMARK [2][-]{subsection.7.3.1}{Automatic}{section.7.3}% 82
-\BOOKMARK [2][-]{subsection.7.3.2}{Wobble}{section.7.3}% 83
-\BOOKMARK [2][-]{subsection.7.3.3}{Fixed}{section.7.3}% 84
-\BOOKMARK [1][-]{section.7.4}{\334bertragungsmodus}{chapter.7}% 85
-\BOOKMARK [2][-]{subsection.7.4.1}{Shorted}{section.7.4}% 86
-\BOOKMARK [2][-]{subsection.7.4.2}{Double}{section.7.4}% 87
-\BOOKMARK [2][-]{subsection.7.4.3}{Master}{section.7.4}% 88
-\BOOKMARK [2][-]{subsection.7.4.4}{Slave}{section.7.4}% 89
-\BOOKMARK [1][-]{section.7.5}{Schnittstelleneigenschaften}{chapter.7}% 90
-\BOOKMARK [1][-]{section.7.6}{Sendedaten}{chapter.7}% 91
-\BOOKMARK [1][-]{section.7.7}{Logger}{chapter.7}% 92
-\BOOKMARK [1][-]{section.7.8}{Wiederholz\344hler}{chapter.7}% 93
-\BOOKMARK [1][-]{section.7.9}{Beim ersten Fehler anhalten}{chapter.7}% 94
-\BOOKMARK [1][-]{section.7.10}{Buttons}{chapter.7}% 95
-\BOOKMARK [1][-]{section.7.11}{Testdatei}{chapter.7}% 96
-\BOOKMARK [1][-]{section.7.12}{Einstellbare Werte}{chapter.7}% 97
-\BOOKMARK [1][-]{section.7.13}{Einfaches Beispiel}{chapter.7}% 98
-\BOOKMARK [0][-]{chapter.8}{Zusammenfassung und Ausblick}{}% 99
-\BOOKMARK [0][-]{appendix.A}{Anhang}{}% 100
-\BOOKMARK [1][-]{section.A.1}{Template Class}{appendix.A}% 101
-\BOOKMARK [1][-]{section.A.2}{HandleMessage}{appendix.A}% 102
-\BOOKMARK [1][-]{section.A.3}{Readdata}{appendix.A}% 103
-\BOOKMARK [1][-]{section.A.4}{Writedata}{appendix.A}% 104
-\BOOKMARK [1][-]{section.A.5}{Logdatei}{appendix.A}% 105
-\BOOKMARK [1][-]{section.A.6}{Testdatei}{appendix.A}% 106
-\BOOKMARK [1][-]{section.A.7}{Ablaufdiagramm eines Master - Slave Test}{appendix.A}% 107
-\BOOKMARK [0][-]{section.A.7}{Literatur- und Quellenverzeichnis}{}% 108
+\BOOKMARK [0][-]{chapter.6}{Testbeschreibung}{}% 77
+\BOOKMARK [1][-]{section.6.1}{Benutzerschnittstelle}{chapter.6}% 78
+\BOOKMARK [2][-]{subsection.6.1.1}{INI-Datei}{section.6.1}% 79
+\BOOKMARK [2][-]{subsection.6.1.2}{Kommandozeile}{section.6.1}% 80
+\BOOKMARK [2][-]{subsection.6.1.3}{Benutzeroberfl\344che}{section.6.1}% 81
+\BOOKMARK [1][-]{section.6.2}{Funktionseinheiten}{chapter.6}% 82
+\BOOKMARK [0][-]{chapter.7}{Bedienungsanleitung}{}% 83
+\BOOKMARK [1][-]{section.7.1}{Bedienung \374ber die GUI}{chapter.7}% 84
+\BOOKMARK [1][-]{section.7.2}{Bedienung \374ber die Kommandozeile}{chapter.7}% 85
+\BOOKMARK [1][-]{section.7.3}{Testmodus}{chapter.7}% 86
+\BOOKMARK [2][-]{subsection.7.3.1}{Automatic}{section.7.3}% 87
+\BOOKMARK [2][-]{subsection.7.3.2}{Wobble}{section.7.3}% 88
+\BOOKMARK [2][-]{subsection.7.3.3}{Fixed}{section.7.3}% 89
+\BOOKMARK [1][-]{section.7.4}{\334bertragungsmodus}{chapter.7}% 90
+\BOOKMARK [2][-]{subsection.7.4.1}{Shorted}{section.7.4}% 91
+\BOOKMARK [2][-]{subsection.7.4.2}{Double}{section.7.4}% 92
+\BOOKMARK [2][-]{subsection.7.4.3}{Master}{section.7.4}% 93
+\BOOKMARK [2][-]{subsection.7.4.4}{Slave}{section.7.4}% 94
+\BOOKMARK [1][-]{section.7.5}{Schnittstelleneigenschaften}{chapter.7}% 95
+\BOOKMARK [1][-]{section.7.6}{Sendedaten}{chapter.7}% 96
+\BOOKMARK [1][-]{section.7.7}{Logger}{chapter.7}% 97
+\BOOKMARK [1][-]{section.7.8}{Wiederholz\344hler}{chapter.7}% 98
+\BOOKMARK [1][-]{section.7.9}{Beim ersten Fehler anhalten}{chapter.7}% 99
+\BOOKMARK [1][-]{section.7.10}{Buttons}{chapter.7}% 100
+\BOOKMARK [1][-]{section.7.11}{Testdatei}{chapter.7}% 101
+\BOOKMARK [1][-]{section.7.12}{Einstellbare Werte}{chapter.7}% 102
+\BOOKMARK [1][-]{section.7.13}{Einfaches Beispiel}{chapter.7}% 103
+\BOOKMARK [0][-]{chapter.8}{Zusammenfassung und Ausblick}{}% 104
+\BOOKMARK [0][-]{appendix.A}{Anhang}{}% 105
+\BOOKMARK [1][-]{section.A.1}{Template Class}{appendix.A}% 106
+\BOOKMARK [1][-]{section.A.2}{HandleMessage}{appendix.A}% 107
+\BOOKMARK [1][-]{section.A.3}{Readdata}{appendix.A}% 108
+\BOOKMARK [1][-]{section.A.4}{Writedata}{appendix.A}% 109
+\BOOKMARK [1][-]{section.A.5}{Logdatei}{appendix.A}% 110
+\BOOKMARK [1][-]{section.A.6}{Testdatei}{appendix.A}% 111
+\BOOKMARK [1][-]{section.A.7}{Errorcodes}{appendix.A}% 112
+\BOOKMARK [0][-]{section.A.7}{Literatur- und Quellenverzeichnis}{}% 113

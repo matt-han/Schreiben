@@ -82,7 +82,7 @@ Im kombinierten Master / Slave-Modus (Kurzschlussstecker) übernimmt eine Instan
 
 \subsection{Master / Slave Ablauf mit „Wobbeln“-Funktion}
 \paragraph{}
-Die Master-Instanz übernimmt die Steuerung des Ablaufes, der Slave antwortet dem Master. In diesem Testmodus werden durch den Benutzer eingegebene Baudraten(Unter und Obergrenze) gewobbelt. Der Wobbeln-Ablauf kann über die GUI oder in der INI-Datei beschrieben werden. Der automatische Test erfolgt dann nur für die dort eingetragenen Parameter, z.B.:
+Die Master-Instanz übernimmt die Steuerung des Ablaufes, der Slave antwortet dem Master. In diesem Testmodus werden durch den Benutzer eingegebene Baudraten(Unter- und Obergrenze) gewobbelt\footnote{Für jede Standardbaudrate die einstellbar ist, inklusive der Unter- und Übergrenze, wird ein Test durchgeführt (aufsteigend)}. Der Wobbeln-Ablauf kann über die GUI oder in der INI-Datei beschrieben werden. Der automatische Test erfolgt dann nur für die dort eingetragenen Parameter, z.B.:
 
 \begin{center}
 BAUD = 9600 - 115200

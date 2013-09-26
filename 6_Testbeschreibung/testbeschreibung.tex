@@ -1,0 +1,126 @@
+\chapter{Testbeschreibung}\label{chp:Testbeschreibung}
+\paragraph{}
+Als letzter Schritt für die Beendigung der Entwicklung des Testprogrammes müssen Test für die Funktionseinheiten und die Benutzerschnittstelle durchgeführt werden. 
+
+
+\section{Benutzerschnittstelle}
+\paragraph{}
+In den Tests für die Benutzerschnittstellen müssen alle Parameter getestet werden, wo der Benutzer ein Fehler begangen kann. Im Testprogramm gibt es ein Abschnitt wo alle Parameter überprüft werden. Folgende Testfälle müssen von diesem Programmabschnitt abgefangen werden und den Benutzer melden, was für ein Fehler er begangen hat, mit einer passende Fehlermeldung. Folgende Teststrategie werden ausgeübt:
+
+\paragraph{Positivtest} erwartete Eingabe für den jeweiligen Parameter (bei eine Zahl wird eine gültiger numerischer Wert eingegeben)
+\paragraph{Negativtest} unerwartete Eingabe für den jeweiligen Parameter (bei eine Zahl wird ein Text eingegeben)
+\paragraph{Boderline} gültige und ungültige Grenzwerte
+
+Für die Dokumentation der Tests werden die Positivtest nicht berücksichtigt. 
+
+
+\subsection{INI-Datei}
+\paragraph{}
+In einer INI-Datei müssen alle gelesene Parameter auf plausible Werte überprüft werden. Eine Liste mit den Bedeutungen der Errorcodes ist im Anhang \ref{Errorcodes} ......zu lesen........
+\begin{longtable}{||l|p{3cm}|p{5cm}|c||}
+ 
+%  Als Kopfzeile & der anderen Seiten & wird dies gesetzt &\\ \hline
+%  \endhead
+%  Die Fu"szeilen & f"ur & alle Seiten & \\ \hline\hline
+% \endfoot
+%  Nur die letzte & Fu"szeile ist etwas & BESONDERES &\\ \hline\hline
+%  \endlastfoot
+
+
+\hline
+Testfall & Fehler & Kommentar & Errorcode \\ \hline\hline
+\endfirsthead
+\hline
+Testfall & Fehler & Kommentar & Errorcode \\ \hline\hline
+\endhead
+
+COM0   & falscher COM Port & kein gültiger Wert, Datei wird als Leer interpretiert & -12\\ \hline
+COM1   & falscher COM Port & nicht in der System vorhanden                         & -6 \\ \hline
+COM256 & falscher COM Port & nicht im System vorhanden                             & -6 \\ \hline
+COM257 & falscher COM Port & kein gültiger Wert, Datei wird als Leer interpretiert & -12\\ \hline\hline
+
+baudrate=Min-Max     & falscher Parameter      & MIN-MAX                      & -17 \\ \hline
+baudrate=-Max        & unvollständiger Parameter & fehlt eine minimale Baudrate &  \\ \hline
+baudrate=Min-        & unvollständiger Parameter & fehlt eine maximale Baudrate &  \\ \hline
+baudrate=-9600-115200& negative Baudrate         & nur positive Baudraten       &  \\ \hline
+
+parity=Min-Max & falscher Parameter & MIN-MAX         & -9\\ \hline
+parity=1       & falscher Parameter & nur Text & -9\\ \hline
+parity=ODD     & falscher Parameter & odd, even, none & -9\\ \hline\hline
+
+databits=6    & falscher Parameter & 7, 8       & -9\\ \hline
+databits=9    & falscher Parameter & 7, 8       & -9\\ \hline
+databits=text & falscher Parameter & nur Zahlen & -9\\ \hline\hline
+
+protocol=0    & nur Text             & none, hardware, XON/XOFF & -9\\ \hline
+protocol=NONE & falscher Parameter & none, hardware, XON/XOFF & -9\\ \hline\hline
+
+stopbits=text & nur Zahlen           & 1, 2 & -9\\ \hline
+stopbits=0    & falscher Parameter & 1, 2 & -9\\ \hline
+stopbits=3    & falscher Parameter & 1, 2 & -9\\ \hline\hline
+
+transfertextmode=sometext & falscher Parameter & default, text, file   & -9\\ \hline
+transfertextmode=default  & & &\\
+transfertext=teststring   & unnötiger Parameter  & wird nicht betrachtet & 0 \\ \hline
+
+transfertextmode=file & & &\\
+transfertext                  & nicht definiert      & Dateipfad muss angegeben werden     & -9\\ \cline{2-4}
+transfertext=                 & leerer Parameter     & Parameter muss angegeben werden     & -9\\ \cline{2-4}
+transfertext=C:\textbackslash & ungültiger Dateipfad & gültiger Pfad muss angegeben werden & -13\\ \hline\hline
+
+transfertextmode=text & & &\\
+transfertext                  & nicht definiert      & Übertragungstext muss angegeben werden & -9\\ \cline{2-4}
+transfertext=                 & leerer Parameter     & Parameter muss angegeben werden        & -9\\ \hline\hline
+
+logger=keine & falscher Parameter & true, false & -9\\ \hline
+logger=123   & falscher Parameter & true, false & -9\\ \hline\hline
+
+stoponfirsterror=nein & falscher Parameter & true, false & -9\\ \hline
+stoponfirsterror=321  & falscher Parameter & true, false & -9\\ \hline\hline
+
+repeater=-1   & falscher Parameter & nur Zahlen $\geq$ 0 & -9\\ \hline
+repeater=text & falscher Parameter & nur Zahlen $\geq$ 0 & -9\\ \hline\hline
+
+\end{longtable}
+
+
+Bei einer Testdatei mit mehreren Sektionen, werden zuerst alle Eingaben gelesen und geprüft. Wird ein Fehler gefunden, wird dieser dem Benutzer gemeldet. Sind ungültige Sektionen wie [COM0] oder [COM257] in der Testdatei eingetragen, werden diese vom Testprogramm nicht betrachtet. Alle andere gültige Eingaben werden geprüft und getestet.
+
+
+\subsection{Kommandozeile}
+\paragraph{}
+In der Kommandozeile kann der Benutzer eine vollständige Testdatei angeben oder eine Testdatei wo die Sektion als [COM] definiert ist, plus die Angabe welcher Port getestet werden soll.
+
+\hspace*{10mm}\textit{SerialPortTester.exe C:\textbackslash Testdateien\textbackslash Testdatei1.ini}\\
+\hspace*{10mm}\textit{SerialPortTester.exe C:\textbackslash Testdateien\textbackslash Testdatei2.ini /COM1}\\
+
+\begin{longtable}{||l|p{3cm}|p{5cm}|c||}
+\hline
+Testfall & Fehler & Kommentar & Errorcode \\ \hline\hline
+\endfirsthead
+\hline
+Testfall & Fehler & Kommentar & Errorcode \\ \hline\hline
+\endhead
+
+C:\textbackslash Testdateien & falscher Dateipfad & Dateipfad gibt keine Datei an & \\ \hline
+C:\textbackslash Testdateien\textbackslash Datei & falscher Dateipfad & Dateipfad gibt keine gültige Testdatei an & \\ \hline
+
+C:\textbackslash Testdatei.ini /com1 & falscher COM Port & Portbezeichnung ungültig, muss COM1 sein & \\ \hline
+C:\textbackslash Testdatei.ini /COM0 & falscher COM Port & Portname ungültig & \\ \hline
+C:\textbackslash Testdatei.ini COM1 & falscher Parameter & Parameter muss mit / beginnen & \\ \hline
+
+C:\textbackslash Testdatei.ini /COM1 /COM2& flascher Parameter & zu viele Parameter & \\ \hline
+/COM0 & falscher Parameter & Dateipfad fehlt & \\ \hline
+
+\end{longtable}
+
+
+\subsection{Benutzeroberfläche}
+\paragraph{}
+In der Benutzeroberfläche werden nur gültige Parameter angeboten, außer die Baudraten, der Wiederholungszähler (Repeater), die Übertragungsdatei und der Übertragungstext. Die Baudraten werden für jeden COM Port vom System abgefragt. Durch die Test wurde festgestellt, dass manche Baudraten angeboten werden, die nicht wirklich unterstützt werden. Der Benutzer kann im Fehlerfall, mit Hilfe der Kommandozeile und des Befehls \textit{mode}, sicherstellen, dass die Baudrate tatsächlich nicht unterstützt wird. Bei den anderen Parametern werden Fehler erkannt, da die Überprüfung für die GUI oder Testdatei die gleiche ist.
+
+
+
+\section{Funktionseinheiten}
+\paragraph{}
+Die Funktionstest basieren auf die Funktionen des Testprogrammes. Die verschiedene Einstellungsmöglichkeiten worden getestet. Durch die Ausführlichkeit des Tests werden nur die durchgefälle Tests erläutert. Laut Testergebnisse gibt es keine Einschränkungen in den Testmodus (Automatic, Wobble und Fixed) und in den Transfermodus \textit{Shorted} und \textit{Double}. Wird der Transfermodus \textit{Master-Slave} in einem System getestet, worden keine Probleme erkannt. Wird die gleiche Einstellung in zwei verschiedene Systeme ausgeführt, kommt es öfters zu Synchronisierungsprobleme nach den ersten Testschritt\footnote{Unter Testschritt ist zu verstehen, dass ein Test aus mehreren Schritten besteht. Für jede mögliche Testkonfiguration wird ein Testschritt definiert. Wird für ein \textit{Fixed-Shorted} Test der Wiederholzähler auf Zehn gesetzt, besteht dieser Test aus Zehn Testschritten}. Wenn beide Schnittstellen im ersten Testschritt sich erfolgreich synchronisieren und den ersten Testschritt erfolgreich abschließen, müssen sich für einen neuen Testschritt nochmal synchronisieren. Bei diesen Vorgang kommt es zu einem Fehler und beide Schnittstellen erkennen sich nicht.
