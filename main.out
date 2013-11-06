@@ -25,89 +25,92 @@
 \BOOKMARK [2][-]{subsection.2.13.1}{Logbuch}{section.2.13}% 25
 \BOOKMARK [2][-]{subsection.2.13.2}{Synchronisierungsprotokoll}{section.2.13}% 26
 \BOOKMARK [2][-]{subsection.2.13.3}{Anhalten eines Tests}{section.2.13}% 27
-\BOOKMARK [0][-]{chapter.3}{Fachlichesumfeld}{}% 28
-\BOOKMARK [1][-]{section.3.1}{RS-232 \(Radio Sector 232\)}{chapter.3}% 29
-\BOOKMARK [2][-]{subsection.3.1.1}{Definition}{section.3.1}% 30
-\BOOKMARK [2][-]{subsection.3.1.2}{\334bertragung}{section.3.1}% 31
-\BOOKMARK [2][-]{subsection.3.1.3}{UART}{section.3.1}% 32
-\BOOKMARK [2][-]{subsection.3.1.4}{Parit\344tsbit}{section.3.1}% 33
-\BOOKMARK [2][-]{subsection.3.1.5}{Leitungen und Stecker}{section.3.1}% 34
-\BOOKMARK [2][-]{subsection.3.1.6}{Verwendung der RS-232 Schnittstelle bei Wincor Nixdorf}{section.3.1}% 35
-\BOOKMARK [1][-]{section.3.2}{Microsoft Windows API}{chapter.3}% 36
-\BOOKMARK [2][-]{subsection.3.2.1}{Definition}{section.3.2}% 37
-\BOOKMARK [2][-]{subsection.3.2.2}{Windows.h}{section.3.2}% 38
-\BOOKMARK [2][-]{subsection.3.2.3}{WinMain}{section.3.2}% 39
-\BOOKMARK [2][-]{subsection.3.2.4}{Graphic User Interface \(GUI\)}{section.3.2}% 40
-\BOOKMARK [2][-]{subsection.3.2.5}{Aufbau einer GUI}{section.3.2}% 41
-\BOOKMARK [2][-]{subsection.3.2.6}{Die RS-232 Schnittstelle und die Windows API}{section.3.2}% 42
-\BOOKMARK [0][-]{chapter.4}{L\366sungsans\344tze}{}% 43
-\BOOKMARK [1][-]{section.4.1}{Fehlererkennung}{chapter.4}% 44
-\BOOKMARK [1][-]{section.4.2}{Master Slave Modus zwischen zwei Systeme}{chapter.4}% 45
-\BOOKMARK [1][-]{section.4.3}{C++ und die GUI}{chapter.4}% 46
-\BOOKMARK [0][-]{chapter.5}{Systementwurf}{}% 47
-\BOOKMARK [1][-]{section.5.1}{Klasse Window}{chapter.5}% 48
-\BOOKMARK [2][-]{subsection.5.1.1}{Design}{section.5.1}% 49
-\BOOKMARK [2][-]{subsection.5.1.2}{Aufbau}{section.5.1}% 50
-\BOOKMARK [2][-]{subsection.5.1.3}{Aufgaben}{section.5.1}% 51
-\BOOKMARK [1][-]{section.5.2}{Klasse Interpreter}{chapter.5}% 52
-\BOOKMARK [2][-]{subsection.5.2.1}{Aufgaben}{section.5.2}% 53
-\BOOKMARK [1][-]{section.5.3}{Struktur TestStruct}{chapter.5}% 54
-\BOOKMARK [2][-]{subsection.5.3.1}{Aufbau}{section.5.3}% 55
-\BOOKMARK [1][-]{section.5.4}{Klasse Com}{chapter.5}% 56
-\BOOKMARK [2][-]{subsection.5.4.1}{Aufgaben}{section.5.4}% 57
-\BOOKMARK [1][-]{section.5.5}{Klasse PortCommunications}{chapter.5}% 58
-\BOOKMARK [2][-]{subsection.5.5.1}{Schreiben}{section.5.5}% 59
-\BOOKMARK [2][-]{subsection.5.5.2}{Lesen}{section.5.5}% 60
-\BOOKMARK [1][-]{section.5.6}{Klasse TestManager}{chapter.5}% 61
-\BOOKMARK [2][-]{subsection.5.6.1}{Aufbau}{section.5.6}% 62
-\BOOKMARK [1][-]{section.5.7}{Klasse FixedTest}{chapter.5}% 63
-\BOOKMARK [2][-]{subsection.5.7.1}{Ablauf eines Tests}{section.5.7}% 64
-\BOOKMARK [2][-]{subsection.5.7.2}{Master und Slave}{section.5.7}% 65
-\BOOKMARK [1][-]{section.5.8}{Klasse IniFileHandler}{chapter.5}% 66
-\BOOKMARK [2][-]{subsection.5.8.1}{\334bersetzer}{section.5.8}% 67
-\BOOKMARK [2][-]{subsection.5.8.2}{Schreiben}{section.5.8}% 68
-\BOOKMARK [2][-]{subsection.5.8.3}{Lesen}{section.5.8}% 69
-\BOOKMARK [1][-]{section.5.9}{Klasse Tools}{chapter.5}% 70
-\BOOKMARK [2][-]{subsection.5.9.1}{String Methoden}{section.5.9}% 71
-\BOOKMARK [2][-]{subsection.5.9.2}{Weitere Methoden}{section.5.9}% 72
-\BOOKMARK [1][-]{section.5.10}{Klasse TransferFileHandler}{chapter.5}% 73
-\BOOKMARK [2][-]{subsection.5.10.1}{Aufbau}{section.5.10}% 74
-\BOOKMARK [1][-]{section.5.11}{Klasse Logger}{chapter.5}% 75
-\BOOKMARK [1][-]{section.5.12}{Header Constants}{chapter.5}% 76
-\BOOKMARK [0][-]{chapter.6}{Testbeschreibung}{}% 77
-\BOOKMARK [1][-]{section.6.1}{Benutzerschnittstelle}{chapter.6}% 78
-\BOOKMARK [2][-]{subsection.6.1.1}{INI-Datei}{section.6.1}% 79
-\BOOKMARK [2][-]{subsection.6.1.2}{Kommandozeile}{section.6.1}% 80
-\BOOKMARK [2][-]{subsection.6.1.3}{Benutzeroberfl\344che}{section.6.1}% 81
-\BOOKMARK [1][-]{section.6.2}{Funktionseinheiten}{chapter.6}% 82
-\BOOKMARK [0][-]{chapter.7}{Bedienungsanleitung}{}% 83
-\BOOKMARK [1][-]{section.7.1}{Bedienung \374ber die GUI}{chapter.7}% 84
-\BOOKMARK [1][-]{section.7.2}{Bedienung \374ber die Kommandozeile}{chapter.7}% 85
-\BOOKMARK [1][-]{section.7.3}{Testmodus}{chapter.7}% 86
-\BOOKMARK [2][-]{subsection.7.3.1}{Automatic}{section.7.3}% 87
-\BOOKMARK [2][-]{subsection.7.3.2}{Wobble}{section.7.3}% 88
-\BOOKMARK [2][-]{subsection.7.3.3}{Fixed}{section.7.3}% 89
-\BOOKMARK [1][-]{section.7.4}{\334bertragungsmodus}{chapter.7}% 90
-\BOOKMARK [2][-]{subsection.7.4.1}{Shorted}{section.7.4}% 91
-\BOOKMARK [2][-]{subsection.7.4.2}{Double}{section.7.4}% 92
-\BOOKMARK [2][-]{subsection.7.4.3}{Master}{section.7.4}% 93
-\BOOKMARK [2][-]{subsection.7.4.4}{Slave}{section.7.4}% 94
-\BOOKMARK [1][-]{section.7.5}{Schnittstelleneigenschaften}{chapter.7}% 95
-\BOOKMARK [1][-]{section.7.6}{Sendedaten}{chapter.7}% 96
-\BOOKMARK [1][-]{section.7.7}{Logger}{chapter.7}% 97
-\BOOKMARK [1][-]{section.7.8}{Wiederholz\344hler}{chapter.7}% 98
-\BOOKMARK [1][-]{section.7.9}{Beim ersten Fehler anhalten}{chapter.7}% 99
-\BOOKMARK [1][-]{section.7.10}{Buttons}{chapter.7}% 100
-\BOOKMARK [1][-]{section.7.11}{Testdatei}{chapter.7}% 101
-\BOOKMARK [1][-]{section.7.12}{Einstellbare Werte}{chapter.7}% 102
-\BOOKMARK [1][-]{section.7.13}{Einfaches Beispiel}{chapter.7}% 103
-\BOOKMARK [0][-]{chapter.8}{Zusammenfassung und Ausblick}{}% 104
-\BOOKMARK [0][-]{appendix.A}{Anhang}{}% 105
-\BOOKMARK [1][-]{section.A.1}{Template Class}{appendix.A}% 106
-\BOOKMARK [1][-]{section.A.2}{HandleMessage}{appendix.A}% 107
-\BOOKMARK [1][-]{section.A.3}{Readdata}{appendix.A}% 108
-\BOOKMARK [1][-]{section.A.4}{Writedata}{appendix.A}% 109
-\BOOKMARK [1][-]{section.A.5}{Logdatei}{appendix.A}% 110
-\BOOKMARK [1][-]{section.A.6}{Testdatei}{appendix.A}% 111
-\BOOKMARK [1][-]{section.A.7}{Errorcodes}{appendix.A}% 112
-\BOOKMARK [0][-]{section.A.7}{Literatur- und Quellenverzeichnis}{}% 113
+\BOOKMARK [2][-]{subsection.2.13.4}{Programmname}{section.2.13}% 28
+\BOOKMARK [0][-]{chapter.3}{Fachliches Umfeld}{}% 29
+\BOOKMARK [1][-]{section.3.1}{RS-232 \(Radio Sector 232\)}{chapter.3}% 30
+\BOOKMARK [2][-]{subsection.3.1.1}{Definition}{section.3.1}% 31
+\BOOKMARK [2][-]{subsection.3.1.2}{\334bertragung}{section.3.1}% 32
+\BOOKMARK [2][-]{subsection.3.1.3}{UART}{section.3.1}% 33
+\BOOKMARK [2][-]{subsection.3.1.4}{Parit\344tsbit}{section.3.1}% 34
+\BOOKMARK [2][-]{subsection.3.1.5}{Leitungen und Stecker}{section.3.1}% 35
+\BOOKMARK [2][-]{subsection.3.1.6}{Verwendung der RS-232 Schnittstelle bei Wincor Nixdorf}{section.3.1}% 36
+\BOOKMARK [1][-]{section.3.2}{Microsoft Windows API}{chapter.3}% 37
+\BOOKMARK [2][-]{subsection.3.2.1}{Definition}{section.3.2}% 38
+\BOOKMARK [2][-]{subsection.3.2.2}{Windows.h}{section.3.2}% 39
+\BOOKMARK [2][-]{subsection.3.2.3}{WinMain}{section.3.2}% 40
+\BOOKMARK [2][-]{subsection.3.2.4}{Graphic User Interface \(GUI\)}{section.3.2}% 41
+\BOOKMARK [2][-]{subsection.3.2.5}{Aufbau einer GUI}{section.3.2}% 42
+\BOOKMARK [2][-]{subsection.3.2.6}{Die RS-232 Schnittstelle und die Windows API}{section.3.2}% 43
+\BOOKMARK [0][-]{chapter.4}{L\366sungsans\344tze}{}% 44
+\BOOKMARK [1][-]{section.4.1}{Fehlererkennung}{chapter.4}% 45
+\BOOKMARK [1][-]{section.4.2}{Master Slave Modus zwischen zwei Systemen}{chapter.4}% 46
+\BOOKMARK [1][-]{section.4.3}{C++ und die GUI}{chapter.4}% 47
+\BOOKMARK [0][-]{chapter.5}{Systementwurf}{}% 48
+\BOOKMARK [1][-]{section.5.1}{Klasse Window}{chapter.5}% 49
+\BOOKMARK [2][-]{subsection.5.1.1}{Design}{section.5.1}% 50
+\BOOKMARK [2][-]{subsection.5.1.2}{Aufbau}{section.5.1}% 51
+\BOOKMARK [2][-]{subsection.5.1.3}{Aufgaben}{section.5.1}% 52
+\BOOKMARK [1][-]{section.5.2}{Klasse Interpreter}{chapter.5}% 53
+\BOOKMARK [2][-]{subsection.5.2.1}{Aufgaben}{section.5.2}% 54
+\BOOKMARK [1][-]{section.5.3}{Struktur TestStruct}{chapter.5}% 55
+\BOOKMARK [2][-]{subsection.5.3.1}{Aufbau}{section.5.3}% 56
+\BOOKMARK [1][-]{section.5.4}{Klasse Com}{chapter.5}% 57
+\BOOKMARK [2][-]{subsection.5.4.1}{Aufgaben}{section.5.4}% 58
+\BOOKMARK [1][-]{section.5.5}{Klasse PortCommunications}{chapter.5}% 59
+\BOOKMARK [2][-]{subsection.5.5.1}{Schreiben}{section.5.5}% 60
+\BOOKMARK [2][-]{subsection.5.5.2}{Lesen}{section.5.5}% 61
+\BOOKMARK [1][-]{section.5.6}{Klasse TestManager}{chapter.5}% 62
+\BOOKMARK [2][-]{subsection.5.6.1}{Aufbau}{section.5.6}% 63
+\BOOKMARK [1][-]{section.5.7}{Klasse FixedTest}{chapter.5}% 64
+\BOOKMARK [2][-]{subsection.5.7.1}{Ablauf eines Tests}{section.5.7}% 65
+\BOOKMARK [2][-]{subsection.5.7.2}{Master und Slave}{section.5.7}% 66
+\BOOKMARK [1][-]{section.5.8}{Klasse IniFileHandler}{chapter.5}% 67
+\BOOKMARK [2][-]{subsection.5.8.1}{\334bersetzer}{section.5.8}% 68
+\BOOKMARK [2][-]{subsection.5.8.2}{Schreiben}{section.5.8}% 69
+\BOOKMARK [2][-]{subsection.5.8.3}{Lesen}{section.5.8}% 70
+\BOOKMARK [1][-]{section.5.9}{Klasse Tools}{chapter.5}% 71
+\BOOKMARK [2][-]{subsection.5.9.1}{String Methoden}{section.5.9}% 72
+\BOOKMARK [2][-]{subsection.5.9.2}{Weitere Methoden}{section.5.9}% 73
+\BOOKMARK [1][-]{section.5.10}{Klasse TransferFileHandler}{chapter.5}% 74
+\BOOKMARK [2][-]{subsection.5.10.1}{Aufbau}{section.5.10}% 75
+\BOOKMARK [1][-]{section.5.11}{Klasse Logger}{chapter.5}% 76
+\BOOKMARK [1][-]{section.5.12}{Header Constants}{chapter.5}% 77
+\BOOKMARK [0][-]{chapter.6}{Testbeschreibung}{}% 78
+\BOOKMARK [1][-]{section.6.1}{Benutzerschnittstelle}{chapter.6}% 79
+\BOOKMARK [2][-]{subsection.6.1.1}{INI-Datei}{section.6.1}% 80
+\BOOKMARK [2][-]{subsection.6.1.2}{Kommandozeile}{section.6.1}% 81
+\BOOKMARK [2][-]{subsection.6.1.3}{Benutzeroberfl\344che}{section.6.1}% 82
+\BOOKMARK [1][-]{section.6.2}{Funktionseinheiten}{chapter.6}% 83
+\BOOKMARK [0][-]{chapter.7}{Bedienungsanleitung}{}% 84
+\BOOKMARK [1][-]{section.7.1}{Bedienung \374ber die GUI}{chapter.7}% 85
+\BOOKMARK [1][-]{section.7.2}{Bedienung \374ber die Kommandozeile}{chapter.7}% 86
+\BOOKMARK [1][-]{section.7.3}{Testmodus}{chapter.7}% 87
+\BOOKMARK [2][-]{subsection.7.3.1}{Automatic}{section.7.3}% 88
+\BOOKMARK [2][-]{subsection.7.3.2}{Wobble}{section.7.3}% 89
+\BOOKMARK [2][-]{subsection.7.3.3}{Fixed}{section.7.3}% 90
+\BOOKMARK [1][-]{section.7.4}{\334bertragungsmodus}{chapter.7}% 91
+\BOOKMARK [2][-]{subsection.7.4.1}{Shorted}{section.7.4}% 92
+\BOOKMARK [2][-]{subsection.7.4.2}{Double}{section.7.4}% 93
+\BOOKMARK [2][-]{subsection.7.4.3}{Master}{section.7.4}% 94
+\BOOKMARK [2][-]{subsection.7.4.4}{Slave}{section.7.4}% 95
+\BOOKMARK [1][-]{section.7.5}{Schnittstelleneigenschaften}{chapter.7}% 96
+\BOOKMARK [1][-]{section.7.6}{Sendedaten}{chapter.7}% 97
+\BOOKMARK [1][-]{section.7.7}{Logger}{chapter.7}% 98
+\BOOKMARK [1][-]{section.7.8}{Wiederholungsz\344hler}{chapter.7}% 99
+\BOOKMARK [1][-]{section.7.9}{Beim ersten Fehler anhalten}{chapter.7}% 100
+\BOOKMARK [1][-]{section.7.10}{Buttons}{chapter.7}% 101
+\BOOKMARK [1][-]{section.7.11}{Testdatei}{chapter.7}% 102
+\BOOKMARK [1][-]{section.7.12}{Einstellbare Werte}{chapter.7}% 103
+\BOOKMARK [1][-]{section.7.13}{Einfaches Beispiel}{chapter.7}% 104
+\BOOKMARK [0][-]{chapter.8}{Zusammenfassung und Ausblick}{}% 105
+\BOOKMARK [0][-]{appendix.A}{Anhang}{}% 106
+\BOOKMARK [1][-]{section.A.1}{CD}{appendix.A}% 107
+\BOOKMARK [1][-]{section.A.2}{Template Class}{appendix.A}% 108
+\BOOKMARK [1][-]{section.A.3}{HandleMessage}{appendix.A}% 109
+\BOOKMARK [1][-]{section.A.4}{Readdata}{appendix.A}% 110
+\BOOKMARK [1][-]{section.A.5}{Writedata}{appendix.A}% 111
+\BOOKMARK [1][-]{section.A.6}{Logdatei}{appendix.A}% 112
+\BOOKMARK [1][-]{section.A.7}{Testdatei}{appendix.A}% 113
+\BOOKMARK [1][-]{section.A.8}{Errorcodes}{appendix.A}% 114
+\BOOKMARK [1][-]{section.A.9}{Klassendiagramm}{appendix.A}% 115
+\BOOKMARK [0][-]{figure.A.4}{Literatur- und Quellenverzeichnis}{}% 116

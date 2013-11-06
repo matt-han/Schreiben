@@ -1,18 +1,19 @@
 \chapter{Zusammenfassung und Ausblick}\label{chp:zusammenfassung}
-Lehnen Sie sich zurück von Ihrem Terminal und versuchen ein wenig Abstand zu den vielen Detail-Problemen Ihrer Diplomarbeit zu gewinnen:
-Was war wirklich wichtig bei der Arbeit? 
-Wie sieht das Ergebnis aus?
-Wie schätzen Sie das Ergebnis ein?
-Gab es Randbedingungen, Ereignisse, die die Arbeit wesentlich beeinflußt haben?
-Gibt es noch offene Probleme?
-Wie könnten diese vermutlich gelöst werden?\\\\
+%Lehnen Sie sich zurück von Ihrem Terminal und versuchen ein wenig Abstand zu den vielen Detail-Problemen Ihrer Diplomarbeit zu gewinnen:
+%Was war wirklich wichtig bei der Arbeit? 
+%Wie sieht das Ergebnis aus?
+%Wie schätzen Sie das Ergebnis ein?
+%Gab es Randbedingungen, Ereignisse, die die Arbeit wesentlich beeinflußt haben?
+%Gibt es noch offene Probleme?
+%Wie könnten diese vermutlich gelöst werden?\\\\
 
 
+\paragraph{}
 
 
-Durch die Verwendung der API versteht man Windows als Betriebssystem besser.\\
+Durch die Verwendung der Windows API konnte ich meine Kenntnisse und das Verständnis für das Windows Betriebssystem erweitern. Leider war es schwer aktuelle Quellen und Literatur für die Entwicklung des Programms "`SerialPortTester"' zu finden. Da die Windows API heutzutage kaum noch eine Verwendung findet und der Trend in Richtung des .NET Frameworks geht, kann nur auf die Windows API als Referenz zurückgegriffen werden. Durch das selbständige Entwickeln dieser Bachelorarbeit konnte ich viel Erfahrung in der Planung und Entwicklung eines Projektes sammeln. Ebenso konnte ich meine Programmierkenntnisse erweitern. \\
  
-Master wartet 3 sekunden, bessere lösung?\\
-In ein system alles ok, in zwei verschiedene systeme keine resync nach ersten test\\
- 
- 
+
+Durch die Verkürzung meiner Bearbeitungszeit der Bachelorarbeit konnte ich einen Punkt der Anforderungsliste nicht fertigstellen. Im \textit{Master-Slave} Test (zwei getrennte Systeme) tritt zurzeit noch ein Fehler auf, wenn mehr als eine Wiederholung dieses Testschrittes durchgeführt werden soll. Dabei werden die Schnittstellen im folgenden Testschritt nicht mehr synchronisiert. Ein weiterer Punkt ist eine bessere Lösung hinsichtlich der Wartezeit-Strategie (der Slave muss 3 Sekunden nach dem Start des Mastertest gestartet werden) für die Initialisierung des \textit{Master-Slave} Tests zu entwickeln.\\
+
+Das Programm könnte in Hinsicht der Einstellungsparameter Stopbits, Datenbits und die Parität erweitert werden. Es gibt noch die Möglichkeit 1.5 Stopbits einzustellen, aber dieses wird nur bei niedrigeren Anzahl als 7 und 8 Datenbits unterstützt. Im Fall von der Parität könnten die Eigenschaften \textit{Markierung} und \textit{Leerzeichen} noch hinzugefügt werden.

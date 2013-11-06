@@ -7,16 +7,16 @@
 \contentsline {paragraph}{}{3}{section*.4}
 \contentsline {section}{\numberline {2.2}Laufzeit}{3}{section.2.2}
 \contentsline {paragraph}{}{3}{section*.5}
-\contentsline {section}{\numberline {2.3}Hardware}{3}{section.2.3}
-\contentsline {paragraph}{}{3}{section*.6}
+\contentsline {section}{\numberline {2.3}Hardware}{4}{section.2.3}
+\contentsline {paragraph}{}{4}{section*.6}
 \contentsline {section}{\numberline {2.4}Betriebssystem}{4}{section.2.4}
 \contentsline {paragraph}{}{4}{section*.7}
 \contentsline {section}{\numberline {2.5}Logbuch}{4}{section.2.5}
 \contentsline {paragraph}{}{4}{section*.8}
 \contentsline {section}{\numberline {2.6}Programminstanzen}{4}{section.2.6}
 \contentsline {paragraph}{}{4}{section*.9}
-\contentsline {section}{\numberline {2.7}Master / Slave}{4}{section.2.7}
-\contentsline {paragraph}{}{4}{section*.10}
+\contentsline {section}{\numberline {2.7}Master / Slave}{5}{section.2.7}
+\contentsline {paragraph}{}{5}{section*.10}
 \contentsline {subsection}{\numberline {2.7.1}Master-Funktion}{5}{subsection.2.7.1}
 \contentsline {paragraph}{}{5}{section*.11}
 \contentsline {subsection}{\numberline {2.7.2}Slave-Funktion}{5}{subsection.2.7.2}
@@ -52,53 +52,54 @@
 \contentsline {paragraph}{}{9}{section*.26}
 \contentsline {subsection}{\numberline {2.13.3}Anhalten eines Tests}{9}{subsection.2.13.3}
 \contentsline {paragraph}{}{9}{section*.27}
-\contentsline {chapter}{\numberline {3}Fachlichesumfeld}{10}{chapter.3}
+\contentsline {subsection}{\numberline {2.13.4}Programmname}{9}{subsection.2.13.4}
+\contentsline {paragraph}{}{9}{section*.28}
+\contentsline {chapter}{\numberline {3}Fachliches Umfeld}{10}{chapter.3}
 \contentsline {section}{\numberline {3.1}RS-232 (Radio Sector 232)}{10}{section.3.1}
-\contentsline {paragraph}{}{10}{section*.28}
-\contentsline {subsection}{\numberline {3.1.1}Definition}{10}{subsection.3.1.1}
 \contentsline {paragraph}{}{10}{section*.29}
+\contentsline {subsection}{\numberline {3.1.1}Definition}{10}{subsection.3.1.1}
+\contentsline {paragraph}{}{10}{section*.30}
 \contentsline {subsection}{\numberline {3.1.2}\IeC {\"U}bertragung}{11}{subsection.3.1.2}
-\contentsline {paragraph}{}{11}{section*.30}
+\contentsline {paragraph}{}{11}{section*.31}
 \contentsline {subsection}{\numberline {3.1.3}UART}{12}{subsection.3.1.3}
-\contentsline {paragraph}{}{12}{section*.31}
-\contentsline {subsection}{\numberline {3.1.4}Parit\IeC {\"a}tsbit}{12}{subsection.3.1.4}
 \contentsline {paragraph}{}{12}{section*.32}
-\contentsline {subsection}{\numberline {3.1.5}Leitungen und Stecker}{12}{subsection.3.1.5}
+\contentsline {subsection}{\numberline {3.1.4}Parit\IeC {\"a}tsbit}{12}{subsection.3.1.4}
 \contentsline {paragraph}{}{12}{section*.33}
+\contentsline {subsection}{\numberline {3.1.5}Leitungen und Stecker}{12}{subsection.3.1.5}
+\contentsline {paragraph}{}{12}{section*.34}
 \contentsline {subsection}{\numberline {3.1.6}Verwendung der RS-232 Schnittstelle bei Wincor Nixdorf}{13}{subsection.3.1.6}
-\contentsline {paragraph}{}{13}{section*.34}
+\contentsline {paragraph}{}{13}{section*.35}
 \contentsline {section}{\numberline {3.2}Microsoft Windows API}{14}{section.3.2}
 \contentsline {subsection}{\numberline {3.2.1}Definition}{14}{subsection.3.2.1}
-\contentsline {paragraph}{}{14}{section*.35}
-\contentsline {subsubsection}{API gegen\IeC {\"u}ber .NET Framework}{15}{section*.36}
-\contentsline {paragraph}{}{15}{section*.37}
-\contentsline {subsection}{\numberline {3.2.2}Windows.h}{15}{subsection.3.2.2}
+\contentsline {paragraph}{}{14}{section*.36}
+\contentsline {subsubsection}{API gegen\IeC {\"u}ber .NET Framework}{15}{section*.37}
 \contentsline {paragraph}{}{15}{section*.38}
-\contentsline {subsection}{\numberline {3.2.3}WinMain}{15}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.2}Windows.h}{15}{subsection.3.2.2}
 \contentsline {paragraph}{}{15}{section*.39}
+\contentsline {subsection}{\numberline {3.2.3}WinMain}{15}{subsection.3.2.3}
+\contentsline {paragraph}{}{15}{section*.40}
 \contentsline {subsection}{\numberline {3.2.4}Graphic User Interface (GUI)}{16}{subsection.3.2.4}
-\contentsline {paragraph}{}{16}{section*.40}
-\contentsline {subsection}{\numberline {3.2.5}Aufbau einer GUI}{16}{subsection.3.2.5}
 \contentsline {paragraph}{}{16}{section*.41}
-\contentsline {subsubsection}{Initialisierung und Erzeugung der GUI}{16}{section*.42}
-\contentsline {paragraph}{}{16}{section*.43}
-\contentsline {subsubsection}{Die Message Loop}{19}{section*.44}
-\contentsline {paragraph}{}{19}{section*.45}
-\contentsline {subsubsection}{Fensterprozedur: WndProc Funktion}{20}{section*.46}
-\contentsline {paragraph}{}{20}{section*.47}
+\contentsline {subsection}{\numberline {3.2.5}Aufbau einer GUI}{16}{subsection.3.2.5}
+\contentsline {paragraph}{}{16}{section*.42}
+\contentsline {subsubsection}{Initialisierung und Erzeugung der GUI}{16}{section*.43}
+\contentsline {paragraph}{}{16}{section*.44}
+\contentsline {subsubsection}{Die Message Loop}{19}{section*.45}
+\contentsline {paragraph}{}{19}{section*.46}
+\contentsline {subsubsection}{Fensterprozedur: WndProc Funktion}{20}{section*.47}
+\contentsline {paragraph}{}{20}{section*.48}
 \contentsline {subsection}{\numberline {3.2.6}Die RS-232 Schnittstelle und die Windows API}{21}{subsection.3.2.6}
-\contentsline {paragraph}{}{21}{section*.48}
-\contentsline {subsubsection}{\IeC {\"O}ffnen und Schlie\IeC {\ss }en eines Ports}{21}{section*.49}
-\contentsline {paragraph}{}{21}{section*.50}
-\contentsline {subsubsection}{Konfiguration eines Ports}{22}{section*.51}
-\contentsline {paragraph}{}{22}{section*.52}
-\contentsline {subsubsection}{Lesen und Schreiben}{23}{section*.53}
-\contentsline {paragraph}{}{23}{section*.54}
+\contentsline {paragraph}{}{21}{section*.49}
+\contentsline {subsubsection}{\IeC {\"O}ffnen und Schlie\IeC {\ss }en eines Ports}{21}{section*.50}
+\contentsline {paragraph}{}{21}{section*.51}
+\contentsline {subsubsection}{Konfiguration eines Ports}{22}{section*.52}
+\contentsline {paragraph}{}{22}{section*.53}
+\contentsline {subsubsection}{Lesen und Schreiben}{23}{section*.54}
+\contentsline {paragraph}{}{23}{section*.55}
 \contentsline {chapter}{\numberline {4}L\IeC {\"o}sungsans\IeC {\"a}tze}{25}{chapter.4}
 \contentsline {section}{\numberline {4.1}Fehlererkennung}{25}{section.4.1}
-\contentsline {paragraph}{}{25}{section*.55}
-\contentsline {section}{\numberline {4.2}Master Slave Modus zwischen zwei Systeme}{25}{section.4.2}
 \contentsline {paragraph}{}{25}{section*.56}
+\contentsline {section}{\numberline {4.2}Master Slave Modus zwischen zwei Systemen}{25}{section.4.2}
 \contentsline {paragraph}{}{25}{section*.57}
 \contentsline {section}{\numberline {4.3}C++ und die GUI}{26}{section.4.3}
 \contentsline {paragraph}{}{26}{section*.58}
@@ -132,121 +133,121 @@
 \contentsline {paragraph}{}{38}{section*.71}
 \contentsline {subsection}{\numberline {5.6.1}Aufbau}{38}{subsection.5.6.1}
 \contentsline {paragraph}{}{38}{section*.72}
-\contentsline {section}{\numberline {5.7}Klasse FixedTest}{40}{section.5.7}
-\contentsline {paragraph}{}{40}{section*.73}
-\contentsline {subsection}{\numberline {5.7.1}Ablauf eines Tests}{40}{subsection.5.7.1}
-\contentsline {paragraph}{}{40}{section*.74}
-\contentsline {subsection}{\numberline {5.7.2}Master und Slave}{40}{subsection.5.7.2}
-\contentsline {paragraph}{}{40}{section*.75}
-\contentsline {section}{\numberline {5.8}Klasse IniFileHandler}{43}{section.5.8}
-\contentsline {paragraph}{}{43}{section*.76}
-\contentsline {subsection}{\numberline {5.8.1}\IeC {\"U}bersetzer}{43}{subsection.5.8.1}
-\contentsline {paragraph}{}{43}{section*.77}
-\contentsline {subsection}{\numberline {5.8.2}Schreiben}{43}{subsection.5.8.2}
-\contentsline {paragraph}{}{43}{section*.78}
-\contentsline {subsection}{\numberline {5.8.3}Lesen}{44}{subsection.5.8.3}
-\contentsline {paragraph}{}{44}{section*.79}
-\contentsline {section}{\numberline {5.9}Klasse Tools}{45}{section.5.9}
-\contentsline {paragraph}{}{45}{section*.80}
-\contentsline {subsection}{\numberline {5.9.1}String Methoden}{45}{subsection.5.9.1}
-\contentsline {paragraph}{}{45}{section*.81}
-\contentsline {subsection}{\numberline {5.9.2}Weitere Methoden}{45}{subsection.5.9.2}
-\contentsline {paragraph}{}{45}{section*.82}
-\contentsline {section}{\numberline {5.10}Klasse TransferFileHandler}{46}{section.5.10}
-\contentsline {paragraph}{}{46}{section*.83}
-\contentsline {subsection}{\numberline {5.10.1}Aufbau}{46}{subsection.5.10.1}
-\contentsline {paragraph}{}{46}{section*.84}
-\contentsline {section}{\numberline {5.11}Klasse Logger}{46}{section.5.11}
-\contentsline {paragraph}{}{46}{section*.85}
-\contentsline {section}{\numberline {5.12}Header Constants}{46}{section.5.12}
-\contentsline {paragraph}{}{46}{section*.86}
-\contentsline {chapter}{\numberline {6}Testbeschreibung}{47}{chapter.6}
-\contentsline {paragraph}{}{47}{section*.87}
-\contentsline {section}{\numberline {6.1}Benutzerschnittstelle}{47}{section.6.1}
-\contentsline {paragraph}{}{47}{section*.88}
-\contentsline {paragraph}{Positivtest}{47}{section*.89}
-\contentsline {paragraph}{Negativtest}{47}{section*.90}
-\contentsline {paragraph}{Boderline}{47}{section*.91}
-\contentsline {subsection}{\numberline {6.1.1}INI-Datei}{47}{subsection.6.1.1}
-\contentsline {paragraph}{}{47}{section*.92}
-\contentsline {subsection}{\numberline {6.1.2}Kommandozeile}{49}{subsection.6.1.2}
+\contentsline {section}{\numberline {5.7}Klasse FixedTest}{39}{section.5.7}
+\contentsline {paragraph}{}{39}{section*.73}
+\contentsline {subsection}{\numberline {5.7.1}Ablauf eines Tests}{39}{subsection.5.7.1}
+\contentsline {paragraph}{}{39}{section*.74}
+\contentsline {subsection}{\numberline {5.7.2}Master und Slave}{39}{subsection.5.7.2}
+\contentsline {paragraph}{}{39}{section*.75}
+\contentsline {section}{\numberline {5.8}Klasse IniFileHandler}{42}{section.5.8}
+\contentsline {paragraph}{}{42}{section*.76}
+\contentsline {subsection}{\numberline {5.8.1}\IeC {\"U}bersetzer}{42}{subsection.5.8.1}
+\contentsline {paragraph}{}{42}{section*.77}
+\contentsline {subsection}{\numberline {5.8.2}Schreiben}{42}{subsection.5.8.2}
+\contentsline {paragraph}{}{42}{section*.78}
+\contentsline {subsection}{\numberline {5.8.3}Lesen}{43}{subsection.5.8.3}
+\contentsline {paragraph}{}{43}{section*.79}
+\contentsline {section}{\numberline {5.9}Klasse Tools}{44}{section.5.9}
+\contentsline {paragraph}{}{44}{section*.80}
+\contentsline {subsection}{\numberline {5.9.1}String Methoden}{44}{subsection.5.9.1}
+\contentsline {paragraph}{}{44}{section*.81}
+\contentsline {subsection}{\numberline {5.9.2}Weitere Methoden}{44}{subsection.5.9.2}
+\contentsline {paragraph}{}{44}{section*.82}
+\contentsline {section}{\numberline {5.10}Klasse TransferFileHandler}{45}{section.5.10}
+\contentsline {paragraph}{}{45}{section*.83}
+\contentsline {subsection}{\numberline {5.10.1}Aufbau}{45}{subsection.5.10.1}
+\contentsline {paragraph}{}{45}{section*.84}
+\contentsline {section}{\numberline {5.11}Klasse Logger}{45}{section.5.11}
+\contentsline {paragraph}{}{45}{section*.85}
+\contentsline {section}{\numberline {5.12}Header Constants}{45}{section.5.12}
+\contentsline {paragraph}{}{45}{section*.86}
+\contentsline {chapter}{\numberline {6}Testbeschreibung}{46}{chapter.6}
+\contentsline {paragraph}{}{46}{section*.87}
+\contentsline {section}{\numberline {6.1}Benutzerschnittstelle}{46}{section.6.1}
+\contentsline {paragraph}{}{46}{section*.88}
+\contentsline {subsection}{\numberline {6.1.1}INI-Datei}{46}{subsection.6.1.1}
+\contentsline {paragraph}{}{46}{section*.89}
+\contentsline {subsection}{\numberline {6.1.2}Kommandozeile}{47}{subsection.6.1.2}
+\contentsline {paragraph}{}{47}{section*.90}
+\contentsline {subsection}{\numberline {6.1.3}Benutzeroberfl\IeC {\"a}che}{48}{subsection.6.1.3}
+\contentsline {paragraph}{}{48}{section*.91}
+\contentsline {section}{\numberline {6.2}Funktionseinheiten}{48}{section.6.2}
+\contentsline {paragraph}{}{48}{section*.92}
+\contentsline {chapter}{\numberline {7}Bedienungsanleitung}{49}{chapter.7}
 \contentsline {paragraph}{}{49}{section*.93}
-\contentsline {subsection}{\numberline {6.1.3}Benutzeroberfl\IeC {\"a}che}{49}{subsection.6.1.3}
+\contentsline {section}{\numberline {7.1}Bedienung \IeC {\"u}ber die GUI}{49}{section.7.1}
 \contentsline {paragraph}{}{49}{section*.94}
-\contentsline {section}{\numberline {6.2}Funktionseinheiten}{49}{section.6.2}
-\contentsline {paragraph}{}{49}{section*.95}
-\contentsline {chapter}{\numberline {7}Bedienungsanleitung}{50}{chapter.7}
+\contentsline {section}{\numberline {7.2}Bedienung \IeC {\"u}ber die Kommandozeile}{50}{section.7.2}
+\contentsline {paragraph}{}{50}{section*.95}
+\contentsline {section}{\numberline {7.3}Testmodus}{50}{section.7.3}
+\contentsline {subsection}{\numberline {7.3.1}Automatic}{50}{subsection.7.3.1}
 \contentsline {paragraph}{}{50}{section*.96}
-\contentsline {section}{\numberline {7.1}Bedienung \IeC {\"u}ber die GUI}{50}{section.7.1}
+\contentsline {subsection}{\numberline {7.3.2}Wobble}{50}{subsection.7.3.2}
 \contentsline {paragraph}{}{50}{section*.97}
-\contentsline {section}{\numberline {7.2}Bedienung \IeC {\"u}ber die Kommandozeile}{51}{section.7.2}
+\contentsline {subsection}{\numberline {7.3.3}Fixed}{51}{subsection.7.3.3}
 \contentsline {paragraph}{}{51}{section*.98}
-\contentsline {section}{\numberline {7.3}Testmodus}{51}{section.7.3}
-\contentsline {subsection}{\numberline {7.3.1}Automatic}{51}{subsection.7.3.1}
+\contentsline {section}{\numberline {7.4}\IeC {\"U}bertragungsmodus}{51}{section.7.4}
 \contentsline {paragraph}{}{51}{section*.99}
-\contentsline {subsection}{\numberline {7.3.2}Wobble}{51}{subsection.7.3.2}
+\contentsline {subsection}{\numberline {7.4.1}Shorted}{51}{subsection.7.4.1}
 \contentsline {paragraph}{}{51}{section*.100}
-\contentsline {subsection}{\numberline {7.3.3}Fixed}{52}{subsection.7.3.3}
-\contentsline {paragraph}{}{52}{section*.101}
-\contentsline {section}{\numberline {7.4}\IeC {\"U}bertragungsmodus}{52}{section.7.4}
-\contentsline {paragraph}{}{52}{section*.102}
-\contentsline {subsection}{\numberline {7.4.1}Shorted}{52}{subsection.7.4.1}
-\contentsline {paragraph}{}{52}{section*.103}
-\contentsline {subsection}{\numberline {7.4.2}Double}{52}{subsection.7.4.2}
-\contentsline {paragraph}{}{52}{section*.104}
-\contentsline {subsection}{\numberline {7.4.3}Master}{52}{subsection.7.4.3}
-\contentsline {paragraph}{}{52}{section*.105}
-\contentsline {subsection}{\numberline {7.4.4}Slave}{52}{subsection.7.4.4}
-\contentsline {paragraph}{}{52}{section*.106}
-\contentsline {section}{\numberline {7.5}Schnittstelleneigenschaften}{53}{section.7.5}
-\contentsline {paragraph}{Baudrate}{53}{section*.107}
-\contentsline {paragraph}{Parity}{53}{section*.108}
-\contentsline {paragraph}{Protocol}{53}{section*.109}
-\contentsline {paragraph}{Stopbits}{53}{section*.110}
-\contentsline {paragraph}{Databits}{53}{section*.111}
-\contentsline {section}{\numberline {7.6}Sendedaten}{53}{section.7.6}
-\contentsline {paragraph}{}{53}{section*.112}
-\contentsline {section}{\numberline {7.7}Logger}{53}{section.7.7}
-\contentsline {paragraph}{}{53}{section*.113}
-\contentsline {section}{\numberline {7.8}Wiederholz\IeC {\"a}hler}{53}{section.7.8}
-\contentsline {paragraph}{}{53}{section*.114}
-\contentsline {section}{\numberline {7.9}Beim ersten Fehler anhalten}{53}{section.7.9}
-\contentsline {paragraph}{}{53}{section*.115}
-\contentsline {section}{\numberline {7.10}Buttons}{54}{section.7.10}
-\contentsline {paragraph}{Start}{54}{section*.116}
-\contentsline {paragraph}{Close}{54}{section*.117}
-\contentsline {paragraph}{Save}{54}{section*.118}
-\contentsline {paragraph}{Load test file}{54}{section*.119}
-\contentsline {paragraph}{Help}{54}{section*.120}
-\contentsline {paragraph}{Stop}{54}{section*.121}
-\contentsline {section}{\numberline {7.11}Testdatei}{54}{section.7.11}
-\contentsline {paragraph}{}{54}{section*.122}
-\contentsline {section}{\numberline {7.12}Einstellbare Werte}{54}{section.7.12}
-\contentsline {paragraph}{}{54}{section*.123}
-\contentsline {paragraph}{Main/Master und Slave Port}{54}{section*.124}
-\contentsline {paragraph}{Baudrate}{54}{section*.125}
-\contentsline {paragraph}{Test Mode}{54}{section*.126}
-\contentsline {paragraph}{Transfer Mode}{54}{section*.127}
-\contentsline {paragraph}{Parity}{54}{section*.128}
-\contentsline {paragraph}{Protocol}{55}{section*.129}
-\contentsline {paragraph}{Stopbits}{55}{section*.130}
-\contentsline {paragraph}{Databits}{55}{section*.131}
-\contentsline {paragraph}{File to send}{55}{section*.132}
-\contentsline {paragraph}{Text to send}{55}{section*.133}
-\contentsline {paragraph}{Logger}{55}{section*.134}
-\contentsline {paragraph}{Repeater}{55}{section*.135}
-\contentsline {section}{\numberline {7.13}Einfaches Beispiel}{55}{section.7.13}
+\contentsline {subsection}{\numberline {7.4.2}Double}{51}{subsection.7.4.2}
+\contentsline {paragraph}{}{51}{section*.101}
+\contentsline {subsection}{\numberline {7.4.3}Master}{51}{subsection.7.4.3}
+\contentsline {paragraph}{}{51}{section*.102}
+\contentsline {subsection}{\numberline {7.4.4}Slave}{51}{subsection.7.4.4}
+\contentsline {paragraph}{}{51}{section*.103}
+\contentsline {section}{\numberline {7.5}Schnittstelleneigenschaften}{52}{section.7.5}
+\contentsline {paragraph}{Baudrate}{52}{section*.104}
+\contentsline {paragraph}{Parity}{52}{section*.105}
+\contentsline {paragraph}{Protocol}{52}{section*.106}
+\contentsline {paragraph}{Stopbits}{52}{section*.107}
+\contentsline {paragraph}{Databits}{52}{section*.108}
+\contentsline {section}{\numberline {7.6}Sendedaten}{52}{section.7.6}
+\contentsline {paragraph}{}{52}{section*.109}
+\contentsline {section}{\numberline {7.7}Logger}{52}{section.7.7}
+\contentsline {paragraph}{}{52}{section*.110}
+\contentsline {section}{\numberline {7.8}Wiederholungsz\IeC {\"a}hler}{52}{section.7.8}
+\contentsline {paragraph}{}{52}{section*.111}
+\contentsline {section}{\numberline {7.9}Beim ersten Fehler anhalten}{52}{section.7.9}
+\contentsline {paragraph}{}{52}{section*.112}
+\contentsline {section}{\numberline {7.10}Buttons}{53}{section.7.10}
+\contentsline {paragraph}{Start}{53}{section*.113}
+\contentsline {paragraph}{Close}{53}{section*.114}
+\contentsline {paragraph}{Save}{53}{section*.115}
+\contentsline {paragraph}{Load test file}{53}{section*.116}
+\contentsline {paragraph}{Help}{53}{section*.117}
+\contentsline {paragraph}{Stop}{53}{section*.118}
+\contentsline {section}{\numberline {7.11}Testdatei}{53}{section.7.11}
+\contentsline {paragraph}{}{53}{section*.119}
+\contentsline {section}{\numberline {7.12}Einstellbare Werte}{53}{section.7.12}
+\contentsline {paragraph}{}{53}{section*.120}
+\contentsline {paragraph}{Main/Master und Slave Port}{53}{section*.121}
+\contentsline {paragraph}{Baudrate}{53}{section*.122}
+\contentsline {paragraph}{Test Mode}{53}{section*.123}
+\contentsline {paragraph}{Transfer Mode}{53}{section*.124}
+\contentsline {paragraph}{Parity}{53}{section*.125}
+\contentsline {paragraph}{Protocol}{54}{section*.126}
+\contentsline {paragraph}{Stopbits}{54}{section*.127}
+\contentsline {paragraph}{Databits}{54}{section*.128}
+\contentsline {paragraph}{File to send}{54}{section*.129}
+\contentsline {paragraph}{Text to send}{54}{section*.130}
+\contentsline {paragraph}{Logger}{54}{section*.131}
+\contentsline {paragraph}{Repeater}{54}{section*.132}
+\contentsline {section}{\numberline {7.13}Einfaches Beispiel}{54}{section.7.13}
+\contentsline {paragraph}{}{54}{section*.133}
+\contentsline {paragraph}{}{54}{section*.134}
+\contentsline {paragraph}{}{55}{section*.135}
 \contentsline {paragraph}{}{55}{section*.136}
-\contentsline {paragraph}{}{55}{section*.137}
-\contentsline {paragraph}{}{56}{section*.138}
-\contentsline {paragraph}{}{56}{section*.139}
-\contentsline {chapter}{\numberline {8}Zusammenfassung und Ausblick}{57}{chapter.8}
-\contentsline {chapter}{\numberline {A}Anhang}{59}{appendix.A}
-\contentsline {section}{\numberline {A.1}Template Class}{59}{section.A.1}
-\contentsline {section}{\numberline {A.2}HandleMessage}{61}{section.A.2}
-\contentsline {section}{\numberline {A.3}Readdata}{62}{section.A.3}
-\contentsline {section}{\numberline {A.4}Writedata}{65}{section.A.4}
-\contentsline {section}{\numberline {A.5}Logdatei}{67}{section.A.5}
-\contentsline {section}{\numberline {A.6}Testdatei}{70}{section.A.6}
-\contentsline {section}{\numberline {A.7}Errorcodes}{71}{section.A.7}
-\contentsline {chapter}{Literatur- und Quellenverzeichnis}{72}{section.A.7}
+\contentsline {chapter}{\numberline {8}Zusammenfassung und Ausblick}{56}{chapter.8}
+\contentsline {paragraph}{}{56}{section*.137}
+\contentsline {chapter}{\numberline {A}Anhang}{58}{appendix.A}
+\contentsline {section}{\numberline {A.1}CD}{58}{section.A.1}
+\contentsline {section}{\numberline {A.2}Template Class}{59}{section.A.2}
+\contentsline {section}{\numberline {A.3}HandleMessage}{61}{section.A.3}
+\contentsline {section}{\numberline {A.4}Readdata}{62}{section.A.4}
+\contentsline {section}{\numberline {A.5}Writedata}{65}{section.A.5}
+\contentsline {section}{\numberline {A.6}Logdatei}{67}{section.A.6}
+\contentsline {section}{\numberline {A.7}Testdatei}{70}{section.A.7}
+\contentsline {section}{\numberline {A.8}Errorcodes}{71}{section.A.8}
+\contentsline {section}{\numberline {A.9}Klassendiagramm}{72}{section.A.9}
+\contentsline {chapter}{Literatur- und Quellenverzeichnis}{76}{figure.A.4}

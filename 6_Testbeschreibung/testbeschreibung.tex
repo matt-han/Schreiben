@@ -5,18 +5,25 @@ Als letzter Schritt für die Beendigung der Entwicklung des Testprogrammes müss
 
 \section{Benutzerschnittstelle}
 \paragraph{}
-In den Tests für die Benutzerschnittstellen müssen alle Parameter getestet werden, wo der Benutzer ein Fehler begangen kann. Im Testprogramm gibt es ein Abschnitt wo alle Parameter überprüft werden. Folgende Testfälle müssen von diesem Programmabschnitt abgefangen werden und den Benutzer melden, was für ein Fehler er begangen hat, mit einer passende Fehlermeldung. Folgende Teststrategie werden ausgeübt:
+In den Tests für die Benutzerschnittstellen müssen alle Parameter getestet werden, in die der Benutzer einen Fehler eingeben kann. Im Testprogramm gibt es einen Abschnitt wo alle Parameter überprüft werden. Folgende Testfälle (siehe Tabelle) müssen von diesem Programmabschnitt abgefangen werden und dem Benutzer gemeldet werden, welche Eingaben fehlerhaft waren. Diese Fehleingaben werden mit einer passende Fehlermeldung dem Benutzer ausgegeben. Folgende Teststrategien werden ausgeübt:
 
-\paragraph{Positivtest} erwartete Eingabe für den jeweiligen Parameter (bei eine Zahl wird eine gültiger numerischer Wert eingegeben)
-\paragraph{Negativtest} unerwartete Eingabe für den jeweiligen Parameter (bei eine Zahl wird ein Text eingegeben)
-\paragraph{Boderline} gültige und ungültige Grenzwerte
+\begin{tabular}{lll}
 
-Für die Dokumentation der Tests werden die Positivtest nicht berücksichtigt. 
+&\textbf{Positivtest:} &erwartete Eingabe für den jeweiligen Parameter (bei einer Zahl wird eine gültiger\\
+& & numerischer Wert eingegeben)\\
+
+&\textbf{Negativtest:} &unerwartete Eingabe für den jeweiligen Parameter (bei einer Zahl wird ein Text\\
+& & eingegeben)\\
+
+&\textbf{Grenzwerttest:} &gültige und ungültige Grenzwerte\\
+\end{tabular}
+
+Für die Dokumentation der Tests werden die Positivtests nicht berücksichtigt. 
 
 
 \subsection{INI-Datei}
 \paragraph{}
-In einer INI-Datei müssen alle gelesene Parameter auf plausible Werte überprüft werden. Eine Liste mit den Bedeutungen der Errorcodes ist im Anhang \ref{Errorcodes} ......zu lesen........
+In einer INI-Datei müssen alle gelesenen Parameter auf plausible Werte überprüft werden. Eine Liste mit den Bedeutungen der Errorcodes ist im Anhang \ref{Errorcodes} nach zu schlagen.
 \begin{longtable}{||l|p{3cm}|p{5cm}|c||}
  
 %  Als Kopfzeile & der anderen Seiten & wird dies gesetzt &\\ \hline
@@ -35,14 +42,14 @@ Testfall & Fehler & Kommentar & Errorcode \\ \hline\hline
 \endhead
 
 COM0   & falscher COM Port & kein gültiger Wert, Datei wird als Leer interpretiert & -12\\ \hline
-COM1   & falscher COM Port & nicht in der System vorhanden                         & -6 \\ \hline
+COM1   & falscher COM Port & nicht im System vorhanden                             & -6 \\ \hline
 COM256 & falscher COM Port & nicht im System vorhanden                             & -6 \\ \hline
 COM257 & falscher COM Port & kein gültiger Wert, Datei wird als Leer interpretiert & -12\\ \hline\hline
 
-baudrate=Min-Max     & falscher Parameter      & MIN-MAX                      & -17 \\ \hline
-baudrate=-Max        & unvollständiger Parameter & fehlt eine minimale Baudrate &  \\ \hline
-baudrate=Min-        & unvollständiger Parameter & fehlt eine maximale Baudrate &  \\ \hline
-baudrate=-9600-115200& negative Baudrate         & nur positive Baudraten       &  \\ \hline
+baudrate=Min-Max     & falscher Parameter        & MIN-MAX                      & -17 \\ \hline
+baudrate=-MAX        & unvollständiger Parameter & fehlt eine minimale Baudrate & -17 \\ \hline
+baudrate=MIN-        & unvollständiger Parameter & fehlt eine maximale Baudrate & -17 \\ \hline
+baudrate=-9600-115200& negative Baudrate         & ungültige Eingabe wird nicht interpretiert &  -15\\ \hline
 
 parity=Min-Max & falscher Parameter & MIN-MAX         & -9\\ \hline
 parity=1       & falscher Parameter & nur Text & -9\\ \hline
@@ -84,7 +91,7 @@ repeater=text & falscher Parameter & nur Zahlen $\geq$ 0 & -9\\ \hline\hline
 \end{longtable}
 
 
-Bei einer Testdatei mit mehreren Sektionen, werden zuerst alle Eingaben gelesen und geprüft. Wird ein Fehler gefunden, wird dieser dem Benutzer gemeldet. Sind ungültige Sektionen wie [COM0] oder [COM257] in der Testdatei eingetragen, werden diese vom Testprogramm nicht betrachtet. Alle andere gültige Eingaben werden geprüft und getestet.
+Bei einer Testdatei mit mehreren Sektionen, werden zuerst alle Eingaben gelesen und geprüft. Wird ein Fehler gefunden, wird dieser dem Benutzer gemeldet. Sind ungültige Sektionen wie [COM0] oder [COM257] in der Testdatei eingetragen, werden diese vom Testprogramm nicht betrachtet. Alle anderen gültigen Eingaben werden geprüft und getestet.
 
 
 \subsection{Kommandozeile}
@@ -102,25 +109,25 @@ Testfall & Fehler & Kommentar & Errorcode \\ \hline\hline
 Testfall & Fehler & Kommentar & Errorcode \\ \hline\hline
 \endhead
 
-C:\textbackslash Testdateien & falscher Dateipfad & Dateipfad gibt keine Datei an & \\ \hline
-C:\textbackslash Testdateien\textbackslash Datei & falscher Dateipfad & Dateipfad gibt keine gültige Testdatei an & \\ \hline
+C:\textbackslash Testdateien & falscher Dateipfad & Dateipfad gibt keine Datei an & -12\\ \hline
+C:\textbackslash Testdateien\textbackslash Datei & falscher Dateipfad & Dateipfad gibt keine gültige Testdatei an & -12\\ \hline
 
-C:\textbackslash Testdatei.ini /com1 & falscher COM Port & Portbezeichnung ungültig, muss COM1 sein & \\ \hline
-C:\textbackslash Testdatei.ini /COM0 & falscher COM Port & Portname ungültig & \\ \hline
-C:\textbackslash Testdatei.ini COM1 & falscher Parameter & Parameter muss mit / beginnen & \\ \hline
+C:\textbackslash Testdatei.ini /com1 & falscher COM Port & Portbezeichnung ungültig, muss COM1 sein & -1\\ \hline
+C:\textbackslash Testdatei.ini /COM0 & falscher COM Port & Portname ungültig & -1\\ \hline
+C:\textbackslash Testdatei.ini COM1 & falscher Parameter & Parameter muss mit / beginnen & -1\\ \hline
 
-C:\textbackslash Testdatei.ini /COM1 /COM2& flascher Parameter & zu viele Parameter & \\ \hline
-/COM0 & falscher Parameter & Dateipfad fehlt & \\ \hline
+C:\textbackslash Testdatei.ini /COM1 /COM2& falscher Parameter & zu viele Parameter & -1\\ \hline
+/COM0 & falscher Parameter & Dateipfad fehlt &-1 \\ \hline
 
 \end{longtable}
 
 
 \subsection{Benutzeroberfläche}
 \paragraph{}
-In der Benutzeroberfläche werden nur gültige Parameter angeboten, außer die Baudraten, der Wiederholungszähler (Repeater), die Übertragungsdatei und der Übertragungstext. Die Baudraten werden für jeden COM Port vom System abgefragt. Durch die Test wurde festgestellt, dass manche Baudraten angeboten werden, die nicht wirklich unterstützt werden. Der Benutzer kann im Fehlerfall, mit Hilfe der Kommandozeile und des Befehls \textit{mode}, sicherstellen, dass die Baudrate tatsächlich nicht unterstützt wird. Bei den anderen Parametern werden Fehler erkannt, da die Überprüfung für die GUI oder Testdatei die gleiche ist.
+In der Benutzeroberfläche werden nur gültige Parameter angeboten, außer die Baudraten, der Wiederholungszähler (Repeater), die Übertragungsdatei und der Übertragungstext. Die Baudraten werden für jeden COM Port vom System abgefragt. Durch die Tests wurde festgestellt, dass manche Baudraten angeboten werden, die nicht wirklich unterstützt werden. Der Benutzer kann im Fehlerfall, mit Hilfe der Kommandozeile und den Befehl \textit{mode} sicherstellen, dass die Baudrate tatsächlich nicht unterstützt wird. Bei den anderen Parametern werden Fehler erkannt, da die Überprüfung für die GUI oder Testdatei die gleiche ist.
 
 
 
 \section{Funktionseinheiten}
 \paragraph{}
-Die Funktionstest basieren auf die Funktionen des Testprogrammes. Die verschiedene Einstellungsmöglichkeiten worden getestet. Durch die Ausführlichkeit des Tests werden nur die durchgefälle Tests erläutert. Laut Testergebnisse gibt es keine Einschränkungen in den Testmodus (Automatic, Wobble und Fixed) und in den Transfermodus \textit{Shorted} und \textit{Double}. Wird der Transfermodus \textit{Master-Slave} in einem System getestet, worden keine Probleme erkannt. Wird die gleiche Einstellung in zwei verschiedene Systeme ausgeführt, kommt es öfters zu Synchronisierungsprobleme nach den ersten Testschritt\footnote{Unter Testschritt ist zu verstehen, dass ein Test aus mehreren Schritten besteht. Für jede mögliche Testkonfiguration wird ein Testschritt definiert. Wird für ein \textit{Fixed-Shorted} Test der Wiederholzähler auf Zehn gesetzt, besteht dieser Test aus Zehn Testschritten}. Wenn beide Schnittstellen im ersten Testschritt sich erfolgreich synchronisieren und den ersten Testschritt erfolgreich abschließen, müssen sich für einen neuen Testschritt nochmal synchronisieren. Bei diesen Vorgang kommt es zu einem Fehler und beide Schnittstellen erkennen sich nicht.
+Die Funktionstests basieren auf den Funktionen des Testprogrammes. Die verschiedenen Einstellungsmöglichkeiten werden getestet. Durch die Ausführlichkeit des Tests werden nur die durchgefallenen Tests erläutert. Laut den  Testergebnissen gibt es keine Einschränkungen in den Testmodi (Automatic, Wobble und Fixed) und in den Transfermodi \textit{Shorted} und \textit{Double}. Wird der Transfermodus \textit{Master-Slave} in einem System getestet, wurden keine Probleme erkannt. Wird die gleiche Einstellung in zwei verschiedenen Systemen ausgeführt, kommt es öfters zu Synchronisierungsproblemen nach dem ersten Testschritt\footnote{Unter Testschritt ist zu verstehen, dass ein Test aus mehreren Schritten besteht. Für jede mögliche Testkonfiguration wird ein Testschritt definiert. Wird für ein \textit{Fixed-Shorted} Test der Wiederholzähler auf Zehn gesetzt, besteht dieser Test aus Zehn Testschritten}. Wenn beide Schnittstellen im ersten Testschritt sich erfolgreich synchronisieren und den ersten Testschritt erfolgreich abschließen, müssen sich für einen neuen Testschritt nochmal synchronisieren. Bei diesen Vorgang kommt es zu einem Fehler und beide Schnittstellen erkennen sich nicht.

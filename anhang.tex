@@ -16,9 +16,22 @@
 				commentstyle=\color{HKS13}\slshape,,
 				identifierstyle=\color{black}
 		}
-		
-		
+
+
 \chapter{Anhang}
+
+		
+\section{CD}
+Inhalt:
+\begin{itemize}
+\item Quellcode
+\item Quellen
+\item PDF-Datei dieser Arbeit
+\item Ausführbare Datei (\textit{SerialPortTester.exe})
+\end{itemize}
+
+\newpage
+
 
 \section{Template Class}\label{TemplateClass}
 \begin{lstlisting}	
@@ -648,3 +661,80 @@ Testdatei für ein \textit{Wobble-Double} Test:\\
 \newpage
 %****************************************************************************************
 \section{Errorcodes}\label{Errorcodes}
+
+\begin{longtable}{||r|l|p{8cm}||}
+\hline
+Errorcode & Beschriftung & Beschreibung \\ \hline\hline
+\endhead
+
+0 & ERROR\_SUCCESS & System definierter Errorcode für Erfolg \\ \hline
+-1  & ERROR\_CMD\_SYNTAX     & Falscher Syntax in der Kommandozeile \\ \hline
+-2  & ERROR\_CREATE\_GUI     & Fehler bei dem Aufbau der Benutzeroberfläche \\ \hline
+-3  & ERROR\_PORT\_OPEN      & Der angegebene COM Port konnte nicht geöffnet werden\\ \hline
+-4  & ERROR\_CLOSE\_PORT     & Der offene COM Port konnte nicht geschlossen werden\\ \hline
+-5  & ERROR\_GET\_DCB        & Die Kontrollstruktur des geöffneten COM Ports konnte nicht geladen werden \\ \hline
+-6  & ERROR\_BAUDRATE        & Fehler beim Laden oder Interpretieren der Baudraten für den angegeben COM Port \\ \hline
+-7  & ERROR\_SET\_TIMEOUTS   & Fehler beim Setzen der Timeoutwerte für den angegeben COM Port \\ \hline
+-8  & ERROR\_LOG             & Fehler bei der Erzeugung des Logfiles \\ \hline
+-9  & ERROR\_INI             & Inkorrekter Parameter in der Testdatei \\ \hline
+-10 & ERROR\_SET\_DCB        & Fehler beim Setzen der Kontrollstruktur des geöffneten COM Ports \\ \hline
+-11 & ERROR\_INPUT           & Ein Eingabeparameter in der Benutzeroberfläche ist fehlerhaft \\ \hline
+-12 & ERROR\_NO\_FILE        & Die angegebene Testdatei existiert nicht, beinhaltet keine gültige COM Ports oder ist leer\\ \hline
+-13 & ERROR\_FILE\_NOT\_OPEN & Angegebene Übertragungsdatei konnte nicht geöffnet werden \\ \hline
+-14 & ERROR\_EMPTY\_FILE     & Angegebene Übertragungsdatei ist leer \\ \hline
+-15 & ERROR\_BAUD\_MINMAX    & Maximale Baudrate muss größer der minimalen Baudrate sein \\ \hline
+-16 & ERROR\_MISSING\_PAR    & Ein Parameter fehlt, um die Testdatei zu speichern. Siehe pop-up Fenster für mehr Information \\ \hline
+-17 & ERROR\_PARSE           & Fehler bei der Übersetzung eines Parameters aus der Testdatei \\ \hline
+-18 & ERROR\_READ\_PORT      & Fehler im Lesevorgang auf einem COM Port. Wenn vorhanden, siehe Log-Datei \\ \hline
+-19 & ERROR\_WRITE\_PORT     & Fehler im Schreibvorgang auf einem COM Port. Wenn vorhanden, siehe Log-Datei \\ \hline
+-20 & ERROR\_CMP\_STR        & Gesendeter und empfangener String sind ungleich \\ \hline
+-21 & ERROR\_WAIT\_SLAVE     & Master hat auf Antwort des Slaves gewartet, aber keine ist angekommen \\ \hline
+-22 & ERROR\_WAIT\_MASTER    & Slave hat auf Anfrage des Masters gewartet, aber keine ist angekommen \\ \hline
+-23 & ERROR\_SYNC            & Fehler im Synchronisationsvorgang zwischen Master und Slave \\ \hline
+-24 & ERROR\_PARSE\_SLAVE    & Empfangene Testinformation ist fehlerhaft \\ \hline
+-25 & ERROR\_MSG\_HEADER     & Empfangene Kopfzeile ist fehlerhaft \\ \hline
+-26 & ERROR\_ESC             & Benutzer hat ESC-Taste in der Kommandozeile gedrückt und den Test abgebrochen \\ \hline
+%-27 &  &  \\ \hline
+%-28 &  &  \\ \hline
+%-29 &  &  \\ \hline
+%- &  &  \\ \hline
+%- &  &  \\ \hline
+\end{longtable}
+
+
+
+\section{Klassendiagramm}
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[scale=0.2]{Klassendiagramm_komplett}
+  		  \caption{Klassendiagramm}
+     \label{KlassenDiagramm}
+  \end{center}
+\end{figure}
+
+
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[scale=0.7]{Klassendiagramm1}
+  		  \caption{Klassendiagramm Teil 1}
+     \label{KlassenDiagramm1}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[scale=0.7]{Klassendiagramm2}
+  		  \caption{Klassendiagramm Teil 2}
+     \label{KlassenDiagramm2}
+  \end{center}
+\end{figure}
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[scale=0.7]{Klassendiagramm3}
+  		  \caption{Klassendiagramm Teil 3}
+     \label{KlassenDiagramm3}
+  \end{center}
+\end{figure}
